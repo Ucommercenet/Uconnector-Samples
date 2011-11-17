@@ -1,0 +1,67 @@
+﻿@using UCommerce.EntitiesV2
+@using UConnector.MvcApplication.Controllers
+@model IndexModel
+@{
+    ViewBag.Title = "Home Page";
+}
+
+@helper PrintCatagories(IEnumerable<Category> categories)
+{
+    <ul>
+        @foreach (Category item in categories)
+        {
+            <li>
+                @Html.ActionLink(item.Name, "Download", "Home", new {id = item.CategoryId, typeName = "Category"}, null)
+
+                @PrintCatagories(item.GetCategories())
+            </li>
+        }
+    </ul>
+}
+
+<h2>@ViewBag.Message</h2>
+<p>
+    To learn more about ASP.NET MVC visit <a href="http://asp.net/mvc" title="ASP.NET MVC Website">http://asp.net/mvc</a>.
+</p>
+<p>
+    @Html.ActionLink("Download here Søren", "Download", "Home")
+</p>
+
+<fieldset>
+    <legend>Export Products</legend>
+    <ul>
+        @foreach (ProductCatalogGroup productCatalogGroup in Model.ProductCatalogGroups)
+        {
+            <li>
+                @Html.ActionLink(productCatalogGroup.Name, "Download", "Home", new {id = productCatalogGroup.ProductCatalogGroupId, typeName = "ProductCatalogGroup"}, null)
+                <ul>
+                    @foreach (ProductCatalog productCatalog in productCatalogGroup.ProductCatalogs)
+                    {
+                        <li>
+                            @Html.ActionLink(productCatalog.Name, "Download", "Home", new {id = productCatalog.ProductCatalogId, typeName = "ProductCatalog"}, null)
+                        
+                            @PrintCatagories(productCatalog.GetRootCategories())
+                        </li>
+                    }
+                </ul>
+            </li>
+        }
+    </ul>
+</fieldset>
+
+
+@*<fieldset>
+    <legend>ProductCatalogs</legend>
+    @foreach(var item in Model.ProductCatalogs)
+    {
+        <p>
+            @Html.ActionLink(item.Name, "Download", "Home", new { id = item.ProductCatalogId, typeName = "ProductCatalog" }, null)
+        </p>
+    }
+</fieldset>
+
+
+<fieldset>
+    <legend>Categories</legend>
+    
+</fieldset>*@
