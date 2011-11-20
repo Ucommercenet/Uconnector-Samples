@@ -34,6 +34,14 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <OutputPath>bin\Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <OutputPath>bin\Release\</OutputPath>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="businesslogic">
       <HintPath>..\..\lib\uCommerce\businesslogic.dll</HintPath>
@@ -64,12 +72,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cogs\Transformers\AddHoursToDateTimeCog.cs" />
+    <Compile Include="Cogs\Receive\DateTimeNowReceiver.cs" />
+    <Compile Include="Cogs\Send\DateTimeSender.cs" />
     <Compile Include="Cogs\Decision\BailOutIfStreamIsNullDecision.cs" />
+    <Compile Include="Cogs\Transformers\PrintDateTimeToConsoleWithFormatCog.cs" />
+    <Compile Include="Cogs\Transformers\RemoveTimePartCog.cs" />
     <Compile Include="Cogs\Transformers\CharListToStringCog.cs" />
     <Compile Include="Cogs\Transformers\PrintListOfListCog.cs" />
     <Compile Include="Cogs\Transformers\PrintCharCog.cs" />
     <Compile Include="Cogs\Transformers\PrintStringListCog.cs" />
     <Compile Include="Cogs\Transformers\PrintStringCog.cs" />
+    <Compile Include="Operations\DateTimeSampleOperation.cs" />
     <Compile Include="Operations\DeleteFilesOperation.cs" />
     <Compile Include="Operations\FetchFileOperation.cs" />
     <Compile Include="Operations\MoveFileOperation.cs" />
@@ -85,6 +99,7 @@
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Tasks\DateTimeOperation.config" />
     <None Include="Tasks\DeleteFilesOperation.config">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

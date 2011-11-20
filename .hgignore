@@ -24,3 +24,4 @@ obj
 _ReSharper*
 *.resharper
 *.ReSharper
+lib\uConnector\Debug

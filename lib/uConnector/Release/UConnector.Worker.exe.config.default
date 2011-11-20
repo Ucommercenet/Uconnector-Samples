@@ -16,8 +16,6 @@
   <connectionStrings>
     <add name="UCommerce"
          connectionString="server=172.17.4.72;database=ucommerce;user id=umbracouser;password=supermand!" />
-    <add name="UCommerce2"
-         connectionString="server=(local)\sqlexpress;database=umbraco;user id=umbracouser;password=3edc4rfV" />
   </connectionStrings>
   <startup>
     <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.0" />
@@ -50,13 +48,13 @@
     <worldPayPaymentMethodService configSource=".\umbraco\ucommerce\configuration\WorldPay.config" />
     <sagePayPaymentMethodService configSource=".\umbraco\ucommerce\configuration\SagePay.config" />-->
   </commerce>
-  <uConnector>
+  <uConnector addMissingOperationOptions="true">
     <taskPaths>
       <add path="Tasks" />
-      <add path="D:\Hg\uConnector\src\uConnector.Worker\bin\Debug\Tasks" />
+      <!--<add path="D:\Hg\uConnector\src\uConnector.Worker\bin\Debug\Tasks" />-->
     </taskPaths>
     <assemblyPaths>
-      <add path="D:\Hg\uConnector\src\uConnector.Samples\bin\Debug" />
+      <add path="D:\Hg\uConnector Samples\src\uConnector.Samples\bin\Debug" />
     </assemblyPaths>
   </uConnector>
   <runtime>
@@ -87,8 +85,4 @@
     <add key="quartz.jobStore.misfireThreshold" value="60000" />
     <add key="quartz.jobStore.type" value="Quartz.Simpl.RAMJobStore, Quartz" />
   </quartz>
-  <!--<appSettings>
-    <add key="AddPath" value="D:\Hg\uConnector\src\UCommerce.Connector.Samples\bin\Debug" />
-    <add key="OperationsDirectory" value="Tasks" />
-  </appSettings>-->
 </configuration>

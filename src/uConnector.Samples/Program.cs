@@ -22,6 +22,7 @@ namespace UConnector.Samples
 
             var connectorConfigurations = reader.GetConfigurations();
 
+            
             int i = 0;
             foreach (var configuration in connectorConfigurations)
             {
@@ -38,13 +39,13 @@ namespace UConnector.Samples
                 return;
             }
 
-            if (!menuItemNumber.IsBetween(1, connectorConfigurations.Count))
+            if (!menuItemNumber.IsBetween(1, connectorConfigurations.Count()))
             {
                 Console.WriteLine("Invalid item selected.");
                 return;
             }
 
-            var selectedConfiguration = connectorConfigurations[menuItemNumber - 1];
+            var selectedConfiguration = connectorConfigurations.Skip(menuItemNumber - 1).First();
 
             var operationSection = selectedConfiguration.GetSection();
 
@@ -60,12 +61,13 @@ namespace UConnector.Samples
             }
             catch (ConnectorConfigurationException exception)
             {
+
                 foreach (var item in operation.GetConfiguration())
                 {
-                    var configElement = operationSection.Configs.GetOrAdd(item.Name);
+                    var configElement = operationSection.Configs.AddOrGet(item.Name);
                     foreach (var option in item.GetOptions().Where(a => a.Required == Required.Yes))
                     {
-                        var optionElement = configElement.Options.GetOrAdd(option.Name);
+                        var optionElement = configElement.Options.AddOrGet(option.Name, false);
                         if (string.IsNullOrWhiteSpace(optionElement.Value))
                             optionElement.Value = "";
                     }
@@ -82,8 +84,6 @@ namespace UConnector.Samples
 
                 return;
             }
-            
-
             
             _OperationEngine.ExecuteWorker(operation);
         }
