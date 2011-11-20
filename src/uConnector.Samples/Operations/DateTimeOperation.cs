@@ -3,12 +3,12 @@ using UConnector.Samples.Cogs.Receive;
 using UConnector.Samples.Cogs.Send;
 using UConnector.Samples.Cogs.Transformers;
 
-namespace UConnector.Worker.Operations
+namespace UConnector.Samples.Operations
 {
     /// <summary>
     /// Prints out the DateTime.Now to the console.
     /// </summary>
-    public class DateTimeSampleOperation : AbstractOperation
+    public class DateTimeOperation : AbstractOperation
     {
         /// <summary>
         /// Builds this instance.

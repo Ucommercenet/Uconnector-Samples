@@ -25,3 +25,4 @@ _ReSharper*
 *.resharper
 *.ReSharper
 lib\uConnector\Debug
+lib\uConnector\Release\UConnector.Worker.exe.config

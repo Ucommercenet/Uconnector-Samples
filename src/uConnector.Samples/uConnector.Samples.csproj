@@ -83,7 +83,7 @@
     <Compile Include="Cogs\Transformers\PrintCharCog.cs" />
     <Compile Include="Cogs\Transformers\PrintStringListCog.cs" />
     <Compile Include="Cogs\Transformers\PrintStringCog.cs" />
-    <Compile Include="Operations\DateTimeSampleOperation.cs" />
+    <Compile Include="Operations\DateTimeOperation.cs" />
     <Compile Include="Operations\DeleteFilesOperation.cs" />
     <Compile Include="Operations\FetchFileOperation.cs" />
     <Compile Include="Operations\MoveFileOperation.cs" />
