@@ -6,7 +6,7 @@ using UConnector.Config;
 
 namespace UConnector.Samples.Cogs.Send
 {
-    public class SendMoveFile : AbstractConfiguable, ISend<FileInfo>
+    public class SendMoveFile : AbstractConfiguable, ISender<FileInfo>
     {
         [Required]
         public string Directory { get; set; }

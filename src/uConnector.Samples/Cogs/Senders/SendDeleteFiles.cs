@@ -7,7 +7,7 @@ using UConnector.Config;
 
 namespace UConnector.Samples.Cogs.Send
 {
-    public class SendDeleteFiles : AbstractConfiguable, ISend<FileInfo[]>
+    public class SendDeleteFiles : AbstractConfiguable, ISender<FileInfo[]>
     {
         [Required]
         public int Count { get; set; }

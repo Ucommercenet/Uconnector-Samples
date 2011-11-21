@@ -3,7 +3,7 @@ using UConnector.Cogs;
 
 namespace UConnector.Samples.Cogs.Receive
 {
-    public class DateTimeNowReceiver : IReceive<DateTime>
+    public class DateTimeNowReceiver : IReceiver<DateTime>
     {
         public DateTime Receive()
         {

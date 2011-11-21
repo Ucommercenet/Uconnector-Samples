@@ -6,7 +6,7 @@ using UConnector.Config;
 
 namespace UConnector.Samples.Cogs.Receive
 {
-    public class ReceiveFile : AbstractConfiguable, IReceive<FileInfo>
+    public class ReceiveFile : AbstractConfiguable, IReceiver<FileInfo>
     {
         [Required]
         public string Directory { get; set; }

@@ -20,8 +20,7 @@ namespace UConnector.Samples
         {
             var reader = new OperationConfigurationReader();
 
-            var connectorConfigurations = reader.GetConfigurations();
-
+            var connectorConfigurations = reader.GetOperationConfigurations();
             
             int i = 0;
             foreach (var configuration in connectorConfigurations)
