@@ -4,9 +4,9 @@ using UConnector.Attributes;
 using UConnector.Cogs;
 using UConnector.Config;
 
-namespace UConnector.Samples.Cogs.Send
+namespace UConnector.Samples.Operations.MoveFile.Cogs
 {
-    public class SendMoveFile : AbstractConfiguable, ISender<FileInfo>
+    public class MoveFileSender : AbstractConfiguable, ISender<FileInfo>
     {
         [Required]
         public string Directory { get; set; }

@@ -1,17 +1,16 @@
 ﻿using UConnector.Config;
-using UConnector.Samples.Cogs.Receive;
-using UConnector.Samples.Cogs.Send;
+using UConnector.Samples.Operations.DeleteFiles.Cogs;
 
-namespace UConnector.Samples.Operations
+namespace UConnector.Samples.Operations.DeleteFiles
 {
     public class DeleteFilesOperation : AbstractOperation
     {
         protected override OperationBuilder Build()
         {
             return OperationBuilder.Create()
-                .Receive<ReceiveFiles>()
+                .Receive<FilesReceiver>()
                 .WithConfiguration("FileIn")
-                .Send<SendDeleteFiles>().WithConfiguration("FileOutDelete");
+                .Send<DeleteFilesSender>().WithConfiguration("FileOutDelete");
         }
     }
 }

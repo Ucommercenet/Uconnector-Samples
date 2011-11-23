@@ -5,9 +5,9 @@ using UConnector.Attributes;
 using UConnector.Cogs;
 using UConnector.Config;
 
-namespace UConnector.Samples.Cogs.Send
+namespace UConnector.Samples.Operations.DeleteFiles.Cogs
 {
-    public class SendDeleteFiles : AbstractConfiguable, ISender<FileInfo[]>
+    public class DeleteFilesSender : AbstractConfiguable, ISender<FileInfo[]>
     {
         [Required]
         public int Count { get; set; }

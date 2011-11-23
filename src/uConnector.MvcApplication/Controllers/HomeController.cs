@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mime;
 using System.Text;
@@ -6,6 +7,8 @@ using System.Web.Mvc;
 using UCommerce.EntitiesV2;
 using UConnector.Config;
 using UConnector.Extensions.Cogs.Adapters;
+using UConnector.Extensions.Cogs.Receivers;
+using UConnector.Extensions.Cogs.Senders;
 using UConnector.Extensions.Cogs.Transformers;
 using UConnector.MvcApplication.Cogs.Models;
 using UConnector.MvcApplication.Cogs.Transformers;
@@ -49,20 +52,21 @@ namespace UConnector.MvcApplication.Controllers
                                    TypeName = typeName ?? ""
                                };
 
+            string output = string.Empty;
+
             OperationBuilder builder = OperationBuilder.Create()
                 .Cog<TypeInfoToProductListCog>()
                 .Debatching()
                 .Cog<ProductListToCvsStringListCog>()
                 .Batching()
-                .Cog<StringListToStringCog>().WithOption(a => a.Seperator, ':')
-                .Send(new FakeHttpContextAdapter());
-
+                .Cog<StringListToStringCog>().WithOption(x => x.Seperator = ":")
+                .Send<MethodSender<string>>().WithOption(x => x.Method = (value) => output = value);
 
             var runner = new OperationEngine();
 
-            WorkItem workItem = runner.ExecuteSimpleWorker(builder.GetOperation(), typeInfo);
+            runner.Execute(builder.GetOperation(), typeInfo);
 
-            return File(Encoding.Default.GetBytes(workItem.Context), MediaTypeNames.Application.Octet, "myfilename.csv");
+            return File(Encoding.Default.GetBytes(output), MediaTypeNames.Application.Octet, "myfilename.csv");
         }
     }
 }

@@ -72,32 +72,63 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cogs\Transformers\AddHoursToDateTimeCog.cs" />
-    <Compile Include="Cogs\Receivers\DateTimeNowReceiver.cs" />
-    <Compile Include="Cogs\Senders\DateTimeSender.cs" />
-    <Compile Include="Cogs\Decision\BailOutIfStreamIsNullDecision.cs" />
-    <Compile Include="Cogs\Transformers\PrintDateTimeToConsoleWithFormatCog.cs" />
-    <Compile Include="Cogs\Transformers\RemoveTimePartCog.cs" />
-    <Compile Include="Cogs\Transformers\CharListToStringCog.cs" />
-    <Compile Include="Cogs\Transformers\PrintListOfListCog.cs" />
-    <Compile Include="Cogs\Transformers\PrintCharCog.cs" />
-    <Compile Include="Cogs\Transformers\PrintStringListCog.cs" />
-    <Compile Include="Cogs\Transformers\PrintStringCog.cs" />
-    <Compile Include="Operations\DateTimeOperation.cs" />
-    <Compile Include="Operations\DeleteFilesOperation.cs" />
-    <Compile Include="Operations\FetchFileOperation.cs" />
-    <Compile Include="Operations\MoveFileOperation.cs" />
+    <Compile Include="Operations\DateTimeManipulation\Cogs\AddHoursToDateTimeCog.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Operations\DateTimeManipulation\Cogs\DateTimeNowReceiver.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Operations\DateTimeManipulation\Cogs\DateTimeSender.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Operations\DateTimeManipulation\Cogs\PrintDateTimeToConsoleWithFormatCog.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Operations\DateTimeManipulation\Cogs\RemoveTimePartCog.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Operations\DateTimeManipulation\DateTimeOperation.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Operations\DeleteFiles\Cogs\ReceiveFiles.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Operations\DeleteFiles\Cogs\SendDeleteFiles.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Operations\DeleteFiles\DeleteFilesOperation.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Operations\FetchFile\Cogs\BailOutIfStreamIsNullDecision.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Operations\FetchFile\Cogs\PrintStringCog.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Operations\FetchFile\FetchFileOperation.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Operations\MoveFile\Cogs\BailOutIfFileInfoIsNullDecision.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Operations\MoveFile\Cogs\MoveFileSender.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Operations\MoveFile\Cogs\ReceiveFile.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Operations\MoveFile\MoveFileOperation.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Cogs\Decision\BailOutIfFileInfoIsNullDecision.cs" />
-    <Compile Include="Cogs\Senders\SendDeleteFiles.cs" />
-    <Compile Include="Cogs\Receivers\ReceiveFile.cs" />
-    <Compile Include="Cogs\Receivers\ReceiveFiles.cs" />
-    <Compile Include="Cogs\Senders\SendMoveFile.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config">
       <SubType>Designer</SubType>
+    </None>
+    <None Include="Tasks\FetchFileOperation.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Tasks\DateTimeOperation.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -111,6 +142,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

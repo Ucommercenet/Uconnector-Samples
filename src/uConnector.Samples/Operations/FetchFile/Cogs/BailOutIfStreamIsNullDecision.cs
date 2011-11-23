@@ -1,7 +1,7 @@
 using System.IO;
 using UConnector.Cogs;
 
-namespace UConnector.Samples.Cogs.Decision
+namespace UConnector.Samples.Operations.FetchFIle.Cogs
 {
     public class BailOutIfStreamIsNullDecision : IDecision<Stream>
     {

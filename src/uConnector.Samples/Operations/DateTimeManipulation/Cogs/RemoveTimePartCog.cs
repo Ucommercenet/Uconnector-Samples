@@ -1,7 +1,7 @@
 ﻿using System;
 using UConnector.Cogs;
 
-namespace UConnector.Samples.Cogs.Transformers
+namespace UConnector.Samples.Operations.DateTimeManipulation.Cogs
 {
     public class RemoveTimePartCog :  ICog<DateTime, DateTime>
     {

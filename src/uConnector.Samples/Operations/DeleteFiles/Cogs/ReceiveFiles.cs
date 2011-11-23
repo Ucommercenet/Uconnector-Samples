@@ -4,11 +4,11 @@ using UConnector.Attributes;
 using UConnector.Cogs;
 using UConnector.Config;
 
-namespace UConnector.Samples.Cogs.Receive
+namespace UConnector.Samples.Operations.DeleteFiles.Cogs
 {
-    public class ReceiveFiles : AbstractConfiguable, IReceiver<FileInfo[]>
+    public class FilesReceiver : AbstractConfiguable, IReceiver<FileInfo[]>
     {
-        public ReceiveFiles()
+        public FilesReceiver()
         {
             Filter = "*.*";
         }

@@ -1,7 +1,7 @@
 ﻿using System;
 using UConnector.Cogs;
 
-namespace UConnector.Samples.Cogs.Receive
+namespace UConnector.Samples.Operations.DateTimeManipulation.Cogs
 {
     public class DateTimeNowReceiver : IReceiver<DateTime>
     {

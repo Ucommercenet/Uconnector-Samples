@@ -13,7 +13,7 @@ namespace UConnector.Samples
     public class Program
     {
         private static readonly ILog _Log = LogManager.GetCurrentClassLogger();
-        private static readonly OperationValidater _OperationValidater = new OperationValidater();
+        private static readonly OperationValidater _OperationValidater = OperationValidater.GetDefault();
         private static readonly OperationEngine _OperationEngine = new OperationEngine();
 
         private static void Main(string[] args)
@@ -49,7 +49,7 @@ namespace UConnector.Samples
             var operationSection = selectedConfiguration.GetSection();
 
             var operation = (IOperation)Activator.CreateInstance(operationSection.Type);
-            Dictionary<string, List<Option>> settings = operationSection.GetConfiguration();
+            var settings = operationSection.GetConfiguration();
             
             operation.SetConfiguration(settings);
 
@@ -72,19 +72,12 @@ namespace UConnector.Samples
                     }
                 }
 
-                //foreach (var item in exception.List)
-                //{
-                //    var configElement = connectorSection.Configs.GetOrAdd(item.ConfName);
-                //    var optionElement = configElement.Options.GetOrAdd(item.PropertyName);
-                //    optionElement.Value = "";
-                //}
-
                 selectedConfiguration.SaveSection(operationSection);
 
                 return;
             }
             
-            _OperationEngine.ExecuteWorker(operation);
+            _OperationEngine.Execute(operation);
         }
     }
 }

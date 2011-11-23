@@ -1,9 +1,7 @@
 ﻿using UConnector.Config;
-using UConnector.Samples.Cogs.Receive;
-using UConnector.Samples.Cogs.Send;
-using UConnector.Samples.Cogs.Transformers;
+using UConnector.Samples.Operations.DateTimeManipulation.Cogs;
 
-namespace UConnector.Samples.Operations
+namespace UConnector.Samples.Operations.DateTimeManipulation
 {
     /// <summary>
     /// Prints out the DateTime.Now to the console.
