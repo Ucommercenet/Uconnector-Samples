@@ -9,14 +9,14 @@ namespace UConnector.MvcApplication.Cogs.Transformers
     {
         #region ICog<IEnumerable<Product>,IEnumerable<string>> Members
 
-        public IEnumerable<string> ExecuteCog(IEnumerable<Product> @from)
+        public IEnumerable<string> Execute(IEnumerable<Product> @from)
         {
             var list = new List<string>();
 
             var transformer = new ProductToCvsStringCog();
             foreach (Product item in @from)
             {
-                list.Add(transformer.ExecuteCog(item));
+                list.Add(transformer.Execute(item));
             }
 
             return list;

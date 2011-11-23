@@ -8,7 +8,7 @@ namespace UConnector.Samples.Cogs.Transformers
     {
         public int Hours { get; set; }
 
-        public DateTime ExecuteCog(DateTime input)
+        public DateTime Execute(DateTime input)
         {
             return input.AddHours(Hours);
         }

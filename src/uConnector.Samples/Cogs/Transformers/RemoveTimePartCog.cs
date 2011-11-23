@@ -5,7 +5,7 @@ namespace UConnector.Samples.Cogs.Transformers
 {
     public class RemoveTimePartCog :  ICog<DateTime, DateTime>
     {
-        public DateTime ExecuteCog(DateTime input)
+        public DateTime Execute(DateTime input)
         {
             return input.Date;
         }

@@ -7,7 +7,7 @@ namespace UConnector.Samples.Cogs.Transformers
     {
         #region ICog<string,string> Members
 
-        public string ExecuteCog(string input)
+        public string Execute(string input)
         {
             Console.WriteLine(input);
             return input;

@@ -11,7 +11,7 @@ namespace UConnector.MvcApplication.Cogs.Transformers
     {
         #region ICog<TypeInfo,IEnumerable<Product>> Members
 
-        public IEnumerable<Product> ExecuteCog(TypeInfo input)
+        public IEnumerable<Product> Execute(TypeInfo input)
         {
             switch (input.TypeName)
             {

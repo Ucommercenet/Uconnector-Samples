@@ -8,7 +8,7 @@ namespace UConnector.Samples.Cogs.Transformers
     {
         #region ICog<List<string>,List<string>> Members
 
-        public List<string> ExecuteCog(List<string> input)
+        public List<string> Execute(List<string> input)
         {
             foreach (string item in input)
             {

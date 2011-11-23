@@ -13,7 +13,7 @@ namespace UConnector.Samples.Cogs.Transformers
         [Required]
         public string Format { get; set; }
 
-        public DateTime ExecuteCog(DateTime input)
+        public DateTime Execute(DateTime input)
         {
             _Log.Debug(input.ToString(Format));
             return input;

@@ -12,11 +12,11 @@ namespace UConnector.Samples.Operations
         {
             return OperationBuilder.Create()
                 .Receive<FtpFileAdapter>()
-                .WithOption(x => x.Username, "ftp.syska.dk|syska")
-                .WithOption(x => x.Password, "super")
+                .WithOption(x => x.Username, "ftp.syska.dk|uconnector")
+                .WithOption(x => x.Password, "uconnector")
                 .WithOption(x => x.Hostname, "ftp.syska.dk")
                 .WithOption(x => x.Filename, "file.txt")
-                .WithOption(x => x.Directory, "/uconnector-src")
+                .WithOption(x => x.Directory, "/src")
                 .Decision<BailOutIfStreamIsNullDecision>(
                     OperationBuilder.Create().Cog<StreamToStringCog>()
                         .Cog<PrintStringCog>().GetFirstStep(), null);

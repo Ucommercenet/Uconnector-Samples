@@ -8,7 +8,7 @@ namespace UConnector.Samples.Cogs.Transformers
     {
         #region ICog<IEnumerable<object>,string> Members
 
-        public string ExecuteCog(IEnumerable<dynamic> input)
+        public string Execute(IEnumerable<dynamic> input)
         {
             var sb = new StringBuilder();
             foreach (dynamic o in input)

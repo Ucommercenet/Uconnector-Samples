@@ -7,7 +7,7 @@ namespace UConnector.Samples.Cogs.Transformers
     {
         #region ICog<object,object> Members
 
-        public dynamic ExecuteCog(dynamic input)
+        public dynamic Execute(dynamic input)
         {
             foreach (dynamic parent in input)
             {
