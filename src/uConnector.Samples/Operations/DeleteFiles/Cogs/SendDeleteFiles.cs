@@ -7,7 +7,7 @@ using UConnector.Config;
 
 namespace UConnector.Samples.Operations.DeleteFiles.Cogs
 {
-    public class DeleteFilesSender : AbstractConfiguable, ISender<FileInfo[]>
+    public class DeleteFilesSender : Configurable, ISender<FileInfo[]>
     {
         [Required]
         public int Count { get; set; }

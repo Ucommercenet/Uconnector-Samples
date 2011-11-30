@@ -64,11 +64,11 @@
     </Reference>
     <Reference Include="UConnector, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\uConnector\Release\UConnector.dll</HintPath>
+      <HintPath>..\..\lib\uConnector\UConnector.dll</HintPath>
     </Reference>
     <Reference Include="UConnector.Extensions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\uConnector\Release\UConnector.Extensions.dll</HintPath>
+      <HintPath>..\..\lib\uConnector\UConnector.Extensions.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -126,6 +126,10 @@
   <ItemGroup>
     <None Include="app.config">
       <SubType>Designer</SubType>
+    </None>
+    <None Include="Castle.config">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Tasks\FetchFileOperation.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

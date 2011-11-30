@@ -4,7 +4,7 @@ using UConnector.Config;
 
 namespace UConnector.Samples.Operations.DateTimeManipulation.Cogs
 {
-    public class AddHoursToDateTimeCog : AbstractConfiguable, ICog<DateTime,DateTime>
+    public class AddHoursToDateTimeCog : Configurable, ICog<DateTime,DateTime>
     {
         public int Hours { get; set; }
 

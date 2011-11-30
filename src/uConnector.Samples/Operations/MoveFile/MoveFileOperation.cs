@@ -3,14 +3,19 @@ using UConnector.Samples.Operations.MoveFile.Cogs;
 
 namespace UConnector.Samples.Operations.MoveFile
 {
-    public class MoveFileOperation : AbstractOperation
+    public class MoveFileOperation : CustomOperation
     {
-        protected override OperationBuilder Build()
+        public MoveFileOperation() : base("MoveFileOperation")
+        {
+        }
+
+        protected override Operation BuildOperation()
         {
             return OperationBuilder.Create()
                 .Receive<FileReceiver>().WithConfiguration("FileIn")
                 .Decision<BailOutIfFileInfoIsNullDecision>(
-                    OperationBuilder.Create().Send<MoveFileSender>().WithConfiguration("FileOut").GetFirstStep(), null);
+                    OperationBuilder.Create().Send<MoveFileSender>().WithConfiguration("FileOut").GetFirstStep(), null).
+                GetOperation();
         }
     }
 }

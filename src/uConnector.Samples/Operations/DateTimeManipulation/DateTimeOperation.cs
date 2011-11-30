@@ -6,13 +6,13 @@ namespace UConnector.Samples.Operations.DateTimeManipulation
     /// <summary>
     /// Prints out the DateTime.Now to the console.
     /// </summary>
-    public class DateTimeOperation : AbstractOperation
+    public class DateTimeOperation : CustomOperation
     {
         /// <summary>
         /// Builds this instance.
         /// </summary>
         /// <returns></returns>
-        protected override OperationBuilder Build()
+        protected override Operation BuildOperation()
         {
             return OperationBuilder.Create()
                 .Receive<DateTimeNowReceiver>()
@@ -21,7 +21,7 @@ namespace UConnector.Samples.Operations.DateTimeManipulation
                 .Cog<PrintDateTimeToConsoleWithFormatCog>()
                 .Cog<AddHoursToDateTimeCog>()
                 .Cog<PrintDateTimeToConsoleWithFormatCog>()
-                .Send<DateTimeSender>();
+                .Send<DateTimeSender>().GetOperation();
         }
     }
 }

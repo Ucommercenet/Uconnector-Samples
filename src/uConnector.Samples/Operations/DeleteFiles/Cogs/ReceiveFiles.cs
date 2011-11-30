@@ -6,7 +6,7 @@ using UConnector.Config;
 
 namespace UConnector.Samples.Operations.DeleteFiles.Cogs
 {
-    public class FilesReceiver : AbstractConfiguable, IReceiver<FileInfo[]>
+    public class FilesReceiver : Configurable, IReceiver<FileInfo[]>
     {
         public FilesReceiver()
         {

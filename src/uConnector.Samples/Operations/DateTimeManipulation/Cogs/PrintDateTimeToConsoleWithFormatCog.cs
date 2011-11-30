@@ -6,7 +6,7 @@ using UConnector.Config;
 
 namespace UConnector.Samples.Operations.DateTimeManipulation.Cogs
 {
-    public class PrintDateTimeToConsoleWithFormatCog : AbstractConfiguable, ICog<DateTime, DateTime>
+    public class PrintDateTimeToConsoleWithFormatCog : Configurable, ICog<DateTime, DateTime>
     {
         private readonly ILog _Log = LogManager.GetCurrentClassLogger();
 

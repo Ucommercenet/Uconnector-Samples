@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using Common.Logging;
 using UConnector.Config;
@@ -21,15 +20,15 @@ namespace UConnector.Samples
             var reader = new OperationConfigurationReader();
 
             var connectorConfigurations = reader.GetOperationConfigurations();
-            
             int i = 0;
-            foreach (var configuration in connectorConfigurations)
+            foreach (var item in connectorConfigurations)
             {
-                OperationSection section = configuration.GetSection();
-                Console.WriteLine("{0}) {1} - {2}", ++i, section.Name, section.Type.Name);
+                Console.WriteLine("{0}) {1} - {2}", ++i, item.Section.Name, item.Section.Type.Name);
             }
 
             var input = Console.ReadLine();
+
+            var service = new OperationSectionService();
 
             int menuItemNumber;
             if(!int.TryParse(input, out menuItemNumber))
@@ -44,9 +43,9 @@ namespace UConnector.Samples
                 return;
             }
 
-            var selectedConfiguration = connectorConfigurations.Skip(menuItemNumber - 1).First();
+            var selectedItem = connectorConfigurations.Skip(menuItemNumber - 1).First();
 
-            var operationSection = selectedConfiguration.GetSection();
+            var operationSection = selectedItem.Section;
 
             var operation = (IOperation)Activator.CreateInstance(operationSection.Type);
             var settings = operationSection.GetConfiguration();
@@ -60,7 +59,6 @@ namespace UConnector.Samples
             }
             catch (ConnectorConfigurationException exception)
             {
-
                 foreach (var item in operation.GetConfiguration())
                 {
                     var configElement = operationSection.Configs.AddOrGet(item.Name);
@@ -72,7 +70,10 @@ namespace UConnector.Samples
                     }
                 }
 
-                selectedConfiguration.SaveSection(operationSection);
+                service.SaveSection(selectedItem.Path, selectedItem.Section);
+
+                _Log.ErrorFormat("Validation of {0} with name {1} failed.", exception, operationSection.Type.FullName,
+                                 operationSection.Name);
 
                 return;
             }

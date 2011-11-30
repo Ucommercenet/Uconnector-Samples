@@ -6,7 +6,7 @@ using UConnector.Config;
 
 namespace UConnector.Samples.Operations.MoveFile.Cogs
 {
-    public class FileReceiver : AbstractConfiguable, IReceiver<FileInfo>
+    public class FileReceiver : Configurable, IReceiver<FileInfo>
     {
         [Required]
         public string Directory { get; set; }

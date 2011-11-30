@@ -3,14 +3,14 @@ using UConnector.Samples.Operations.DeleteFiles.Cogs;
 
 namespace UConnector.Samples.Operations.DeleteFiles
 {
-    public class DeleteFilesOperation : AbstractOperation
+    public class DeleteFilesOperation : CustomOperation
     {
-        protected override OperationBuilder Build()
+        protected override Operation BuildOperation()
         {
             return OperationBuilder.Create()
                 .Receive<FilesReceiver>()
                 .WithConfiguration("FileIn")
-                .Send<DeleteFilesSender>().WithConfiguration("FileOutDelete");
+                .Send<DeleteFilesSender>().WithConfiguration("FileOutDelete").GetOperation();
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Mime;
 using System.Text;
@@ -10,9 +11,11 @@ using UConnector.Extensions.Cogs.Adapters;
 using UConnector.Extensions.Cogs.Receivers;
 using UConnector.Extensions.Cogs.Senders;
 using UConnector.Extensions.Cogs.Transformers;
+using UConnector.Extensions.Cogs.TwoWayCogs;
 using UConnector.MvcApplication.Cogs.Models;
 using UConnector.MvcApplication.Cogs.Transformers;
 using ProductListToCvsStringListCog = UConnector.MvcApplication.Cogs.Transformers.ProductListToCvsStringListCog;
+using UConnector.Extensions;
 
 namespace UConnector.MvcApplication.Controllers
 {
@@ -52,21 +55,21 @@ namespace UConnector.MvcApplication.Controllers
                                    TypeName = typeName ?? ""
                                };
 
-            string output = string.Empty;
+            Stream output = Stream.Null;
 
             OperationBuilder builder = OperationBuilder.Create()
                 .Cog<TypeInfoToProductListCog>()
-                .Debatching()
-                .Cog<ProductListToCvsStringListCog>()
-                .Batching()
-                .Cog<StringListToStringCog>().WithOption(x => x.Seperator = ":")
-                .Send<MethodSender<string>>().WithOption(x => x.Method = (value) => output = value);
+                .Cog<ProductListToDataTableCog>()
+                .Cog<CsvCog>()
+                .Send<InvokeMethodSender<Stream>>().WithOption(x => x.Method = (value) => output = value);
 
             var runner = new OperationEngine();
 
             runner.Execute(builder.GetOperation(), typeInfo);
 
-            return File(Encoding.Default.GetBytes(output), MediaTypeNames.Application.Octet, "myfilename.csv");
+            string s = output.GetString(Encoding.UTF8);
+
+            return File(Encoding.Default.GetBytes(s), MediaTypeNames.Application.Octet, string.Format("{0}.csv", DateTime.Now.ToLongTimeString()));
         }
     }
 }

@@ -1,4 +1,7 @@
 using System.Collections.Generic;
+using System.Linq;
+using CsvHelper;
+using CsvHelper.Configuration;
 using UCommerce.EntitiesV2;
 using UConnector.Cogs;
 using UConnector.Extensions.Cogs.Transformers;
@@ -7,8 +10,6 @@ namespace UConnector.MvcApplication.Cogs.Transformers
 {
     public class ProductListToCvsStringListCog : ICog<IEnumerable<Product>, IEnumerable<string>>
     {
-        #region ICog<IEnumerable<Product>,IEnumerable<string>> Members
-
         public IEnumerable<string> Execute(IEnumerable<Product> @from)
         {
             var list = new List<string>();
@@ -21,7 +22,5 @@ namespace UConnector.MvcApplication.Cogs.Transformers
 
             return list;
         }
-
-        #endregion
     }
 }

@@ -3,22 +3,22 @@ using UConnector.Extensions.Cogs.Adapters;
 using UConnector.Extensions.Cogs.Transformers;
 using UConnector.Samples.Operations.FetchFIle.Cogs;
 
-namespace UConnector.Samples.Operations.FetchFIle
+namespace UConnector.Samples.Operations.FetchFile
 {
-    public class FetchFileOperation : AbstractOperation
+    public class FetchFileOperation : CustomOperation
     {
-        protected override OperationBuilder Build()
+        protected override Operation BuildOperation()
         {
             return OperationBuilder.Create()
-                .Receive<FtpFileAdapter>()
+                .Receive<FtpFilesAdapter>()
                 .WithOption(x => x.Username = "ftp.syska.dk|uconnector")
                 .WithOption(x => x.Password = "uconnector")
                 .WithOption(x => x.Hostname = "ftp.syska.dk")
-                .WithOption(x => x.Filename = "file.txt")
+                .WithOption(x => x.Pattern = "file.txt")
                 .WithOption(x => x.Directory = "/src")
                 .Decision<BailOutIfStreamIsNullDecision>(
                     OperationBuilder.Create().Cog<StreamToStringCog>()
-                        .Cog<PrintStringCog>().GetFirstStep(), null);
+                        .Cog<PrintStringCog>().GetFirstStep(), null).GetOperation();
         }
     }
 }
