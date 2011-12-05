@@ -106,9 +106,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cogs\Transformers\DataTableToProductListCog.cs" />
-    <Compile Include="Cogs\Transformers\ProductListToCvsStringListCog.cs" />
-    <Compile Include="Cogs\Transformers\ProductListToDataTableCog.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Cogs\Models\TypeInfo.cs" />
     <Compile Include="Cogs\Transformers\TypeInfoToProductListCog.cs" />

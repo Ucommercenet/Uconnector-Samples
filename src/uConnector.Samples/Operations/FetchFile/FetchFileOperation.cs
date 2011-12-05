@@ -17,7 +17,7 @@ namespace UConnector.Samples.Operations.FetchFile
                 .WithOption(x => x.Pattern = "file.txt")
                 .WithOption(x => x.Directory = "/src")
                 .Decision<BailOutIfStreamIsNullDecision>(
-                    OperationBuilder.Create().Cog<StreamToStringCog>()
+                    OperationBuilder.Create().Cog<WorkFilesToStringCog>()
                         .Cog<PrintStringCog>().GetFirstStep(), null).GetOperation();
         }
     }

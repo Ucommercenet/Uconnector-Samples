@@ -7,14 +7,11 @@ using System.Text;
 using System.Web.Mvc;
 using UCommerce.EntitiesV2;
 using UConnector.Config;
-using UConnector.Extensions.Cogs.Adapters;
-using UConnector.Extensions.Cogs.Receivers;
 using UConnector.Extensions.Cogs.Senders;
 using UConnector.Extensions.Cogs.Transformers;
 using UConnector.Extensions.Cogs.TwoWayCogs;
 using UConnector.MvcApplication.Cogs.Models;
 using UConnector.MvcApplication.Cogs.Transformers;
-using ProductListToCvsStringListCog = UConnector.MvcApplication.Cogs.Transformers.ProductListToCvsStringListCog;
 using UConnector.Extensions;
 
 namespace UConnector.MvcApplication.Controllers
