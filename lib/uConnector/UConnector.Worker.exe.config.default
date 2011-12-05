@@ -17,8 +17,8 @@
     <section name="log4net" type="log4net.Config.Log4NetConfigurationSectionHandler, log4net" />
   </configSections>
   <connectionStrings>
-    <add name="UCommerce"
-         connectionString="server=172.17.4.72;database=ucommerce;user id=umbracouser;password=supermand!" />
+    <add name="UCommerce2" connectionString="server=172.17.4.72;database=ucommerce;user id=umbracouser;password=supermand!" />
+    <add name="UCommerce" connectionString="server=(local)\sqlexpress;database=umbraco;user id=umbracouser;password=3edc4rfV" />
   </connectionStrings>
   <startup>
     <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.0" />
