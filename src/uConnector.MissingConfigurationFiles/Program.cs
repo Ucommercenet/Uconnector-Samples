@@ -24,7 +24,7 @@ namespace UConnector.MissingConfigurationFiles
             var operationTypes = scanner.GetOperationTypes();
 
             var reader = new OperationConfigurationReader();
-            var sectionItems = reader.GetOperationConfigurations();
+            var sectionItems = reader.GetOperationConfigurations().ToList();
 
             var service = new OperationSectionService();
 

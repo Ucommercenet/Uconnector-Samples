@@ -1,6 +1,10 @@
-﻿using System.Web;
+﻿using System.Configuration;
+using System.Reflection;
+using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using NHibernate.Cfg;
+using Environment = System.Environment;
 
 namespace UConnector.MvcApplication
 {
@@ -25,8 +29,22 @@ namespace UConnector.MvcApplication
                 );
         }
 
+        public static void SetConnectionString(ConnectionStringSettings connectionString)
+        {
+            var settings = ConfigurationManager.ConnectionStrings["UCommerce"];
+            var fi = typeof(ConfigurationElement).GetField("_bReadOnly", BindingFlags.Instance | BindingFlags.NonPublic);
+            fi.SetValue(settings, false);
+            settings.ConnectionString = connectionString.ConnectionString;
+        }
+
         protected void Application_Start()
         {
+            var connectionString = ConfigurationManager.ConnectionStrings[Environment.MachineName];
+            if(connectionString != null)
+            {
+                SetConnectionString(connectionString);
+            }
+
             AreaRegistration.RegisterAllAreas();
 
             RegisterGlobalFilters(GlobalFilters.Filters);

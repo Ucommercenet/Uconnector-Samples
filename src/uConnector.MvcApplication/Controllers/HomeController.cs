@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net.Mime;
@@ -10,21 +9,24 @@ using UConnector.Config;
 using UConnector.Extensions.Cogs.Senders;
 using UConnector.Extensions.Cogs.Transformers;
 using UConnector.Extensions.Cogs.TwoWayCogs;
+using UConnector.Extensions.Model;
 using UConnector.MvcApplication.Cogs.Models;
 using UConnector.MvcApplication.Cogs.Transformers;
 using UConnector.Extensions;
+using UConnector.MvcApplication.Models;
+using UConnector.Validatation;
 
 namespace UConnector.MvcApplication.Controllers
 {
-    public class IndexModel
-    {
-        //public List<ProductCatalog> ProductCatalogs { get; set; }
-        public List<ProductCatalogGroup> ProductCatalogGroups { get; set; }
-        //public List<Category> Categories { get; set; }
-    }
-
     public class HomeController : Controller
     {
+        private readonly OperationValidater _OperationValidater;
+
+        public HomeController()
+        {
+            _OperationValidater = ObjectFactory.Resolve<OperationValidater>();
+        }
+
         public ActionResult Index()
         {
             ViewBag.Message = "Welcome to ASP.NET MVC!";
@@ -39,34 +41,41 @@ namespace UConnector.MvcApplication.Controllers
             return View("Index", model);
         }
 
-        public ActionResult About()
-        {
-            return View();
-        }
-
-        public ActionResult Download(int? id, string typeName)
+        public ActionResult Download(int? id, string typeName, DownloadAs? type)
         {
             var typeInfo = new TypeInfo
                                {
                                    Id = id.GetValueOrDefault(0),
-                                   TypeName = typeName ?? ""
+                                   TypeName = typeName ?? "",
+                                   Type = type.GetValueOrDefault(DownloadAs.Excel),
                                };
 
-            Stream output = Stream.Null;
+            WorkFile output = null;
 
-            OperationBuilder builder = OperationBuilder.Create()
-                .Cog<TypeInfoToProductListCog>()
-                .Cog<ProductListToDataTableCog>()
-                .Cog<CsvCog>()
-                .Send<InvokeMethodSender<Stream>>().WithOption(x => x.Method = (value) => output = value);
+            var builder = OperationBuilder.Create()
+                .Decision<IfTypeInfoTypeIsExcelDecision>(
+                    OperationBuilder.Create()
+                        .Cog<TypeInfoToProductListCog>()
+                        .Cog<ProductListToDataTableCog>()
+                        .Cog<ExcelCog>()
+                        .Cog<NamingCog>().WithOption(a => a.Extension = ".xlsx")
+                        .Send<InvokeMethodSender<WorkFile>>().WithOption(x => x.Method = (value) => output = value).
+                        GetOperation().FirstStep,
+                    OperationBuilder.Create()
+                        .Cog<TypeInfoToProductListCog>()
+                        .Cog<ProductListToDataTableCog>()
+                        .Cog<CsvCog>()
+                        .Cog<NamingCog>().WithOption(a => a.Extension = ".csv")
+                        .Send<InvokeMethodSender<WorkFile>>().WithOption(x => x.Method = (value) => output = value).
+                        GetOperation().FirstStep
+                );
 
+            var operation = builder.GetOperation();
             var runner = new OperationEngine();
-
-            runner.Execute(builder.GetOperation(), typeInfo);
-
-            string s = output.GetString(Encoding.UTF8);
-
-            return File(Encoding.Default.GetBytes(s), MediaTypeNames.Application.Octet, string.Format("{0}.csv", DateTime.Now.ToLongTimeString()));
+            runner.Execute(operation, typeInfo);
+            output.Stream.Flush();
+            output.Stream.Position = 0;
+            return File(output.Stream, MediaTypeNames.Application.Octet, output.Name);
         }
     }
 }

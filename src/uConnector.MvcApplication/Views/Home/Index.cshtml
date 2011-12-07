@@ -1,8 +1,30 @@
 ﻿@using UCommerce.EntitiesV2
+@using UConnector.MvcApplication.Cogs.Models
 @using UConnector.MvcApplication.Controllers
+@using UConnector.MvcApplication.Models
 @model IndexModel
 @{
     ViewBag.Title = "Home Page";
+}
+
+@helper PrintProducts(IEnumerable<Product> products)
+{
+    <ol>
+        @foreach(var product in products)
+        {
+            <li>
+                @product.Name - @product.Sku
+                <ul>
+                @foreach (var vartiant in product.Variants)
+                {
+                    <li>
+                        @vartiant.VariantSku    
+                    </li>
+                }
+                </ul>
+            </li>
+        }
+    </ol>
 }
 
 @helper PrintCatagories(IEnumerable<Category> categories)
@@ -11,21 +33,18 @@
         @foreach (Category item in categories)
         {
             <li>
-                @Html.ActionLink(item.Name, "Download", "Home", new {id = item.CategoryId, typeName = "Category"}, null)
+                @item.Name - 
+                    @Html.ActionLink("Excel", "Download", "Home", new {id = item.CategoryId, typeName = "Category", type = DownloadAs.Excel}, null)
+                    / 
+                    @Html.ActionLink("Csv", "Download", "Home", new {id = item.CategoryId, typeName = "Category", type = DownloadAs.Csv}, null)
+                
+                @PrintProducts(item.Products)
 
                 @PrintCatagories(item.GetCategories())
             </li>
         }
     </ul>
 }
-
-<h2>@ViewBag.Message</h2>
-<p>
-    To learn more about ASP.NET MVC visit <a href="http://asp.net/mvc" title="ASP.NET MVC Website">http://asp.net/mvc</a>.
-</p>
-<p>
-    @Html.ActionLink("Download here Søren", "Download", "Home")
-</p>
 
 <fieldset>
     <legend>Export Products</legend>

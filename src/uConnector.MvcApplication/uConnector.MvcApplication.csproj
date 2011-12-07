@@ -48,6 +48,9 @@
     <Reference Include="CsvHelper">
       <HintPath>..\..\lib\CsvHelper\CsvHelper.1.1.0\CsvHelper.dll</HintPath>
     </Reference>
+    <Reference Include="EPPlus">
+      <HintPath>..\..\lib\EPPlus\EPPlus 2.9.0.1\EPPlus.dll</HintPath>
+    </Reference>
     <Reference Include="FluentNHibernate">
       <HintPath>..\..\lib\uCommerce\FluentNHibernate.dll</HintPath>
     </Reference>
@@ -106,12 +109,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cogs\Models\DownloadAs.cs" />
+    <Compile Include="Cogs\Transformers\NamingCog.cs" />
+    <Compile Include="Cogs\Transformers\IfTypeInfoTypeIsExcelDecision.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Cogs\Models\TypeInfo.cs" />
     <Compile Include="Cogs\Transformers\TypeInfoToProductListCog.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\IndexModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -174,7 +181,6 @@
     <Content Include="Scripts\MicrosoftMvcValidation.js" />
     <Content Include="Scripts\MicrosoftMvcValidation.debug.js" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -184,11 +190,16 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Components.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Castle.config">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

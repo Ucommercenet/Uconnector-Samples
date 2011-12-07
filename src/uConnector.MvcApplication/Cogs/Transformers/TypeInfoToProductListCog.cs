@@ -21,14 +21,14 @@ namespace UConnector.MvcApplication.Cogs.Transformers
 
                 case "ProductCatalog":
                     ProductCatalog productCatalog = ProductCatalog.SingleOrDefault(a => a.ProductCatalogId == input.Id);
-                    return productCatalog.Categories.SelectMany(a => a.Products).ToList();
+                    return productCatalog.Categories.SelectMany(a => a.Products).Distinct().ToList();
 
                 case "ProductCatalogGroup":
                     ProductCatalogGroup productCatalogGroup =
                         ProductCatalogGroup.SingleOrDefault(a => a.ProductCatalogGroupId == input.Id);
                     return
                         productCatalogGroup.ProductCatalogs.SelectMany(a => a.Categories).SelectMany(a => a.Products).
-                            ToList();
+                            Distinct().ToList();
 
                 default:
                     throw new NotImplementedException(

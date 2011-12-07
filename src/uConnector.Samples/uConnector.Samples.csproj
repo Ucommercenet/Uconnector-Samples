@@ -72,6 +72,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Operations\Copy\CopyFilesFromFtpToLocalDirectoryOperation.cs" />
+    <Compile Include="Operations\Copy\Cogs\CopyFileToDirectorySender.cs" />
     <Compile Include="Operations\DateTimeManipulation\Cogs\AddHoursToDateTimeCog.cs">
       <SubType>Code</SubType>
     </Compile>
