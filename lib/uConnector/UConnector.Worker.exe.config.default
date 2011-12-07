@@ -28,39 +28,15 @@
   <commerce>
     <runtimeConfiguration componentsConfigurationFile="Components.config" enableCache="false"
                           cacheProvider="NHibernate.Caches.SysCache2.SysCacheProvider, NHibernate.Caches.SysCache2" />
-    <!--<catalogConfiguration defaultCultureCode="en-US" enforceCategoryNameUniquenessWithinCatalogs="true" />
-    <ordersConfiguration>
-      <shippingMethodServices>
-        <add name="SinglePriceService" type="UCommerce.Transactions.Shipping.SinglePriceShippingMethodService, UCommerce" />
-      </shippingMethodServices>
-      <paymentMethodServices>
-        <add name="(default)" type="UCommerce.Transactions.Payments.DefaultPaymentMethodService, UCommerce" />
-        <add name="DIBS" type="UCommerce.Transactions.Payments.Dibs.DibsPaymentMethodService, UCommerce.Transactions.Payments" />
-        <add name="PayPal" type="UCommerce.Transactions.Payments.PayPal.PayPalPaymentMethodService, UCommerce.Transactions.Payments" />
-        <add name="PayPalRecurring" type="UCommerce.Transactions.Payments.PayPal.PayPalRecurringPaymentMethodService, UCommerce.Transactions.Payments" />
-        <add name="EPay" type="UCommerce.Transactions.Payments.EPay.EPayPaymentMethodService, UCommerce.Transactions.Payments" />
-        <add name="PayEx" type="UCommerce.Transactions.Payments.PayEx.PayExPaymentMethodService, UCommerce.Transactions.Payments" />
-        <add name="Payer" type="UCommerce.Transactions.Payments.Payer.PayerPaymentMethodService, UCommerce.Transactions.Payments" />
-        <add name="WorldPay" type="UCommerce.Transactions.Payments.WorldPay.WorldPayPaymentMethodService, UCommerce.Transactions.Payments" />
-        <add name="SagePay" type="UCommerce.Transactions.Payments.SagePay.SagePayPaymentMethodService, UCommerce.Transactions.Payments" />
-      </paymentMethodServices>
-    </ordersConfiguration>
-    <dibsPaymentMethodService configSource=".\umbraco\ucommerce\configuration\Dibs.config" />
-    <payPalPaymentMethodService configSource=".\umbraco\ucommerce\configuration\PayPal.config" />
-    <ePayPaymentMethodService configSource=".\umbraco\ucommerce\configuration\ePay.config" />
-    <payExPaymentMethodService configSource=".\umbraco\ucommerce\configuration\PayEx.config" />
-    <payerPaymentMethodService configSource=".\umbraco\ucommerce\configuration\Payer.config" />
-    <worldPayPaymentMethodService configSource=".\umbraco\ucommerce\configuration\WorldPay.config" />
-    <sagePayPaymentMethodService configSource=".\umbraco\ucommerce\configuration\SagePay.config" />-->
   </commerce>
-  <uConnector addMissingOperationOptions="true">
+  <uConnector addMissingOperationOptions="false">
     <taskPaths>
       <add path="Tasks"/>
-      <!--<add path="C:\Hg\uConnector Samples\src\uConnector.Samples\bin\Debug\Tasks" />-->
+      <add path="C:\Hg\uConnector Samples\src\uConnector.Samples\bin\Debug\Tasks" />
       <!--<add path="D:\Hg\uConnector\src\uConnector.Worker\bin\Debug\Tasks" />-->
     </taskPaths>
     <assemblyPaths>
-      <!--<add path="C:\Hg\uConnector Samples\src\uConnector.Samples\bin\Debug" />-->
+      <add path="C:\Hg\uConnector Samples\src\uConnector.Samples\bin\Debug" />
     </assemblyPaths>
   </uConnector>
   <runtime>
@@ -113,8 +89,14 @@
       <appender-ref ref="RollingFileAppender" />
     </root>
 
+    <logger name="NHibernate.Loader">
+      <level value="ERROR" />
+    </logger>
     <logger name="UConnector.Samples">
       <level value="DEBUG" />
+    </logger>
+    <logger name="UConnector.Extensions.Cogs.Adapters">
+      <level value="ALL" />
     </logger>
   </log4net>
 

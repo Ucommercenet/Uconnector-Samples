@@ -23,38 +23,44 @@ namespace UConnector.MissingConfigurationFiles
             var scanner = new OperationScanner(Environment.CurrentDirectory);
             var operationTypes = scanner.GetOperationTypes();
 
-            var reader = new OperationConfigurationReader();
-            var sectionItems = reader.GetOperationConfigurations().ToList();
-
             var service = new OperationSectionService();
 
-
-            foreach (var type in operationTypes)
+            Console.WriteLine("Create a configuration file for:");
+            int i = 1;
+            foreach (var operationType in operationTypes)
             {
-                if(sectionItems.Any(x => x.Section.Type == type))
-                {
-                    var items = sectionItems.Where(x => x.Section.Type == type);
-                    var operation = ObjectFactory.CreateOperation(type);
-                    foreach (var sectionItem in items)
-                    {
-                        sectionItem.Section.AddMissingConfigurationOptions(operation);
-                        service.SaveSection(sectionItem.Path, sectionItem.Section);
-                    }
-                }
-                else
-                {
-                    var operationSection = new OperationSection();
-                    operationSection.Type = type;
-                    operationSection.Name = type.Name;
-                    operationSection.Enabled = false;
-
-                    var operation = ObjectFactory.CreateOperation(operationSection.Type);
-                    operationSection.AddMissingConfigurationOptions(operation);
-
-                    var path = Path.Combine(directoryInfo.FullName, operationSection.Type.Name + ".config");
-                    service.SaveSection(new FileInfo(path), operationSection);
-                }
+                Console.WriteLine("{0}) {1}", i++, operationType.Name);
             }
+
+            Console.Write("# ");
+            var readLine = Console.ReadLine();
+            if (!int.TryParse(readLine, out i))
+                throw new FormatException(string.Format("Count not parse: '{0}' as an interger.", readLine));
+
+            if(i <= 0 || i > operationTypes.Count())
+                throw new Exception(string.Format("Must be between 1 and {0}, both included.", operationTypes.Count()));
+
+            var first = operationTypes.Skip(i - 1).First();
+
+            var saveConfiguration = SaveConfiguration(service, directoryInfo, first);
+
+            Console.WriteLine("Configuration saved to: {0}", saveConfiguration);
+        }
+
+        private static string SaveConfiguration(OperationSectionService service, DirectoryInfo directoryInfo, Type type)
+        {
+            var operationSection = new OperationSection();
+            operationSection.Type = type;
+            operationSection.Name = type.Name;
+            operationSection.Enabled = false;
+
+            var operation = ObjectFactory.CreateOperation(operationSection.Type);
+            operationSection.AddMissingConfigurationOptions(operation);
+
+            var path = Path.Combine(directoryInfo.FullName, operationSection.Type.Name + ".config");
+            service.SaveSection(new FileInfo(path), operationSection);
+
+            return path;
         }
     }
 }

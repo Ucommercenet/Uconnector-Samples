@@ -72,54 +72,60 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Operations\Copy\CopyFilesFromFtpToLocalDirectoryOperation.cs" />
-    <Compile Include="Operations\Copy\Cogs\CopyFileToDirectorySender.cs" />
-    <Compile Include="Operations\DateTimeManipulation\Cogs\AddHoursToDateTimeCog.cs">
+    <Compile Include="Operations\UCommerce\CopyFilesFromFtpToLocalDirectory\CopyFilesFromFtpToLocalDirectoryOperation.cs" />
+    <Compile Include="Operations\UCommerce\CopyFilesFromFtpToLocalDirectory\Cogs\CopyFileToDirectorySender.cs" />
+    <Compile Include="Operations\Others\DateTimeManipulation\Cogs\AddHoursToDateTimeCog.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Operations\DateTimeManipulation\Cogs\DateTimeNowReceiver.cs">
+    <Compile Include="Operations\Others\DateTimeManipulation\Cogs\DateTimeNowReceiver.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Operations\DateTimeManipulation\Cogs\DateTimeSender.cs">
+    <Compile Include="Operations\Others\DateTimeManipulation\Cogs\DateTimeSender.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Operations\DateTimeManipulation\Cogs\PrintDateTimeToConsoleWithFormatCog.cs">
+    <Compile Include="Operations\Others\DateTimeManipulation\Cogs\PrintDateTimeToConsoleWithFormatCog.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Operations\DateTimeManipulation\Cogs\RemoveTimePartCog.cs">
+    <Compile Include="Operations\Others\DateTimeManipulation\Cogs\RemoveTimePartCog.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Operations\DateTimeManipulation\DateTimeOperation.cs">
+    <Compile Include="Operations\Others\DateTimeManipulation\DateTimeManipulationOperation.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Operations\DeleteFiles\Cogs\ReceiveFiles.cs">
+    <Compile Include="Operations\Others\DeleteFiles\Cogs\ReceiveFiles.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Operations\DeleteFiles\Cogs\SendDeleteFiles.cs">
+    <Compile Include="Operations\Others\DeleteFiles\Cogs\SendDeleteFiles.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Operations\DeleteFiles\DeleteFilesOperation.cs">
+    <Compile Include="Operations\Others\DeleteFiles\DeleteFilesOperation.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Operations\FetchFile\Cogs\BailOutIfStreamIsNullDecision.cs">
+    <Compile Include="Operations\Others\FetchFile\Cogs\BailOutIfStreamIsNullDecision.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Operations\FetchFile\Cogs\PrintStringCog.cs">
+    <Compile Include="Operations\Others\FetchFile\Cogs\PrintStringCog.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Operations\FetchFile\FetchFileOperation.cs">
+    <Compile Include="Operations\Others\FetchFile\FetchFileOperation.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Operations\MoveFile\Cogs\BailOutIfFileInfoIsNullDecision.cs">
+    <Compile Include="Operations\UCommerce\ExportProductListToFtp\Cogs\NamingCog.cs" />
+    <Compile Include="Operations\UCommerce\ExportProductListToFtp\Cogs\ProductListReceiver.cs" />
+    <Compile Include="Operations\UCommerce\ExportProductListToFtp\ExportProductListToFtpOperation.cs" />
+    <Compile Include="Operations\UCommerce\ImportLocalFile\Cogs\WorkFileToStreamCog.cs" />
+    <Compile Include="Operations\UCommerce\ImportLocalFile\Cogs\LocalFilesReceiver.cs" />
+    <Compile Include="Operations\UCommerce\ImportLocalFile\ImportLocalFileOperation.cs" />
+    <Compile Include="Operations\Others\MoveFile\Cogs\BailOutIfFileInfoIsNullDecision.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Operations\MoveFile\Cogs\MoveFileSender.cs">
+    <Compile Include="Operations\Others\MoveFile\Cogs\MoveFileSender.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Operations\MoveFile\Cogs\ReceiveFile.cs">
+    <Compile Include="Operations\Others\MoveFile\Cogs\ReceiveFile.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Operations\MoveFile\MoveFileOperation.cs">
+    <Compile Include="Operations\Others\MoveFile\MoveFileOperation.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Program.cs" />
@@ -133,14 +139,23 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Tasks\CopyFilesFromFtpToLocalDirectoryOperation.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Tasks\ExportProductListToFtpOperation.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Tasks\FetchFileOperation.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Tasks\DateTimeOperation.config">
+    <None Include="Tasks\DateTimeManipulationOperation.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Tasks\DeleteFilesOperation.config">
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Tasks\ImportLocalFileOperation.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Tasks\MoveFileOperation.config">
