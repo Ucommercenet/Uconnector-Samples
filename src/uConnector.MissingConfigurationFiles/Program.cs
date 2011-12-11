@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using UConnector.Config;
 using UConnector.Config.Configuration;
+using UConnector.Extensions;
 
 namespace UConnector.MissingConfigurationFiles
 {
@@ -11,6 +12,8 @@ namespace UConnector.MissingConfigurationFiles
     {
         static void Main(string[] args)
         {
+            SettingsHelper.Instance.Init();
+
             var directory = ConfigurationManager.AppSettings["Directory"];
             if(string.IsNullOrWhiteSpace(directory))
                 throw new Exception("Directory key must be present in the AppSettings");
