@@ -1,8 +1,8 @@
 ﻿using UConnector.Config;
-using UConnector.Extensions.Cogs.Senders;
-using UConnector.Extensions.Cogs.Transformers;
-using UConnector.Extensions.Cogs.TwoWayCogs;
+using UConnector.Extensions.Cogs.Decisions;
+using UConnector.Extensions.Model;
 using UConnector.Samples.Operations.UCommerce.ImportLocalFile.Cogs;
+using UConnector.Samples.Operations.UCommerce.ImportLocalFile.SubOperations;
 
 namespace UConnector.Samples.Operations.UCommerce.ImportLocalFile
 {
@@ -13,10 +13,8 @@ namespace UConnector.Samples.Operations.UCommerce.ImportLocalFile
             return OperationBuilder.Create()
                 .Receive<LocalFilesReceiver>()
                 .Debatching()
-                .Cog<WorkFileToStreamCog>()
-                .Cog<ExcelCog>()
-                .Cog<DataTableToProductListCog>()
-                .Send<ProductListSender>().GetOperation();
+                .Decision<InvokeMethodDecision<WorkFile>, ImportExcelSubOperation>().WithOption(x => x.Method = workFile => workFile.Name.EndsWith(".xlsx"))
+                .Decision<CsvWorkFileDecision, ImportCsvSubOperation>().GetOperation();
         }
     }
 }

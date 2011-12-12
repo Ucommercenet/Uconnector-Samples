@@ -60,15 +60,12 @@ namespace UConnector.MvcApplication.Controllers
                         .Cog<ExcelCog>()
                         .Cog<NamingCog>().WithOption(a => a.Extension = ".xlsx")
                         .Send<InvokeMethodSender<WorkFile>>().WithOption(x => x.Method = (value) => output = value).
-                        GetOperation().FirstStep,
-                    OperationBuilder.Create()
+                        GetOperation().FirstStep)
                         .Cog<TypeInfoToProductListCog>()
                         .Cog<ProductListToDataTableCog>()
                         .Cog<CsvCog>()
                         .Cog<NamingCog>().WithOption(a => a.Extension = ".csv")
-                        .Send<InvokeMethodSender<WorkFile>>().WithOption(x => x.Method = (value) => output = value).
-                        GetOperation().FirstStep
-                );
+                        .Send<InvokeMethodSender<WorkFile>>().WithOption(x => x.Method = (value) => output = value);
 
             var operation = builder.GetOperation();
             var runner = new OperationEngine();

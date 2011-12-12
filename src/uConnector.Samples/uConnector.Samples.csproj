@@ -72,6 +72,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Operations\UCommerce\CleanFtp\CleanFtpOperation.cs" />
     <Compile Include="Operations\UCommerce\CopyFilesFromFtpToLocalDirectory\CopyFilesFromFtpToLocalDirectoryOperation.cs" />
     <Compile Include="Operations\UCommerce\CopyFilesFromFtpToLocalDirectory\Cogs\CopyFileToDirectorySender.cs" />
     <Compile Include="Operations\Others\DateTimeManipulation\Cogs\AddHoursToDateTimeCog.cs">
@@ -113,6 +114,9 @@
     <Compile Include="Operations\UCommerce\ExportProductListToFtp\Cogs\NamingCog.cs" />
     <Compile Include="Operations\UCommerce\ExportProductListToFtp\Cogs\ProductListReceiver.cs" />
     <Compile Include="Operations\UCommerce\ExportProductListToFtp\ExportProductListToFtpOperation.cs" />
+    <Compile Include="Operations\UCommerce\ImportLocalFile\Decision\CsvWorkFileDecision.cs" />
+    <Compile Include="Operations\UCommerce\ImportLocalFile\SubOperations\ImportCsvSubOperation.cs" />
+    <Compile Include="Operations\UCommerce\ImportLocalFile\SubOperations\ImportExcelSubOperation.cs" />
     <Compile Include="Operations\UCommerce\ImportLocalFile\Cogs\WorkFileToStreamCog.cs" />
     <Compile Include="Operations\UCommerce\ImportLocalFile\Cogs\LocalFilesReceiver.cs" />
     <Compile Include="Operations\UCommerce\ImportLocalFile\ImportLocalFileOperation.cs" />
@@ -137,6 +141,9 @@
     </None>
     <None Include="Castle.config">
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Tasks\CleanFtpOperation.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Tasks\CopyFilesFromFtpToLocalDirectoryOperation.config">

@@ -1,4 +1,5 @@
-﻿using System.Web;
+﻿using System.Diagnostics;
+using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using NHibernate.Cfg;
@@ -19,6 +20,10 @@ namespace UConnector.MvcApplication
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+
+            var process = new Process();
+            
+
 
             routes.MapRoute(
                 "Default", // Route name

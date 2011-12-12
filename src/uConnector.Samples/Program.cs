@@ -5,6 +5,7 @@ using UConnector.Config;
 using UConnector.Config.Configuration;
 using UConnector.Config.Exceptions;
 using UConnector.Config.Extensions;
+using UConnector.Extensions;
 using UConnector.Validatation;
 
 namespace UConnector.Samples
@@ -17,6 +18,7 @@ namespace UConnector.Samples
 
         private static void Main(string[] args)
         {
+            SettingsHelper.Instance.Init();
             var reader = new OperationConfigurationReader();
 
             var connectorConfigurations = reader.GetOperationConfigurations();
@@ -71,9 +73,7 @@ namespace UConnector.Samples
                 }
 
                 service.SaveSection(selectedItem.Path, selectedItem.Section);
-
-                _Log.ErrorFormat("Validation of {0} with name {1} failed.", exception, operationSection.Type.FullName,
-                                 operationSection.Name);
+                _Log.ErrorFormat("Validation of {0} with name {1} failed.", exception, operationSection.Type.FullName, operationSection.Name);
 
                 return;
             }

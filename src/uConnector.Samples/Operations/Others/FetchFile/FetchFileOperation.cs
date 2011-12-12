@@ -18,7 +18,7 @@ namespace UConnector.Samples.Operations.Others.FetchFile
                 .WithOption(x => x.Directory = "/src")
                 .Decision<BailOutIfStreamIsNullDecision>(
                     OperationBuilder.Create().Cog<WorkFilesToStringCog>()
-                        .Cog<PrintStringCog>().GetFirstStep(), null).GetOperation();
+                        .Cog<PrintStringCog>().GetFirstStep()).GetOperation();
         }
     }
 }

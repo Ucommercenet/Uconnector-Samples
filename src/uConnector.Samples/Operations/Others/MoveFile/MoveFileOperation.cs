@@ -13,8 +13,7 @@ namespace UConnector.Samples.Operations.Others.MoveFile
         {
             return OperationBuilder.Create()
                 .Receive<FileReceiver>().WithConfiguration("FileIn")
-                .Decision<BailOutIfFileInfoIsNullDecision>(
-                    OperationBuilder.Create().Send<MoveFileSender>().WithConfiguration("FileOut").GetFirstStep(), null).
+                .Decision<BailOutIfFileInfoIsNullDecision>(OperationBuilder.Create().Send<MoveFileSender>().WithConfiguration("FileOut").GetFirstStep()).
                 GetOperation();
         }
     }
