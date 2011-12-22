@@ -20,7 +20,10 @@ namespace UConnector.Samples.Operations.UCommerce.ExportProductListToFtp.Cogs
 
         public WorkFile Execute(Stream input)
         {
-            var filename = DateTime.Now.ToString(UCommerceProduct.DATETIME_FORMAT.Replace(':', '_').Replace('-', '_').Replace(' ', '-')) + Extension;
+            var filename = DateTime.Now.ToString(UCommerceProduct.DATETIME_FORMAT
+                .Replace(':', '_')
+                .Replace('-', '_')
+                .Replace(' ', '-')) + Extension;
             return new WorkFile(input, filename, "");
         }
     }

@@ -13,7 +13,8 @@ namespace UConnector.Samples.Operations.UCommerce.ImportLocalFile
             return OperationBuilder.Create()
                 .Receive<LocalFilesReceiver>()
                 .Debatching()
-                .Decision<InvokeMethodDecision<WorkFile>, ImportExcelSubOperation>().WithOption(x => x.Method = workFile => workFile.Name.EndsWith(".xlsx"))
+                .Decision<InvokeMethodDecision<WorkFile>, ImportExcelSubOperation>()
+                .WithOption(x => x.Method = workFile => workFile.Name.EndsWith(".xlsx"))
                 .Decision<CsvWorkFileDecision, ImportCsvSubOperation>().GetOperation();
         }
     }
