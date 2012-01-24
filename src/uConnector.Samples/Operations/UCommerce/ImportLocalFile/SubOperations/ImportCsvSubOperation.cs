@@ -8,7 +8,7 @@ namespace UConnector.Samples.Operations.UCommerce.ImportLocalFile.SubOperations
 {
     public class ImportCsvSubOperation : CustomOperation
     {
-        protected override Operation BuildOperation()
+        protected override IOperation BuildOperation()
         {
             return OperationBuilder.Create()
                 .Cog<WorkFileToStreamCog>()

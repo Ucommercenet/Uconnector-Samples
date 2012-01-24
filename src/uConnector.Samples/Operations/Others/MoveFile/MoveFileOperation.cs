@@ -9,7 +9,7 @@ namespace UConnector.Samples.Operations.Others.MoveFile
         {
         }
 
-        protected override Operation BuildOperation()
+        protected override IOperation BuildOperation()
         {
             return OperationBuilder.Create()
                 .Receive<FileReceiver>().WithConfiguration("FileIn")

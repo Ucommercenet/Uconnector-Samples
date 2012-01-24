@@ -5,7 +5,7 @@ namespace UConnector.Samples.Operations.Others.DeleteFiles
 {
     public class DeleteFilesOperation : CustomOperation
     {
-        protected override Operation BuildOperation()
+        protected override IOperation BuildOperation()
         {
             return OperationBuilder.Create()
                 .Receive<FilesReceiver>()

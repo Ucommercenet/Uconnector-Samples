@@ -7,7 +7,7 @@ namespace UConnector.Samples.Operations.Others.FetchFile
 {
     public class FetchFileOperation : CustomOperation
     {
-        protected override Operation BuildOperation()
+        protected override IOperation BuildOperation()
         {
             return OperationBuilder.Create()
                 .Receive<FtpFilesAdapter>()

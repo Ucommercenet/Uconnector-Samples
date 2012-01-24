@@ -8,7 +8,7 @@ namespace UConnector.Samples.Operations.UCommerce.ExportProductListToFtp
 {
     public class ExportProductListToFtpOperation : CustomOperation
     {
-        protected override Operation BuildOperation()
+        protected override IOperation BuildOperation()
         {
             return OperationBuilder.Create()
                 .Receive<ProductListReceiver>()

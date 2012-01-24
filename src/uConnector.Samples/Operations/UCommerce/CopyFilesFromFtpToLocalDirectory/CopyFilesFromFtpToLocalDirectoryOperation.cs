@@ -6,7 +6,7 @@ namespace UConnector.Samples.Operations.UCommerce.CopyFilesFromFtpToLocalDirecto
 {
     public class CopyFilesFromFtpToLocalDirectoryOperation : CustomOperation
     {
-        protected override Operation BuildOperation()
+        protected override IOperation BuildOperation()
         {
             return OperationBuilder.Create()
                 .Receive<FtpFilesAdapter>()

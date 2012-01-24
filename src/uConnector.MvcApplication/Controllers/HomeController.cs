@@ -6,6 +6,7 @@ using System.Text;
 using System.Web.Mvc;
 using UCommerce.EntitiesV2;
 using UConnector.Config;
+using UConnector.Extensions.Cogs.Receivers;
 using UConnector.Extensions.Cogs.Senders;
 using UConnector.Extensions.Cogs.Transformers;
 using UConnector.Extensions.Cogs.TwoWayCogs;
@@ -53,6 +54,7 @@ namespace UConnector.MvcApplication.Controllers
             WorkFile output = null;
 
             var builder = OperationBuilder.Create()
+                .Receive<InvokeMethodReceiver<TypeInfo>>().WithOption(x => x.Method = () => typeInfo)
                 .Decision<IfTypeInfoTypeIsExcelDecision>(
                     OperationBuilder.Create()
                         .Cog<TypeInfoToProductListCog>()
@@ -69,7 +71,7 @@ namespace UConnector.MvcApplication.Controllers
 
             var operation = builder.GetOperation();
             var runner = new OperationEngine();
-            runner.Execute(operation, typeInfo);
+            runner.Execute(operation);
             output.Stream.Flush();
             output.Stream.Position = 0;
             return File(output.Stream, MediaTypeNames.Application.Octet, output.Name);

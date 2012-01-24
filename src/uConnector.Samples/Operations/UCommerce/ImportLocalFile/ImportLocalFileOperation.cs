@@ -8,7 +8,7 @@ namespace UConnector.Samples.Operations.UCommerce.ImportLocalFile
 {
     public class ImportLocalFileOperation : CustomOperation
     {
-        protected override Operation BuildOperation()
+        protected override IOperation BuildOperation()
         {
             return OperationBuilder.Create()
                 .Receive<LocalFilesReceiver>()

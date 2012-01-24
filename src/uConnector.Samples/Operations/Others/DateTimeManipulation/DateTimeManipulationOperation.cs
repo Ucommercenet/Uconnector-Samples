@@ -12,7 +12,7 @@ namespace UConnector.Samples.Operations.Others.DateTimeManipulation
         /// Builds this instance.
         /// </summary>
         /// <returns></returns>
-        protected override Operation BuildOperation()
+        protected override IOperation BuildOperation()
         {
             return OperationBuilder.Create()
                 .Receive<DateTimeNowReceiver>()
