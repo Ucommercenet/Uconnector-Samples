@@ -19,7 +19,7 @@ namespace UConnector.Samples.Operations.Sandbox.Operations
 								   .Cog<XDocumentToXElementIterator>()
 								   .Debatching()
 								   .Cog<XElementToCsvRow>()
-								   .Batching(6)
+								   .Batching()
 								   .Send<StringIteratorToFile>()
 								   .GetOperation();
 		}
