@@ -72,6 +72,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Operations\Sandbox\Cogs\SenderKeepRecordOfFiles.cs" />
+    <Compile Include="Operations\Sandbox\Cogs\SenderWriteIntegersToFile.cs" />
+    <Compile Include="Operations\Sandbox\Cogs\SenderWriteIntegerToFile.cs" />
+    <Compile Include="Operations\Sandbox\Cogs\SenderWriteTestFile.cs" />
+    <Compile Include="Operations\Sandbox\Cogs\SplitFileIntoLines.cs" />
+    <Compile Include="Operations\Sandbox\Cogs\SumStringsWithNumbers.cs" />
+    <Compile Include="Operations\Sandbox\Cogs\SumStringWithNumbers.cs" />
+    <Compile Include="Operations\Sandbox\Operations\OperationCreateTestFiles.cs" />
+    <Compile Include="Operations\Sandbox\Operations\OperationLogFilesCommingIn.cs" />
+    <Compile Include="Operations\Sandbox\Operations\OperationXmlToCsv.cs" />
+    <Compile Include="Operations\Sandbox\Operations\SandboxOperation.cs" />
     <Compile Include="Operations\UCommerce\CleanFtp\CleanFtpOperation.cs" />
     <Compile Include="Operations\UCommerce\CopyFilesFromFtpToLocalDirectory\CopyFilesFromFtpToLocalDirectoryOperation.cs" />
     <Compile Include="Operations\UCommerce\CopyFilesFromFtpToLocalDirectory\Cogs\CopyFileToDirectorySender.cs" />
@@ -114,6 +125,10 @@
     <Compile Include="Operations\UCommerce\ExportProductListToFtp\Cogs\NamingCog.cs" />
     <Compile Include="Operations\UCommerce\ExportProductListToFtp\Cogs\ProductListReceiver.cs" />
     <Compile Include="Operations\UCommerce\ExportProductListToFtp\ExportProductListToFtpOperation.cs" />
+    <Compile Include="Operations\UCommerce\ImportLocalFile\Cogs\StringIteratorToFile.cs" />
+    <Compile Include="Operations\UCommerce\ImportLocalFile\Cogs\WorkFileToXDocument.cs" />
+    <Compile Include="Operations\UCommerce\ImportLocalFile\Cogs\XDocumentToXElementIterator.cs" />
+    <Compile Include="Operations\UCommerce\ImportLocalFile\Cogs\XElementToCsvRow.cs" />
     <Compile Include="Operations\UCommerce\ImportLocalFile\Decision\CsvWorkFileDecision.cs" />
     <Compile Include="Operations\UCommerce\ImportLocalFile\SubOperations\ImportCsvSubOperation.cs" />
     <Compile Include="Operations\UCommerce\ImportLocalFile\SubOperations\ImportExcelSubOperation.cs" />
@@ -143,20 +158,35 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Tasks\XmlToCsvOperation.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Tasks\SandboxOperation.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Tasks\CreateTestFilesOperation.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Tasks\CleanFtpOperation.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </None>
     <None Include="Tasks\CopyFilesFromFtpToLocalDirectoryOperation.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </None>
     <None Include="Tasks\ExportProductListToFtpOperation.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </None>
     <None Include="Tasks\FetchFileOperation.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </None>
     <None Include="Tasks\DateTimeManipulationOperation.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </None>
     <None Include="Tasks\DeleteFilesOperation.config">
       <SubType>Designer</SubType>
@@ -164,6 +194,11 @@
     </None>
     <None Include="Tasks\ImportLocalFileOperation.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Tasks\LogFilesCommingIn.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </None>
     <None Include="Tasks\MoveFileOperation.config">
       <SubType>Designer</SubType>

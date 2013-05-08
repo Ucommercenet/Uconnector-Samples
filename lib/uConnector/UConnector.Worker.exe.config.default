@@ -17,7 +17,7 @@
   </configSections>
   <connectionStrings>
     <add name="ss-16" connectionString="server=172.17.4.72;database=ucommerce;user id=umbracouser;password=supermand!" />
-    <add name="UCommerce" connectionString="server=(local)\sqlexpress;database=umbraco;user id=umbracouser;password=3edc4rfV" />
+    <add name="UCommerce" connectionString="server=(local)\sqlexpress;database=u3umbraco;user id=u3umbraco;password=zaq!" />
   </connectionStrings>
   <startup>
     <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.0" />
@@ -29,10 +29,10 @@
   </commerce>
   <uConnector addMissingOperationOptions="false">
     <taskPaths>
-      <add path="C:\Hg\uConnector Samples\src\uConnector.Samples\bin\Debug\Tasks" />
+      <add path="C:\Projects\uConnector Samples\src\uConnector.Samples\bin\Debug\Tasks" />
     </taskPaths>
     <assemblyPaths>
-      <add path="C:\Hg\uConnector Samples\src\uConnector.Samples\bin\Debug" />
+      <add path="C:\Projects\uConnector Samples\src\uConnector.Samples\bin\Debug" />
     </assemblyPaths>
   </uConnector>
   <runtime>
