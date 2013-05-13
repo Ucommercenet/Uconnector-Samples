@@ -78,7 +78,7 @@ namespace UConnector.Samples.Operations.UCommerce.ImportLocalFile.Cogs
                 }
                 else
                 {
-                    _Log.InfoFormat("Could not delete file: '{0}' bacause it does not exist.", fileInfo.FullName);
+                    _Log.InfoFormat("Could not delete file: '{0}' because it does not exist.", fileInfo.FullName);
 
                 }
             }
