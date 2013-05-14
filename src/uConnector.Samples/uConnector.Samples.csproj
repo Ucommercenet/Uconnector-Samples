@@ -160,6 +160,7 @@
     </None>
     <None Include="Tasks\XmlToCsvOperation.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </None>
     <None Include="Tasks\SandboxOperation.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
