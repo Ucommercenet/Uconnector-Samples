@@ -63,14 +63,14 @@ namespace UConnector.MvcApplication.Controllers
 						.Transform<ExcelCog>()
 						.Transform<NamingCog>().WithOption(a => a.Extension = ".xlsx")
                         .Send<InvokeMethodSender<WorkFile>>().WithOption(x => x.Method = (value) => output = value).
-                        GetOperation())
+                        ToOperation())
 						.Transform<TypeInfoToProductListCog>()
 						.Transform<ProductListToDataTableCog>()
 						.Transform<CsvCog>()
 						.Transform<NamingCog>().WithOption(a => a.Extension = ".csv")
                         .Send<InvokeMethodSender<WorkFile>>().WithOption(x => x.Method = (value) => output = value);
 
-            var operation = builder.GetOperation();
+            var operation = builder.ToOperation();
             var runner = new OperationEngine();
             runner.Execute(operation);
             output.Stream.Flush();

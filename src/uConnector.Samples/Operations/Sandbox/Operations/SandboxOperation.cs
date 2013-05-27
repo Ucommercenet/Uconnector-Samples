@@ -17,18 +17,18 @@ namespace UConnector.Samples.Operations.Sandbox.Operations
 				.WithOption(x => x.SearchOption = SearchOption.TopDirectoryOnly)
 				.WithOption(x => x.Take = 10)
 				.WithOption(x => x.Skip = 0)
-				.Debatching()
+				.Debatch()
 				.Transform<WorkFileToXDocument>()
 				.Transform<XDocumentToXElementIterator>()
 				.WithOption(x => x.DescendendsName = "InventTable_1")
-				.Debatching()
+				.Debatch()
 				.Transform<XElementToUCommerceProduct>()
 				.Transform<ProductToProductName>()
-				.Batching()
+				.Batch()
 				.Send<StringIteratorToFile>()
 				.WithOption(x => x.Directory = @"C:\uConnector\Out")
 				.WithOption(x => x.Filename = @"ProductNames.{DateTime.Now.Ticks}.txt")
-				.GetOperation();
+				.ToOperation();
 		}
 	}
 }

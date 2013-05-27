@@ -12,10 +12,10 @@ namespace UConnector.Samples.Operations.UCommerce.ImportLocalFile
         {
             return FluentOperationBuilder
 				.Receive<LocalFilesReceiver>()
-                .Debatching()
+                .Debatch()
                 .Decision<InvokeMethodDecision<WorkFile>, ImportExcelSubOperation>()
                 .WithOption(x => x.Method = workFile => workFile.Name.EndsWith(".xlsx"))
-                .Decision<CsvWorkFileDecision, ImportCsvSubOperation>().GetOperation();
+                .Decision<CsvWorkFileDecision, ImportCsvSubOperation>().ToOperation();
         }
     }
 }

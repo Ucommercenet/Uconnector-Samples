@@ -14,7 +14,7 @@ namespace UConnector.Samples.Operations.UCommerce.ImportLocalFile.SubOperations
                 .Transform<WorkFileToStreamCog>()
 				.Transform<CsvCog>()
 				.Transform<DataTableToProductListCog>()
-                .Send<ProductListSender>().GetOperation();
+                .Send<ProductListSender>().ToOperation();
         }
     }
 }

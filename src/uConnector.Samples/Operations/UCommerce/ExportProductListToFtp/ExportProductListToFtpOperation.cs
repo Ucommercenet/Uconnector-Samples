@@ -15,8 +15,8 @@ namespace UConnector.Samples.Operations.UCommerce.ExportProductListToFtp
                 .Transform<ProductListToDataTableCog>()
 				.Transform<ExcelCog>()
 				.Transform<NamingCog>().WithOption(a => a.Extension = ".xlsx")
-                .Batching()
-                .Send<FtpFilesAdapter>().GetOperation();
+                .Batch()
+                .Send<FtpFilesAdapter>().ToOperation();
         }
     }
 }

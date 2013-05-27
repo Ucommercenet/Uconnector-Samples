@@ -18,8 +18,8 @@ namespace UConnector.Samples.Operations.Others.FetchFile
                 .WithOption(x => x.Directory = "/src")
                 .Decision<BailOutIfStreamIsNullDecision>(
                     FluentOperationBuilder.CreateSubOperation().Transform<WorkFilesToStringCog>()
-						.Transform<PrintStringCog>().GetOperation())
-						.GetOperation();
+						.Transform<PrintStringCog>().ToOperation())
+						.ToOperation();
         }
     }
 }

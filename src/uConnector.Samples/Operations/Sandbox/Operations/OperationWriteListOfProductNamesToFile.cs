@@ -11,13 +11,13 @@ namespace UConnector.Samples.Operations.Sandbox.Operations
 		{
 			return FluentOperationBuilder
 				.Receive<ProductListReceiver>()
-				.Debatching()
+				.Debatch()
 				.Transform<ProductToProductName>()
-				.Batching()
+				.Batch()
 				.Send<StringIteratorToFile>()
 				.WithOption(s => s.Directory = @"C:\uConnector\Out")
 				.WithOption(s => s.Filename = @"ProductNames.txt")
-				.GetOperation();
+				.ToOperation();
 		}
 	}
 }

@@ -13,8 +13,8 @@ namespace UConnector.Samples.Operations.Others.MoveFile
         {
             return FluentOperationBuilder
 				.Receive<FileReceiver>().WithConfiguration("FileIn")
-                .Decision<BailOutIfFileInfoIsNullDecision>(FluentOperationBuilder.CreateSubOperation().Send<MoveFileSender>().WithConfiguration("FileOut").GetOperation()).
-                GetOperation();
+                .Decision<BailOutIfFileInfoIsNullDecision>(FluentOperationBuilder.CreateSubOperation().Send<MoveFileSender>().WithConfiguration("FileOut").ToOperation()).
+                ToOperation();
         }
     }
 }

@@ -10,8 +10,8 @@ namespace UConnector.Samples.Operations.Sandbox.Operations
 		{
 			return FluentOperationBuilder
 				.Receive<LocalFilesReceiver>()
-				.Debatching()
-				.Send<SenderKeepRecordOfFiles>().GetOperation();
+				.Debatch()
+				.Send<SenderKeepRecordOfFiles>().ToOperation();
 		}
 	}
 }

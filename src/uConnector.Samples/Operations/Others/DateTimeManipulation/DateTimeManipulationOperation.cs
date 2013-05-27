@@ -21,7 +21,7 @@ namespace UConnector.Samples.Operations.Others.DateTimeManipulation
 				.Transform<PrintDateTimeToConsoleWithFormatCog>()
 				.Transform<AddHoursToDateTimeCog>()
 				.Transform<PrintDateTimeToConsoleWithFormatCog>()
-                .Send<DateTimeSender>().GetOperation();
+                .Send<DateTimeSender>().ToOperation();
         }
     }
 }

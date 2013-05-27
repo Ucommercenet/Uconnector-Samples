@@ -8,14 +8,14 @@ namespace UConnector.Samples.Operations.Sandbox.Operations
 		protected override IOperation BuildOperation()
 		{
 			return FluentOperationBuilder.Receive<LocalFilesReceiver>().WithOption(x => x.Pattern = "*.xml")
-								   .Debatching()
+								   .Debatch()
 								   .Transform<WorkFileToXDocument>()
 								   .Transform<XDocumentToXElementIterator>()
-								   .Debatching()
+								   .Debatch()
 								   .Transform<XElementToCsvRow>()
-								   .Batching(10)
+								   .Batch(10)
 								   .Send<StringIteratorToFile>()
-								   .GetOperation();
+								   .ToOperation();
 		}
 	}
 }

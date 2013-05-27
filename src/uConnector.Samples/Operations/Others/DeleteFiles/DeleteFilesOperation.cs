@@ -10,7 +10,7 @@ namespace UConnector.Samples.Operations.Others.DeleteFiles
             return FluentOperationBuilder
 				.Receive<FilesReceiver>()
                 .WithConfiguration("FileIn")
-                .Send<DeleteFilesSender>().WithConfiguration("FileOutDelete").GetOperation();
+                .Send<DeleteFilesSender>().WithConfiguration("FileOutDelete").ToOperation();
         }
     }
 }

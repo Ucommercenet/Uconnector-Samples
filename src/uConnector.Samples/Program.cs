@@ -6,6 +6,7 @@ using UConnector.Config.Configuration;
 using UConnector.Config.Exceptions;
 using UConnector.Config.Extensions;
 using UConnector.Extensions;
+using UConnector.Framework;
 using UConnector.Validatation;
 
 namespace UConnector.Samples
@@ -77,6 +78,8 @@ namespace UConnector.Samples
 
                 return;
             }
+
+			_OperationEngine.SendRetryQueue = new SendRetryQueueInMemory();
             
             _OperationEngine.Execute(operation);
         }

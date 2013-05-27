@@ -9,7 +9,7 @@ namespace UConnector.Samples.Operations.UCommerce.CleanFtp
         {
             return FluentOperationBuilder
 				.Receive<FtpFilesAdapter>()
-                .GetOperation();
+                .ToOperation();
         }
     }
 }
