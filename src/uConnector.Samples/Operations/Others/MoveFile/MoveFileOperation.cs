@@ -1,4 +1,4 @@
-﻿using UConnector.Config;
+﻿using UConnector.Config.Fluent.v1;
 using UConnector.Samples.Operations.Others.MoveFile.Cogs;
 
 namespace UConnector.Samples.Operations.Others.MoveFile
@@ -11,9 +11,9 @@ namespace UConnector.Samples.Operations.Others.MoveFile
 
         protected override IOperation BuildOperation()
         {
-            return OperationBuilder.Create()
-                .Receive<FileReceiver>().WithConfiguration("FileIn")
-                .Decision<BailOutIfFileInfoIsNullDecision>(OperationBuilder.Create().Send<MoveFileSender>().WithConfiguration("FileOut").GetFirstStep()).
+            return FluentOperationBuilder
+				.Receive<FileReceiver>().WithConfiguration("FileIn")
+                .Decision<BailOutIfFileInfoIsNullDecision>(FluentOperationBuilder.CreateSubOperation().Send<MoveFileSender>().WithConfiguration("FileOut").GetOperation()).
                 GetOperation();
         }
     }

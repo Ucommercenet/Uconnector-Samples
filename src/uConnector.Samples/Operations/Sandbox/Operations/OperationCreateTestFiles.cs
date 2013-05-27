@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using UConnector.Config;
+﻿using UConnector.Config.Fluent.v1;
 using UConnector.Samples.Operations.Others.DateTimeManipulation.Cogs;
 using UConnector.Samples.Operations.Sandbox.Cogs;
 
@@ -12,9 +8,9 @@ namespace UConnector.Samples.Operations.Sandbox.Operations
 	{
 		protected override IOperation BuildOperation()
 		{
-			return OperationBuilder.Create()
-								   .Receive<DateTimeNowReceiver>()
-								   .Send<SenderWriteTestFile>().GetOperation();
+			return FluentOperationBuilder
+				.Receive<DateTimeNowReceiver>()
+				.Send<SenderWriteTestFile>().GetOperation();
 		}
 	}
 }

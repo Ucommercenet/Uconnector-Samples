@@ -19,12 +19,24 @@ namespace UConnector.Samples.Operations.UCommerce.ImportLocalFile.Cogs
 
 		public void Send(IEnumerable<string> input)
 		{
+			MaybeThrowException();
 			var filename = Filename.Replace("{DateTime.Now.Ticks}", DateTime.Now.Ticks.ToString());
 			filename = Path.Combine(Directory, filename);
 
 			using ( StreamWriter writer = File.Exists(filename) ? new StreamWriter(File.OpenWrite(filename)) : File.CreateText(filename) )
 			{
 				WriteToFile(writer, input);
+			}
+		}
+
+		private void MaybeThrowException()
+		{
+
+			int rand = new Random().Next(100);
+
+			if (rand > 75)
+			{
+				throw new Exception("Random exception thrown! HAHAHAHAHA!");
 			}
 		}
 

@@ -1,4 +1,4 @@
-﻿using UConnector.Config;
+﻿using UConnector.Config.Fluent.v1;
 using UConnector.Samples.Operations.Others.DeleteFiles.Cogs;
 
 namespace UConnector.Samples.Operations.Others.DeleteFiles
@@ -7,8 +7,8 @@ namespace UConnector.Samples.Operations.Others.DeleteFiles
     {
         protected override IOperation BuildOperation()
         {
-            return OperationBuilder.Create()
-                .Receive<FilesReceiver>()
+            return FluentOperationBuilder
+				.Receive<FilesReceiver>()
                 .WithConfiguration("FileIn")
                 .Send<DeleteFilesSender>().WithConfiguration("FileOutDelete").GetOperation();
         }

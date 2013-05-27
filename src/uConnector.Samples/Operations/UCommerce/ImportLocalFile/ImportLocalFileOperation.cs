@@ -1,4 +1,4 @@
-﻿using UConnector.Config;
+﻿using UConnector.Config.Fluent.v1;
 using UConnector.Extensions.Cogs.Decisions;
 using UConnector.Extensions.Model;
 using UConnector.Samples.Operations.UCommerce.ImportLocalFile.Cogs;
@@ -10,8 +10,8 @@ namespace UConnector.Samples.Operations.UCommerce.ImportLocalFile
     {
         protected override IOperation BuildOperation()
         {
-            return OperationBuilder.Create()
-                .Receive<LocalFilesReceiver>()
+            return FluentOperationBuilder
+				.Receive<LocalFilesReceiver>()
                 .Debatching()
                 .Decision<InvokeMethodDecision<WorkFile>, ImportExcelSubOperation>()
                 .WithOption(x => x.Method = workFile => workFile.Name.EndsWith(".xlsx"))

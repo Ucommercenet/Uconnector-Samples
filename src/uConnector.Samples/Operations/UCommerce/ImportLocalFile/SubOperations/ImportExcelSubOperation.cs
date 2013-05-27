@@ -1,4 +1,4 @@
-﻿using UConnector.Config;
+﻿using UConnector.Config.Fluent.v1;
 using UConnector.Extensions.Cogs.Senders;
 using UConnector.Extensions.Cogs.Transformers;
 using UConnector.Extensions.Cogs.TwoWayCogs;
@@ -10,10 +10,10 @@ namespace UConnector.Samples.Operations.UCommerce.ImportLocalFile.SubOperations
     {
         protected override IOperation BuildOperation()
         {
-            return OperationBuilder.Create()
-                .Cog<WorkFileToStreamCog>()
-                .Cog<ExcelCog>()
-                .Cog<DataTableToProductListCog>()
+            return FluentOperationBuilder.CreateSubOperation()
+				.Transform<WorkFileToStreamCog>()
+				.Transform<ExcelCog>()
+				.Transform<DataTableToProductListCog>()
                 .Send<ProductListSender>().GetOperation();
         }
     }

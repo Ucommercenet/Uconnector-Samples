@@ -1,4 +1,4 @@
-﻿using UConnector.Config;
+﻿using UConnector.Config.Fluent.v1;
 using UConnector.Extensions.Cogs.Adapters;
 
 namespace UConnector.Samples.Operations.UCommerce.CleanFtp
@@ -7,8 +7,8 @@ namespace UConnector.Samples.Operations.UCommerce.CleanFtp
     {
         protected override IOperation BuildOperation()
         {
-            return OperationBuilder.Create()
-                .Receive<FtpFilesAdapter>()
+            return FluentOperationBuilder
+				.Receive<FtpFilesAdapter>()
                 .GetOperation();
         }
     }

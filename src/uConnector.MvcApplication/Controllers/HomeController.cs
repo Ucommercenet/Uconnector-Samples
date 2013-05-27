@@ -6,6 +6,7 @@ using System.Text;
 using System.Web.Mvc;
 using UCommerce.EntitiesV2;
 using UConnector.Config;
+using UConnector.Config.Fluent.v1;
 using UConnector.Extensions.Cogs.Receivers;
 using UConnector.Extensions.Cogs.Senders;
 using UConnector.Extensions.Cogs.Transformers;
@@ -53,20 +54,20 @@ namespace UConnector.MvcApplication.Controllers
 
             WorkFile output = null;
 
-            var builder = OperationBuilder.Create()
-                .Receive<InvokeMethodReceiver<TypeInfo>>().WithOption(x => x.Method = () => typeInfo)
+            var builder = FluentOperationBuilder
+				.Receive<InvokeMethodReceiver<TypeInfo>>().WithOption(x => x.Method = () => typeInfo)
                 .Decision<IfTypeInfoTypeIsExcelDecision>(
-                    OperationBuilder.Create()
-                        .Cog<TypeInfoToProductListCog>()
-                        .Cog<ProductListToDataTableCog>()
-                        .Cog<ExcelCog>()
-                        .Cog<NamingCog>().WithOption(a => a.Extension = ".xlsx")
+                    FluentOperationBuilder.CreateSubOperation()
+                        .Transform<TypeInfoToProductListCog>()
+						.Transform<ProductListToDataTableCog>()
+						.Transform<ExcelCog>()
+						.Transform<NamingCog>().WithOption(a => a.Extension = ".xlsx")
                         .Send<InvokeMethodSender<WorkFile>>().WithOption(x => x.Method = (value) => output = value).
-                        GetOperation().FirstStep)
-                        .Cog<TypeInfoToProductListCog>()
-                        .Cog<ProductListToDataTableCog>()
-                        .Cog<CsvCog>()
-                        .Cog<NamingCog>().WithOption(a => a.Extension = ".csv")
+                        GetOperation())
+						.Transform<TypeInfoToProductListCog>()
+						.Transform<ProductListToDataTableCog>()
+						.Transform<CsvCog>()
+						.Transform<NamingCog>().WithOption(a => a.Extension = ".csv")
                         .Send<InvokeMethodSender<WorkFile>>().WithOption(x => x.Method = (value) => output = value);
 
             var operation = builder.GetOperation();

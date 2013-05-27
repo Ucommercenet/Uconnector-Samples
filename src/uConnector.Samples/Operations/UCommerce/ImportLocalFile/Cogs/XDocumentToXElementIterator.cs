@@ -16,7 +16,11 @@ namespace UConnector.Samples.Operations.UCommerce.ImportLocalFile.Cogs
 
 		public IEnumerable<XElement> Execute(XDocument input)
 		{
-			return input.Descendants(DescendendsName);
+			var elements = from e in input.Descendants()
+			               where e.Name.LocalName == DescendendsName
+			               select e;
+			
+			return elements;
 		}
 	}
 }

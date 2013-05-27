@@ -2,15 +2,23 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Xml.Linq;
+using Common.Logging;
 using UConnector.Cogs;
 
 namespace UConnector.Samples.Operations.UCommerce.ImportLocalFile.Cogs
 {
 	public class XElementToCsvRow : ICog<XElement, string>
 	{
+		private readonly ILog log = LogManager.GetCurrentClassLogger();
+
 		public string Execute(XElement input)
 		{
+			log.Debug("Waiting a bit to simulate a heavy operation..");
+			Thread.Sleep(1000);
+			log.Debug("Waiting is over!");
+
 			var data = new List<string>();
 
 			AddDataFromXElement(input, data);

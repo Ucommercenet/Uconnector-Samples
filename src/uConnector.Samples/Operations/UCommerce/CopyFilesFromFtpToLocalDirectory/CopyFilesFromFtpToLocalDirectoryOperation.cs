@@ -1,4 +1,4 @@
-﻿using UConnector.Config;
+﻿using UConnector.Config.Fluent.v1;
 using UConnector.Extensions.Cogs.Adapters;
 using UConnector.Samples.Operations.UCommerce.CopyFilesFromFtpToLocalDirectory.Cogs;
 
@@ -8,8 +8,8 @@ namespace UConnector.Samples.Operations.UCommerce.CopyFilesFromFtpToLocalDirecto
     {
         protected override IOperation BuildOperation()
         {
-            return OperationBuilder.Create()
-                .Receive<FtpFilesAdapter>()
+            return FluentOperationBuilder
+				.Receive<FtpFilesAdapter>()
                 .WithConfiguration("FtpIn")
                 .Debatching()
                 .Send<CopyFileToDirectorySender>().GetOperation();

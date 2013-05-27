@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using UConnector.Config;
-using UConnector.Samples.Operations.Sandbox.Cogs;
+﻿using UConnector.Config.Fluent.v1;
 using UConnector.Samples.Operations.UCommerce.ImportLocalFile.Cogs;
 
 namespace UConnector.Samples.Operations.Sandbox.Operations
@@ -12,14 +7,13 @@ namespace UConnector.Samples.Operations.Sandbox.Operations
 	{
 		protected override IOperation BuildOperation()
 		{
-			return OperationBuilder.Create()
-								   .Receive<LocalFilesReceiver>().WithOption(x => x.Pattern = "*.xml")
+			return FluentOperationBuilder.Receive<LocalFilesReceiver>().WithOption(x => x.Pattern = "*.xml")
 								   .Debatching()
-								   .Cog<WorkFileToXDocument>()
-								   .Cog<XDocumentToXElementIterator>()
+								   .Transform<WorkFileToXDocument>()
+								   .Transform<XDocumentToXElementIterator>()
 								   .Debatching()
-								   .Cog<XElementToCsvRow>()
-								   .Batching()
+								   .Transform<XElementToCsvRow>()
+								   .Batching(10)
 								   .Send<StringIteratorToFile>()
 								   .GetOperation();
 		}

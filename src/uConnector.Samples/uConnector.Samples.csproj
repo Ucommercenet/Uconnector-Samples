@@ -72,6 +72,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Operations\Sandbox\Cogs\ProductToProductName.cs" />
     <Compile Include="Operations\Sandbox\Cogs\SenderKeepRecordOfFiles.cs" />
     <Compile Include="Operations\Sandbox\Cogs\SenderWriteIntegersToFile.cs" />
     <Compile Include="Operations\Sandbox\Cogs\SenderWriteIntegerToFile.cs" />
@@ -79,8 +80,10 @@
     <Compile Include="Operations\Sandbox\Cogs\SplitFileIntoLines.cs" />
     <Compile Include="Operations\Sandbox\Cogs\SumStringsWithNumbers.cs" />
     <Compile Include="Operations\Sandbox\Cogs\SumStringWithNumbers.cs" />
+    <Compile Include="Operations\Sandbox\Cogs\XElementToUCommerceProduct.cs" />
     <Compile Include="Operations\Sandbox\Operations\OperationCreateTestFiles.cs" />
     <Compile Include="Operations\Sandbox\Operations\OperationLogFilesCommingIn.cs" />
+    <Compile Include="Operations\Sandbox\Operations\OperationWriteListOfProductNamesToFile.cs" />
     <Compile Include="Operations\Sandbox\Operations\OperationXmlToCsv.cs" />
     <Compile Include="Operations\Sandbox\Operations\SandboxOperation.cs" />
     <Compile Include="Operations\UCommerce\CleanFtp\CleanFtpOperation.cs" />
@@ -156,6 +159,9 @@
     </None>
     <None Include="Castle.config">
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Tasks\WriteListOfProductNamesToFileOperation.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Tasks\XmlToCsvOperation.config">

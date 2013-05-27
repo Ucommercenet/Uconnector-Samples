@@ -1,4 +1,4 @@
-﻿using UConnector.Config;
+﻿using UConnector.Config.Fluent.v1;
 using UConnector.Samples.Operations.Others.DateTimeManipulation.Cogs;
 
 namespace UConnector.Samples.Operations.Others.DateTimeManipulation
@@ -14,13 +14,13 @@ namespace UConnector.Samples.Operations.Others.DateTimeManipulation
         /// <returns></returns>
         protected override IOperation BuildOperation()
         {
-            return OperationBuilder.Create()
-                .Receive<DateTimeNowReceiver>()
-                .Cog<PrintDateTimeToConsoleWithFormatCog>()
-                .Cog<RemoveTimePartCog>()
-                .Cog<PrintDateTimeToConsoleWithFormatCog>()
-                .Cog<AddHoursToDateTimeCog>()
-                .Cog<PrintDateTimeToConsoleWithFormatCog>()
+            return FluentOperationBuilder
+				.Receive<DateTimeNowReceiver>()
+                .Transform<PrintDateTimeToConsoleWithFormatCog>()
+				.Transform<RemoveTimePartCog>()
+				.Transform<PrintDateTimeToConsoleWithFormatCog>()
+				.Transform<AddHoursToDateTimeCog>()
+				.Transform<PrintDateTimeToConsoleWithFormatCog>()
                 .Send<DateTimeSender>().GetOperation();
         }
     }
