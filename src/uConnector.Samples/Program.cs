@@ -82,6 +82,9 @@ namespace UConnector.Samples
 			_OperationEngine.SendRetryQueue = new SendRetryQueueInMemory();
             
             _OperationEngine.Execute(operation);
-        }
+
+			Console.WriteLine("Press any key.");
+			Console.ReadLine();
+		}
     }
 }

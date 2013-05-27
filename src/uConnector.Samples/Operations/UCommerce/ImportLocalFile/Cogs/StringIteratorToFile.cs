@@ -34,7 +34,7 @@ namespace UConnector.Samples.Operations.UCommerce.ImportLocalFile.Cogs
 
 			int rand = new Random().Next(100);
 
-			if (rand > 75)
+			if (rand > 25)
 			{
 				throw new Exception("Random exception thrown! HAHAHAHAHA!");
 			}

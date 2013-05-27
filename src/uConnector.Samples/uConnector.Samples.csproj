@@ -50,6 +50,12 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\Quartz.NET\Quartz.NET-2.0-beta1\4.0\Common.Logging.dll</HintPath>
     </Reference>
+    <Reference Include="Common.Logging.Log4Net">
+      <HintPath>..\..\lib\uConnector\Common.Logging.Log4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\..\lib\uConnector\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
@@ -72,6 +78,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Framework\SimpleRetryStrategy.cs" />
     <Compile Include="Operations\Sandbox\Cogs\ProductToProductName.cs" />
     <Compile Include="Operations\Sandbox\Cogs\SenderKeepRecordOfFiles.cs" />
     <Compile Include="Operations\Sandbox\Cogs\SenderWriteIntegersToFile.cs" />

@@ -1,4 +1,5 @@
 ﻿using UConnector.Config.Fluent.v1;
+using UConnector.Samples.Framework;
 using UConnector.Samples.Operations.UCommerce.ImportLocalFile.Cogs;
 
 namespace UConnector.Samples.Operations.Sandbox.Operations
@@ -15,6 +16,7 @@ namespace UConnector.Samples.Operations.Sandbox.Operations
 								   .Transform<XElementToCsvRow>()
 								   .Batch(10)
 								   .Send<StringIteratorToFile>()
+								   .UsingRetryStrategy<SimpleRetryStrategy>()
 								   .ToOperation();
 		}
 	}
