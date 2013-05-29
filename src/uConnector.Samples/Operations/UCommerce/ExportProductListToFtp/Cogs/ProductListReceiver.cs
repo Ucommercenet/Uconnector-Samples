@@ -8,7 +8,7 @@ namespace UConnector.Samples.Operations.UCommerce.ExportProductListToFtp.Cogs
     {
         public IEnumerable<Product> Receive()
         {
-            return Product.Find(x => x.ParentProductId == null);
+            return Product.Find(x => x.ParentProduct == null);
         }
     }
 }

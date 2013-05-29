@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-
 <configuration>
-  <configSections>
+	<configSections>
     <section name="uConnector" type="UConnector.Config.Configuration.UConnectorSection, UConnector" />
     <sectionGroup name="commerce">
       <section name="runtimeConfiguration"
@@ -16,8 +15,9 @@
     <section name="log4net" type="log4net.Config.Log4NetConfigurationSectionHandler, log4net" />
   </configSections>
   <connectionStrings>
-    <add name="ss-16" connectionString="server=172.17.4.72;database=ucommerce;user id=umbracouser;password=supermand!" />
-    <add name="UCommerce" connectionString="server=(local)\sqlexpress;database=u3umbraco;user id=u3umbraco;password=zaq!" />
+		<remove name="LocalSqlServer" />
+		<add name="LocalSqlServer" connectionString="server=.\sqlexpress;database=u3umbraco;user id=u3umbraco;password=zaq!" providerName="System.Data.SqlClient"/>
+		<add name="UCommerce" connectionString="server=.\sqlexpress;database=u3umbraco;user id=u3umbraco;password=zaq!" />
   </connectionStrings>
   <startup>
     <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.0" />
@@ -25,9 +25,9 @@
   <castle configSource="Castle.config">
   </castle>
   <commerce>
-    <runtimeConfiguration componentsConfigurationFile="Components.config" enableCache="false" cacheProvider="NHibernate.Caches.SysCache2.SysCacheProvider, NHibernate.Caches.SysCache2" />
-  </commerce>
-  <uConnector addMissingOperationOptions="false">
+		<runtimeConfiguration enableCache="true" cacheProvider="NHibernate.Caches.SysCache2.SysCacheProvider, NHibernate.Caches.SysCache2, Version=3.3.1.4000, Culture=neutral, PublicKeyToken=6876f2ea66c9f443" connectionString="(auto)" />
+	</commerce>
+	<uConnector addMissingOperationOptions="false">
     <taskPaths>
       <add path="C:\Projects\uConnector Samples\src\uConnector.Samples\bin\Debug\Tasks" />
     </taskPaths>

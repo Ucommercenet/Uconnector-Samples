@@ -14,7 +14,7 @@ namespace UConnector.Samples.Operations.Sandbox.Operations
 								   .Transform<XDocumentToXElementIterator>()
 								   .Debatch()
 								   .Transform<XElementToCsvRow>()
-								   .Batch(10)
+								   .Batch(size: 10)
 								   .Send<StringIteratorToFile>()
 								   .UsingRetryStrategy<SimpleRetryStrategy>()
 								   .ToOperation();

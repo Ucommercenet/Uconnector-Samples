@@ -10,23 +10,88 @@ namespace UConnector.Samples.Operations.Sandbox.Cogs
 {
 	public class XElementToUCommerceProduct : ICog<XElement, Product>
 	{
+		private XElement _element;
+		private Product _product;
+
 		public Product Execute(XElement input)
 		{
-			var product = new Product();
-			product.Name = FindProductName(input);
-			product.Sku = FindSku(input);
+			_element = input;
+			_product = new Product();
+			_product.Name = FindProductName();
+			_product.Sku = FindSku();
+			_product.ProductDefinition = new ProductDefinition() { Name = "Imported"};
+			_product.DisplayOnSite = !_product.Name.Contains("DISCONTINUED");
 
-			return product;
+			AddProductDescriptions();
+
+			_product.CategoryProductRelations.Add(BuildCategoryProductRelation());
+
+			return _product;
 		}
 
-		private string FindProductName(XElement input)
+		private CategoryProductRelation BuildCategoryProductRelation()
 		{
-			return FindElementValue(input, "ItemName");
+			var categoryProductRelation = new CategoryProductRelation()
+			{
+				Product = _product,
+				Category = BuildUConnectorCategory(),
+				SortOrder = 0,
+			};
+
+			return categoryProductRelation;
 		}
 
-		private string FindSku(XElement input)
+		private Category BuildUConnectorCategory()
 		{
-			return FindElementValue(input, "ItemId");
+			return new Category()
+			{
+				Name = "uConnector",
+				ProductCatalog = new ProductCatalog()
+				{
+					Name = "Demo Store",
+					ProductCatalogGroup = new ProductCatalogGroup()
+					{
+						Name = "avenue-clothing.com"
+					}
+				}
+			};
+
+		}
+
+		private void AddProductDescriptions()
+		{
+			var descriptionElements = FindDescendents(_element, "ItemIdInventTxt");
+			foreach (var descriptionElement in descriptionElements)
+			{
+				_product.AddProductDescription(BuildProductDescription(descriptionElement));
+			}
+		}
+
+		private ProductDescription BuildProductDescription(XElement description)
+		{
+			var productDescription = new ProductDescription
+				{
+					CultureCode = FindElementValue(description, "LanguageId"),
+					DisplayName = "TODO",
+					ShortDescription = FindElementValue(description, "Txt")
+				};
+
+			return productDescription;
+		}
+
+		private string FindProductName()
+		{
+			return FindElementValue(_element, "ItemName");
+		}
+
+		private string FindSku()
+		{
+			return FindElementValue(_element, "ItemId");
+		}
+
+		private string FindProductDefinitionName()
+		{
+			return FindElementValue(_element, "ItemGroupId");
 		}
 
 		private string FindElementValue(XElement element, string name)
@@ -36,6 +101,11 @@ namespace UConnector.Samples.Operations.Sandbox.Cogs
 						select e.Value).FirstOrDefault();
 
 			return val;
+		}
+
+		private IEnumerable<XElement> FindDescendents(XElement element, string name)
+		{
+			return (from e in element.Elements() where e.Name.LocalName == name select e);
 		}
 	}
 }

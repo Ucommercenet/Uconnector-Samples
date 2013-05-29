@@ -19,19 +19,9 @@ namespace UConnector.Samples.Operations.Sandbox.Cogs
 
 		public void Send(DateTime input)
 		{
-			if (!File.Exists(Filename))
+			using (var writer = File.Exists(Filename) ? new StreamWriter(File.OpenWrite(Filename)) : File.CreateText(Filename))
 			{
-				using (StreamWriter writer = File.CreateText(Filename))
-				{
-					WriteToFile(writer);
-				}
-			}
-			else
-			{
-				using (var writer = new StreamWriter(File.OpenWrite(Filename)))
-				{
-					WriteToFile(writer);
-				}
+				WriteToFile(writer);
 			}
 		}
 

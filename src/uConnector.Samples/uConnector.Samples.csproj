@@ -53,6 +53,9 @@
     <Reference Include="Common.Logging.Log4Net">
       <HintPath>..\..\lib\uConnector\Common.Logging.Log4Net.dll</HintPath>
     </Reference>
+    <Reference Include="Infralution.Licensing">
+      <HintPath>..\..\lib\uCommerce\Infralution.Licensing.dll</HintPath>
+    </Reference>
     <Reference Include="log4net">
       <HintPath>..\..\lib\uConnector\log4net.dll</HintPath>
     </Reference>
@@ -67,6 +70,12 @@
     <Reference Include="UCommerce, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\uCommerce\UCommerce.dll</HintPath>
+    </Reference>
+    <Reference Include="UCommerce.Presentation">
+      <HintPath>..\..\lib\uCommerce\UCommerce.Presentation.dll</HintPath>
+    </Reference>
+    <Reference Include="UCommerce.Umbraco">
+      <HintPath>..\..\lib\uCommerce\UCommerce.Umbraco.dll</HintPath>
     </Reference>
     <Reference Include="UConnector, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -170,6 +179,7 @@
     </None>
     <None Include="Tasks\WriteListOfProductNamesToFileOperation.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </None>
     <None Include="Tasks\XmlToCsvOperation.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

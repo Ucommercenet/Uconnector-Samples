@@ -1,6 +1,11 @@
 ﻿using System.IO;
 using UConnector.Config.Fluent.v1;
+using UConnector.Extensions.Cogs.Senders;
+using UConnector.Extensions.Cogs.Transformers;
+using UConnector.Extensions.Cogs.TwoWayCogs;
 using UConnector.Samples.Operations.Sandbox.Cogs;
+using UConnector.Samples.Operations.UCommerce.CopyFilesFromFtpToLocalDirectory.Cogs;
+using UConnector.Samples.Operations.UCommerce.ExportProductListToFtp.Cogs;
 using UConnector.Samples.Operations.UCommerce.ImportLocalFile.Cogs;
 
 namespace UConnector.Samples.Operations.Sandbox.Operations
@@ -23,12 +28,16 @@ namespace UConnector.Samples.Operations.Sandbox.Operations
 				.WithOption(x => x.DescendendsName = "InventTable_1")
 				.Debatch()
 				.Transform<XElementToUCommerceProduct>()
-				.Transform<ProductToProductName>()
 				.Batch()
-				.Send<StringIteratorToFile>()
-				.WithOption(x => x.Directory = @"C:\uConnector\Out")
-				.WithOption(x => x.Filename = @"ProductNames.{DateTime.Now.Ticks}.txt")
+				.Send<ProductListSender>()
 				.ToOperation();
+			//.Transform<ProductListToDataTableCog>()
+			//.Transform<ExcelCog>()
+			//.Transform<NamingCog>().WithOption(a => a.Extension = ".xlsx")
+			//.Send<CopyFileToDirectorySender>()
+			//.WithOption(x => x.Directory = @"C:\uConnector\Out")
+			//.WithOption(x => x.Overwrite = true)
+			//.ToOperation();
 		}
 	}
 }
