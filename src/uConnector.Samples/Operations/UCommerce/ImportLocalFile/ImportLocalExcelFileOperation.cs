@@ -14,9 +14,9 @@ namespace UConnector.Samples.Operations.UCommerce.ImportLocalFile
 				.Receive<LocalFilesReceiver>().WithOption(x => x.Pattern = "*.xslx")
 				.Debatch()
 				.Transform<WorkFileToStream>()
-				.Transform<ExcelCog>()
+				.Transform<FromExcelStreamToDataTable>()
 				.Transform<DataTableToProductList>()
-				.Send<ProductListSender>().ToOperation();
+				.Send<ProductListToUCommerce>().ToOperation();
 		}
 	}
 }

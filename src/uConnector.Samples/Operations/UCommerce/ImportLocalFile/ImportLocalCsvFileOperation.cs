@@ -14,9 +14,9 @@ namespace UConnector.Samples.Operations.UCommerce.ImportLocalFile
 				.Receive<LocalFilesReceiver>().WithOption(x => x.Pattern = "*.csv")
 				.Debatch()
 				.Transform<WorkFileToStream>()
-				.Transform<CsvCog>()
+				.Transform<FromCsvStreamToDataTable>()
 				.Transform<DataTableToProductList>()
-				.Send<ProductListSender>().ToOperation();
+				.Send<ProductListToUCommerce>().ToOperation();
 		}
 	}
 }

@@ -29,15 +29,8 @@ namespace UConnector.Samples.Operations.Sandbox.Operations
 				.Debatch()
 				.Transform<XElementToUCommerceProduct>()
 				.Batch()
-				.Send<ProductListSender>()
+				.Send<ProductListToUCommerce>()
 				.ToOperation();
-			//.Transform<ProductListToDataTableCog>()
-			//.Transform<ExcelCog>()
-			//.Transform<NamingCog>().WithOption(a => a.Extension = ".xlsx")
-			//.Send<CopyFileToDirectorySender>()
-			//.WithOption(x => x.Directory = @"C:\uConnector\Out")
-			//.WithOption(x => x.Overwrite = true)
-			//.ToOperation();
 		}
 	}
 }

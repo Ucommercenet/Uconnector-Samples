@@ -13,7 +13,7 @@ namespace UConnector.Samples.Operations.UCommerce.ExportProductListToFtp
             return FluentOperationBuilder
 				.Receive<ProductListReceiver>()
                 .Transform<ProductListToDataTable>()
-				.Transform<ExcelCog>()
+				.Transform<FromDataTableToExcelStream>()
 				.Transform<NamingCog>().WithOption(a => a.Extension = ".xlsx")
                 .Batch()
                 .Send<FtpFilesAdapter>().ToOperation();

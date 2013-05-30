@@ -61,7 +61,7 @@ namespace UConnector.MvcApplication.Controllers
 					.Receive<InvokeMethodReceiver<TypeInfo>>().WithOption(x => x.Method = () => typeInfo)
 					.Transform<TypeInfoToProductListCog>()
 					.Transform<ProductListToDataTable>()
-					.Transform<ExcelCog>()
+					.Transform<FromDataTableToExcelStream>()
 					.Transform<NamingCog>().WithOption(a => a.Extension = ".xlsx")
 					.Send<InvokeMethodSender<WorkFile>>().WithOption(x => x.Method = (value) => output = value);
 				operation = builder.ToOperation();
@@ -72,7 +72,7 @@ namespace UConnector.MvcApplication.Controllers
 					.Receive<InvokeMethodReceiver<TypeInfo>>().WithOption(x => x.Method = () => typeInfo)
 					.Transform<TypeInfoToProductListCog>()
 					.Transform<ProductListToDataTable>()
-					.Transform<CsvCog>()
+					.Transform<FromDataTableToCsvStream>()
 					.Transform<NamingCog>().WithOption(a => a.Extension = ".csv")
 					.Send<InvokeMethodSender<WorkFile>>().WithOption(x => x.Method = (value) => output = value);
 				operation = builder.ToOperation();
