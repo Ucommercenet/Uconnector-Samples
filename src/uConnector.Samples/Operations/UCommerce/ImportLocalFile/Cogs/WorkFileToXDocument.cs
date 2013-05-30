@@ -8,7 +8,7 @@ using UConnector.Extensions.Model;
 
 namespace UConnector.Samples.Operations.UCommerce.ImportLocalFile.Cogs
 {
-	public class WorkFileToXDocument : ICog<WorkFile, XDocument>
+	public class WorkFileToXDocument : ITransformer<WorkFile, XDocument>
 	{
 		public XDocument Execute(WorkFile input)
 		{

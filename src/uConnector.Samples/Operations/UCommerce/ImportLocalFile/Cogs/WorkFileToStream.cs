@@ -5,7 +5,7 @@ using UConnector.Extensions.Model;
 
 namespace UConnector.Samples.Operations.UCommerce.ImportLocalFile.Cogs
 {
-    public class WorkFileToStream : ICog<WorkFile, Stream>, IMetadata
+	public class WorkFileToStream : ITransformer<WorkFile, Stream>, IMetadata
     {
         public Stream Execute(WorkFile input)
         {

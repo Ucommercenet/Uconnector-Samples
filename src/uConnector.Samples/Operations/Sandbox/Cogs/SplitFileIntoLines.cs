@@ -8,7 +8,7 @@ using UConnector.Extensions.Model;
 
 namespace UConnector.Samples.Operations.Sandbox.Cogs
 {
-	public class SplitFileIntoLines : ICog<WorkFile,IEnumerable<string>>
+	public class SplitFileIntoLines : ITransformer<WorkFile, IEnumerable<string>>
 	{
 		public IEnumerable<string> Execute(WorkFile input)
 		{

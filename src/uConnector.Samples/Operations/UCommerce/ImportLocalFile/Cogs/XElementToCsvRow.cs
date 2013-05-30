@@ -9,7 +9,7 @@ using UConnector.Cogs;
 
 namespace UConnector.Samples.Operations.UCommerce.ImportLocalFile.Cogs
 {
-	public class XElementToCsvRow : ICog<XElement, string>
+	public class XElementToCsvRow : ITransformer<XElement, string>
 	{
 		private readonly ILog log = LogManager.GetCurrentClassLogger();
 

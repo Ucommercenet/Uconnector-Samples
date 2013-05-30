@@ -7,7 +7,7 @@ using UConnector.Cogs;
 
 namespace UConnector.Samples.Operations.Sandbox.Cogs
 {
-	public class ProductToProductName : ICog<Product, string>
+	public class ProductToProductName : ITransformer<Product, string>
 	{
 		public string Execute(Product input)
 		{

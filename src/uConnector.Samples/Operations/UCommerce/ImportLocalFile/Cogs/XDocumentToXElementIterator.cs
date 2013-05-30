@@ -9,7 +9,7 @@ using UConnector.Config;
 
 namespace UConnector.Samples.Operations.UCommerce.ImportLocalFile.Cogs
 {
-	public class XDocumentToXElementIterator : Configurable, ICog<XDocument, IEnumerable<XElement>>
+	public class XDocumentToXElementIterator : Configurable, ITransformer<XDocument, IEnumerable<XElement>>
 	{
         [Required]
         public string DescendendsName { get; set; }

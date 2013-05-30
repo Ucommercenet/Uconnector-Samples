@@ -7,11 +7,11 @@ using UConnector.MvcApplication.Cogs.Models;
 
 namespace UConnector.MvcApplication.Cogs.Transformers
 {
-    public class TypeInfoToProductListCog : ICog<TypeInfo, IEnumerable<Product>>
-    {
-        #region ICog<TypeInfo,IEnumerable<Product>> Members
+	public class TypeInfoToProductListCog : ITransformer<TypeInfo, IEnumerable<Product>>
+	{
+		#region ITransformer<TypeInfo,IEnumerable<Product>> Members
 
-        public IEnumerable<Product> Execute(TypeInfo input)
+		public IEnumerable<Product> Execute(TypeInfo input)
         {
             switch (input.TypeName)
             {

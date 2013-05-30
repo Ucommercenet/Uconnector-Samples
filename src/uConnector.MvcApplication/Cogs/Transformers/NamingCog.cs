@@ -7,7 +7,7 @@ using UConnector.Extensions.Model;
 
 namespace UConnector.MvcApplication.Cogs.Transformers
 {
-    public class NamingCog : ICog<Stream, WorkFile>
+	public class NamingCog : ITransformer<Stream, WorkFile>
     {
         /// <summary>
         /// Gets or sets the extension. Including the dot.

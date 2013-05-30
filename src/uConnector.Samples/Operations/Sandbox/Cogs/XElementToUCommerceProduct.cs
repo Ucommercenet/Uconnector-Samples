@@ -8,7 +8,7 @@ using UConnector.Cogs;
 
 namespace UConnector.Samples.Operations.Sandbox.Cogs
 {
-	public class XElementToUCommerceProduct : ICog<XElement, Product>
+	public class XElementToUCommerceProduct : ITransformer<XElement, Product>
 	{
 		private XElement _element;
 		private Product _product;

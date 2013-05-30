@@ -6,7 +6,7 @@ using UConnector.Cogs;
 
 namespace UConnector.Samples.Operations.Sandbox.Cogs
 {
-	public class SumStringsWithNumbers : ICog<IEnumerable<string>, IEnumerable<int>>
+	public class SumStringsWithNumbers : ITransformer<IEnumerable<string>, IEnumerable<int>>
 	{
 		public IEnumerable<int> Execute(IEnumerable<string> input)
 		{
