@@ -1,5 +1,8 @@
-﻿using UConnector.Config.Fluent.v1;
+﻿using System.Collections.Generic;
+using UConnector.Cogs;
+using UConnector.Config.Fluent.v1;
 using UConnector.Extensions.Cogs.Adapters;
+using UConnector.Extensions.Model;
 
 namespace UConnector.Samples.Operations.UCommerce.CleanFtp
 {
@@ -8,8 +11,13 @@ namespace UConnector.Samples.Operations.UCommerce.CleanFtp
         protected override IOperation BuildOperation()
         {
             return FluentOperationBuilder
-				.Receive<FtpFilesAdapter>()
+				.Receive<FtpFilesAdapter>().Send(new NoOpSender())
                 .ToOperation();
         }
-    }
+	
+		private class NoOpSender : ISender<IEnumerable<WorkFile>>
+		{
+			public void Send(IEnumerable<WorkFile> input) { }
+		}
+	}
 }
