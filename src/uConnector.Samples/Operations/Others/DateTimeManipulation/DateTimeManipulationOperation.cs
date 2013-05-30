@@ -16,11 +16,11 @@ namespace UConnector.Samples.Operations.Others.DateTimeManipulation
         {
             return FluentOperationBuilder
 				.Receive<DateTimeNowReceiver>()
-                .Transform<PrintDateTimeToConsoleWithFormatCog>()
-				.Transform<RemoveTimePartCog>()
-				.Transform<PrintDateTimeToConsoleWithFormatCog>()
-				.Transform<AddHoursToDateTimeCog>()
-				.Transform<PrintDateTimeToConsoleWithFormatCog>()
+                .Transform<PrintDateTimeToConsoleWithFormat>()
+				.Transform<RemoveTimePart>()
+				.Transform<PrintDateTimeToConsoleWithFormat>()
+				.Transform<AddHoursToDateTime>()
+				.Transform<PrintDateTimeToConsoleWithFormat>()
                 .Send<DateTimeSender>().ToOperation();
         }
     }

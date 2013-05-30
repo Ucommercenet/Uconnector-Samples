@@ -16,10 +16,9 @@ namespace UConnector.Samples.Operations.Others.FetchFile
                 .WithOption(x => x.Hostname = "ftp.syska.dk")
                 .WithOption(x => x.Pattern = "file.txt")
                 .WithOption(x => x.Directory = "/src")
-                .Decision<BailOutIfStreamIsNullDecision>(
-                    FluentOperationBuilder.CreateSubOperation().Transform<WorkFilesToStringCog>()
-						.Transform<PrintStringCog>().ToOperation())
-						.ToOperation();
+                .Transform<WorkFilesToString>()
+				.Send<ToStandardOut>()
+				.ToOperation();
         }
     }
 }

@@ -3,14 +3,13 @@ using UConnector.Cogs;
 
 namespace UConnector.Samples.Operations.Others.FetchFile.Cogs
 {
-    public class PrintStringCog : ICog<string, string>
+    public class ToStandardOut : ISender<string>
     {
         #region ICog<string,string> Members
 
-        public string Execute(string input)
+        public void Send(string input)
         {
             Console.WriteLine(input);
-            return input;
         }
 
         #endregion

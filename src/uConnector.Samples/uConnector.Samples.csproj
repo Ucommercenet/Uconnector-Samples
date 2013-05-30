@@ -105,7 +105,7 @@
     <Compile Include="Operations\UCommerce\CleanFtp\CleanFtpOperation.cs" />
     <Compile Include="Operations\UCommerce\CopyFilesFromFtpToLocalDirectory\CopyFilesFromFtpToLocalDirectoryOperation.cs" />
     <Compile Include="Operations\UCommerce\CopyFilesFromFtpToLocalDirectory\Cogs\CopyFileToDirectorySender.cs" />
-    <Compile Include="Operations\Others\DateTimeManipulation\Cogs\AddHoursToDateTimeCog.cs">
+    <Compile Include="Operations\Others\DateTimeManipulation\Cogs\AddHoursToDateTime.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Operations\Others\DateTimeManipulation\Cogs\DateTimeNowReceiver.cs">
@@ -114,10 +114,10 @@
     <Compile Include="Operations\Others\DateTimeManipulation\Cogs\DateTimeSender.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Operations\Others\DateTimeManipulation\Cogs\PrintDateTimeToConsoleWithFormatCog.cs">
+    <Compile Include="Operations\Others\DateTimeManipulation\Cogs\PrintDateTimeToConsoleWithFormat.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Operations\Others\DateTimeManipulation\Cogs\RemoveTimePartCog.cs">
+    <Compile Include="Operations\Others\DateTimeManipulation\Cogs\RemoveTimePart.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Operations\Others\DateTimeManipulation\DateTimeManipulationOperation.cs">
@@ -132,10 +132,7 @@
     <Compile Include="Operations\Others\DeleteFiles\DeleteFilesOperation.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Operations\Others\FetchFile\Cogs\BailOutIfStreamIsNullDecision.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Operations\Others\FetchFile\Cogs\PrintStringCog.cs">
+    <Compile Include="Operations\Others\FetchFile\Cogs\ToStandardOut.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Operations\Others\FetchFile\FetchFileOperation.cs">
@@ -148,12 +145,10 @@
     <Compile Include="Operations\UCommerce\ImportLocalFile\Cogs\WorkFileToXDocument.cs" />
     <Compile Include="Operations\UCommerce\ImportLocalFile\Cogs\XDocumentToXElementIterator.cs" />
     <Compile Include="Operations\UCommerce\ImportLocalFile\Cogs\XElementToCsvRow.cs" />
-    <Compile Include="Operations\UCommerce\ImportLocalFile\Decision\CsvWorkFileDecision.cs" />
-    <Compile Include="Operations\UCommerce\ImportLocalFile\SubOperations\ImportCsvSubOperation.cs" />
-    <Compile Include="Operations\UCommerce\ImportLocalFile\SubOperations\ImportExcelSubOperation.cs" />
-    <Compile Include="Operations\UCommerce\ImportLocalFile\Cogs\WorkFileToStreamCog.cs" />
+    <Compile Include="Operations\UCommerce\ImportLocalFile\ImportLocalCsvFileOperation.cs" />
+    <Compile Include="Operations\UCommerce\ImportLocalFile\ImportLocalExcelFileOperation.cs" />
+    <Compile Include="Operations\UCommerce\ImportLocalFile\Cogs\WorkFileToStream.cs" />
     <Compile Include="Operations\UCommerce\ImportLocalFile\Cogs\LocalFilesReceiver.cs" />
-    <Compile Include="Operations\UCommerce\ImportLocalFile\ImportLocalFileOperation.cs" />
     <Compile Include="Operations\Others\MoveFile\Cogs\BailOutIfFileInfoIsNullDecision.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -175,6 +170,9 @@
     </None>
     <None Include="Castle.config">
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Tasks\ImportLocalCsvFileOperation.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Tasks\WriteListOfProductNamesToFileOperation.config">
@@ -216,7 +214,7 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Tasks\ImportLocalFileOperation.config">
+    <None Include="Tasks\ImportLocalExcelFileOperation.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </None>

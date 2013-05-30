@@ -11,10 +11,9 @@ namespace UConnector.Samples.Operations.Others.MoveFile
 
         protected override IOperation BuildOperation()
         {
-            return FluentOperationBuilder
-				.Receive<FileReceiver>().WithConfiguration("FileIn")
-                .Decision<BailOutIfFileInfoIsNullDecision>(FluentOperationBuilder.CreateSubOperation().Send<MoveFileSender>().WithConfiguration("FileOut").ToOperation()).
-                ToOperation();
+	        return FluentOperationBuilder
+		        .Receive<FileReceiver>().WithConfiguration("FileIn")
+		        .Send<MoveFileSender>().WithConfiguration("FileOut").ToOperation();
         }
     }
 }

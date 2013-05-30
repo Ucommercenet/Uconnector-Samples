@@ -15,6 +15,8 @@ namespace UConnector.Samples.Operations.Others.MoveFile.Cogs
 
         public void Send(FileInfo input)
         {
+			if (input == null) { return; }
+
             if (!input.Exists)
                 throw new FileNotFoundException(input.FullName);
 

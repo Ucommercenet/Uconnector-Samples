@@ -53,24 +53,31 @@ namespace UConnector.MvcApplication.Controllers
                                };
 
             WorkFile output = null;
+	        IOperation operation;
 
-            var builder = FluentOperationBuilder
-				.Receive<InvokeMethodReceiver<TypeInfo>>().WithOption(x => x.Method = () => typeInfo)
-                .Decision<IfTypeInfoTypeIsExcelDecision>(
-                    FluentOperationBuilder.CreateSubOperation()
-                        .Transform<TypeInfoToProductListCog>()
-						.Transform<ProductListToDataTableCog>()
-						.Transform<ExcelCog>()
-						.Transform<NamingCog>().WithOption(a => a.Extension = ".xlsx")
-                        .Send<InvokeMethodSender<WorkFile>>().WithOption(x => x.Method = (value) => output = value).
-                        ToOperation())
-						.Transform<TypeInfoToProductListCog>()
-						.Transform<ProductListToDataTableCog>()
-						.Transform<CsvCog>()
-						.Transform<NamingCog>().WithOption(a => a.Extension = ".csv")
-                        .Send<InvokeMethodSender<WorkFile>>().WithOption(x => x.Method = (value) => output = value);
+			if (typeInfo.Type == DownloadAs.Excel)
+			{
+				var builder = FluentOperationBuilder
+					.Receive<InvokeMethodReceiver<TypeInfo>>().WithOption(x => x.Method = () => typeInfo)
+					.Transform<TypeInfoToProductListCog>()
+					.Transform<ProductListToDataTable>()
+					.Transform<ExcelCog>()
+					.Transform<NamingCog>().WithOption(a => a.Extension = ".xlsx")
+					.Send<InvokeMethodSender<WorkFile>>().WithOption(x => x.Method = (value) => output = value);
+				operation = builder.ToOperation();
+			}
+			else
+			{
+				var builder = FluentOperationBuilder
+					.Receive<InvokeMethodReceiver<TypeInfo>>().WithOption(x => x.Method = () => typeInfo)
+					.Transform<TypeInfoToProductListCog>()
+					.Transform<ProductListToDataTable>()
+					.Transform<CsvCog>()
+					.Transform<NamingCog>().WithOption(a => a.Extension = ".csv")
+					.Send<InvokeMethodSender<WorkFile>>().WithOption(x => x.Method = (value) => output = value);
+				operation = builder.ToOperation();
+			}
 
-            var operation = builder.ToOperation();
             var runner = new OperationEngine();
             runner.Execute(operation);
             output.Stream.Flush();

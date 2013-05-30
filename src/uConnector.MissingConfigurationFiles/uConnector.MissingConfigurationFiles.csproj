@@ -55,9 +55,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\uCommerce\Iesi.Collections.dll</HintPath>
     </Reference>
-    <Reference Include="NHibernate.ByteCode.Castle">
-      <HintPath>..\..\lib\uCommerce\NHibernate.ByteCode.Castle.dll</HintPath>
-    </Reference>
     <Reference Include="NHibernate.Caches.SysCache2">
       <HintPath>..\..\lib\uCommerce\NHibernate.Caches.SysCache2.dll</HintPath>
     </Reference>
