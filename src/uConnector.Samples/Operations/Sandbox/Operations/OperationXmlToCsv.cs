@@ -1,4 +1,5 @@
 ﻿using UConnector.Config.Fluent.v1;
+using UConnector.Extensions.Cogs.Receivers;
 using UConnector.Samples.Framework;
 using UConnector.Samples.Operations.UCommerce.ImportLocalFile.Cogs;
 
@@ -8,7 +9,7 @@ namespace UConnector.Samples.Operations.Sandbox.Operations
 	{
 		protected override IOperation BuildOperation()
 		{
-			return FluentOperationBuilder.Receive<LocalFilesReceiver>().WithOption(x => x.Pattern = "*.xml")
+			return FluentOperationBuilder.Receive<FilesFromLocalDirectory>().WithOption(x => x.Pattern = "*.xml")
 								   .Debatch()
 								   .Transform<WorkFileToXDocument>()
 								   .Transform<XDocumentToXElementIterator>()

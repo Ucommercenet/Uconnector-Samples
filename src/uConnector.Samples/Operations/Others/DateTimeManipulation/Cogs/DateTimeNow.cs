@@ -3,7 +3,7 @@ using UConnector.Cogs;
 
 namespace UConnector.Samples.Operations.Others.DateTimeManipulation.Cogs
 {
-    public class DateTimeNowReceiver : IReceiver<DateTime>
+    public class DateTimeNow : IReceiver<DateTime>
     {
         public DateTime Receive()
         {

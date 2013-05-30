@@ -1,6 +1,6 @@
 ﻿using UConnector.Config.Fluent.v1;
+using UConnector.Extensions.Cogs.Receivers;
 using UConnector.Samples.Operations.Sandbox.Cogs;
-using UConnector.Samples.Operations.UCommerce.ImportLocalFile.Cogs;
 
 namespace UConnector.Samples.Operations.Sandbox.Operations
 {
@@ -9,7 +9,7 @@ namespace UConnector.Samples.Operations.Sandbox.Operations
 		protected override IOperation BuildOperation()
 		{
 			return FluentOperationBuilder
-				.Receive<LocalFilesReceiver>()
+				.Receive<FilesFromLocalDirectory>()
 				.Debatch()
 				.Send<SenderKeepRecordOfFiles>().ToOperation();
 		}

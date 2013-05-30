@@ -7,7 +7,7 @@ using UConnector.Extensions.Model;
 
 namespace UConnector.Samples.Operations.UCommerce.CopyFilesFromFtpToLocalDirectory.Cogs
 {
-    public class CopyFileToDirectorySender : Configurable, ISender<WorkFile>
+    public class CopyFileToDirectory : Configurable, ISender<WorkFile>
     {
         [Required]
         public bool Overwrite { get; set; }

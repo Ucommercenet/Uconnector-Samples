@@ -15,7 +15,7 @@ namespace UConnector.Samples.Operations.Others.DateTimeManipulation
         protected override IOperation BuildOperation()
         {
             return FluentOperationBuilder
-				.Receive<DateTimeNowReceiver>()
+				.Receive<DateTimeNow>()
                 .Transform<PrintDateTimeToConsoleWithFormat>()
 				.Transform<RemoveTimePart>()
 				.Transform<PrintDateTimeToConsoleWithFormat>()

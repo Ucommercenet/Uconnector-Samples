@@ -9,8 +9,8 @@ namespace UConnector.Samples.Operations.Sandbox.Operations
 		protected override IOperation BuildOperation()
 		{
 			return FluentOperationBuilder
-				.Receive<DateTimeNowReceiver>()
-				.Send<SenderWriteTestFile>().ToOperation();
+				.Receive<DateTimeNow>()
+				.Send<WriteTestFile>().ToOperation();
 		}
 	}
 }

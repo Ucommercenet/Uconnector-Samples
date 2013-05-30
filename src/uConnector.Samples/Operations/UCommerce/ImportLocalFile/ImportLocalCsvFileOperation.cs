@@ -1,4 +1,5 @@
 ﻿using UConnector.Config.Fluent.v1;
+using UConnector.Extensions.Cogs.Receivers;
 using UConnector.Extensions.Cogs.Senders;
 using UConnector.Extensions.Cogs.Transformers;
 using UConnector.Extensions.Cogs.TwoWayCogs;
@@ -11,7 +12,7 @@ namespace UConnector.Samples.Operations.UCommerce.ImportLocalFile
 		protected override IOperation BuildOperation()
 		{
 			return FluentOperationBuilder
-				.Receive<LocalFilesReceiver>().WithOption(x => x.Pattern = "*.csv")
+				.Receive<FilesFromLocalDirectory>().WithOption(x => x.Pattern = "*.csv")
 				.Debatch()
 				.Transform<WorkFileToStream>()
 				.Transform<FromCsvStreamToDataTable>()

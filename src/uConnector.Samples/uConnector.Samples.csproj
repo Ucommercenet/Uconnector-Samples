@@ -92,7 +92,7 @@
     <Compile Include="Operations\Sandbox\Cogs\SenderKeepRecordOfFiles.cs" />
     <Compile Include="Operations\Sandbox\Cogs\SenderWriteIntegersToFile.cs" />
     <Compile Include="Operations\Sandbox\Cogs\SenderWriteIntegerToFile.cs" />
-    <Compile Include="Operations\Sandbox\Cogs\SenderWriteTestFile.cs" />
+    <Compile Include="Operations\Sandbox\Cogs\WriteTestFile.cs" />
     <Compile Include="Operations\Sandbox\Cogs\SplitFileIntoLines.cs" />
     <Compile Include="Operations\Sandbox\Cogs\SumStringsWithNumbers.cs" />
     <Compile Include="Operations\Sandbox\Cogs\SumStringWithNumbers.cs" />
@@ -104,11 +104,11 @@
     <Compile Include="Operations\Sandbox\Operations\SandboxOperation.cs" />
     <Compile Include="Operations\UCommerce\CleanFtp\CleanFtpOperation.cs" />
     <Compile Include="Operations\UCommerce\CopyFilesFromFtpToLocalDirectory\CopyFilesFromFtpToLocalDirectoryOperation.cs" />
-    <Compile Include="Operations\UCommerce\CopyFilesFromFtpToLocalDirectory\Cogs\CopyFileToDirectorySender.cs" />
+    <Compile Include="Operations\UCommerce\CopyFilesFromFtpToLocalDirectory\Cogs\CopyFileToDirectory.cs" />
     <Compile Include="Operations\Others\DateTimeManipulation\Cogs\AddHoursToDateTime.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Operations\Others\DateTimeManipulation\Cogs\DateTimeNowReceiver.cs">
+    <Compile Include="Operations\Others\DateTimeManipulation\Cogs\DateTimeNow.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Operations\Others\DateTimeManipulation\Cogs\DateTimeSender.cs">
@@ -138,7 +138,7 @@
     <Compile Include="Operations\Others\FetchFile\FetchFileOperation.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Operations\UCommerce\ExportProductListToFtp\Cogs\NamingCog.cs" />
+    <Compile Include="Operations\UCommerce\ExportProductListToFtp\Cogs\StreamToWorkfileWithTimestampName.cs" />
     <Compile Include="Operations\UCommerce\ExportProductListToFtp\Cogs\ProductListReceiver.cs" />
     <Compile Include="Operations\UCommerce\ExportProductListToFtp\ExportProductListToFtpOperation.cs" />
     <Compile Include="Operations\UCommerce\ImportLocalFile\Cogs\StringIteratorToFile.cs" />
@@ -148,10 +148,6 @@
     <Compile Include="Operations\UCommerce\ImportLocalFile\ImportLocalCsvFileOperation.cs" />
     <Compile Include="Operations\UCommerce\ImportLocalFile\ImportLocalExcelFileOperation.cs" />
     <Compile Include="Operations\UCommerce\ImportLocalFile\Cogs\WorkFileToStream.cs" />
-    <Compile Include="Operations\UCommerce\ImportLocalFile\Cogs\LocalFilesReceiver.cs" />
-    <Compile Include="Operations\Others\MoveFile\Cogs\BailOutIfFileInfoIsNullDecision.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Operations\Others\MoveFile\Cogs\MoveFileSender.cs">
       <SubType>Code</SubType>
     </Compile>

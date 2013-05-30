@@ -1,11 +1,8 @@
 ﻿using System.IO;
 using UConnector.Config.Fluent.v1;
+using UConnector.Extensions.Cogs.Receivers;
 using UConnector.Extensions.Cogs.Senders;
-using UConnector.Extensions.Cogs.Transformers;
-using UConnector.Extensions.Cogs.TwoWayCogs;
 using UConnector.Samples.Operations.Sandbox.Cogs;
-using UConnector.Samples.Operations.UCommerce.CopyFilesFromFtpToLocalDirectory.Cogs;
-using UConnector.Samples.Operations.UCommerce.ExportProductListToFtp.Cogs;
 using UConnector.Samples.Operations.UCommerce.ImportLocalFile.Cogs;
 
 namespace UConnector.Samples.Operations.Sandbox.Operations
@@ -15,7 +12,7 @@ namespace UConnector.Samples.Operations.Sandbox.Operations
 		protected override IOperation BuildOperation()
 		{
 			return FluentOperationBuilder
-				.Receive<LocalFilesReceiver>()
+				.Receive<FilesFromLocalDirectory>()
 				.WithOption(x => x.Pattern = "*.xml")
 				.WithOption(x => x.DeleteFile = true)
 				.WithOption(x => x.Directory = @"C:\uConnector\In")

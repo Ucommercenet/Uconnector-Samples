@@ -10,7 +10,7 @@ using UConnector.Config;
 
 namespace UConnector.Samples.Operations.Sandbox.Cogs
 {
-	public class SenderWriteTestFile : Configurable, ISender<DateTime>
+	public class WriteTestFile : Configurable, ISender<DateTime>
 	{
 		private Random _random = new Random();
 

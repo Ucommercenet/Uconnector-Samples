@@ -12,7 +12,7 @@ namespace UConnector.Samples.Operations.UCommerce.CopyFilesFromFtpToLocalDirecto
 				.Receive<FtpFilesAdapter>()
                 .WithConfiguration("FtpIn")
                 .Debatch()
-                .Send<CopyFileToDirectorySender>().ToOperation();
+                .Send<CopyFileToDirectory>().ToOperation();
         }
     }
 }
