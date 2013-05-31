@@ -11,7 +11,7 @@ namespace UConnector.Samples.Operations.UCommerce.ExportProductListToFtp
         protected override IOperation BuildOperation()
         {
             return FluentOperationBuilder
-				.Receive<ProductListReceiver>()
+				.Receive<ProductListFromUCommerce>()
                 .Transform<ProductListToDataTable>()
 				.Transform<FromDataTableToExcelStream>()
 				.Transform<StreamToWorkfileWithTimestampName>().WithOption(a => a.Extension = ".xlsx")

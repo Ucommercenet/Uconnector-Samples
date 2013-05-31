@@ -139,7 +139,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Operations\UCommerce\ExportProductListToFtp\Cogs\StreamToWorkfileWithTimestampName.cs" />
-    <Compile Include="Operations\UCommerce\ExportProductListToFtp\Cogs\ProductListReceiver.cs" />
+    <Compile Include="Operations\UCommerce\ExportProductListToFtp\Cogs\ProductListFromUCommerce.cs" />
     <Compile Include="Operations\UCommerce\ExportProductListToFtp\ExportProductListToFtpOperation.cs" />
     <Compile Include="Operations\UCommerce\ImportLocalFile\Cogs\StringIteratorToFile.cs" />
     <Compile Include="Operations\UCommerce\ImportLocalFile\Cogs\WorkFileToXDocument.cs" />

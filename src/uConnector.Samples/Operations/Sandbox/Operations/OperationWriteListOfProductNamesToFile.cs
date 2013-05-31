@@ -10,7 +10,7 @@ namespace UConnector.Samples.Operations.Sandbox.Operations
 		protected override IOperation BuildOperation()
 		{
 			return FluentOperationBuilder
-				.Receive<ProductListReceiver>()
+				.Receive<ProductListFromUCommerce>()
 				.Debatch()
 				.Transform<ProductToProductName>()
 				.Batch()
