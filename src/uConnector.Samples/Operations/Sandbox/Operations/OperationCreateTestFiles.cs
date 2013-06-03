@@ -10,7 +10,8 @@ namespace UConnector.Samples.Operations.Sandbox.Operations
 		{
 			return FluentOperationBuilder
 				.Receive<DateTimeNow>()
-				.Send<WriteTestFile>().ToOperation();
+				.Send<WriteTestFile>()
+				.ToOperation();
 		}
 	}
 }

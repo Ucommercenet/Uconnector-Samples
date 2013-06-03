@@ -10,9 +10,10 @@ namespace UConnector.Samples.Operations.UCommerce.CopyFilesFromFtpToLocalDirecto
         {
             return FluentOperationBuilder
 				.Receive<FtpFilesAdapter>()
-                .WithConfiguration("FtpIn")
+					.WithConfiguration("FtpIn")
                 .Debatch()
-                .Send<CopyFileToDirectory>().ToOperation();
+                .Send<CopyFileToDirectory>()
+				.ToOperation();
         }
     }
 }

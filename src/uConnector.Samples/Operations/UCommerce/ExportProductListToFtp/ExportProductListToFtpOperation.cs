@@ -13,7 +13,8 @@ namespace UConnector.Samples.Operations.UCommerce.ExportProductListToFtp
 				.Receive<ProductListFromUCommerce>()
                 .Transform<ProductListToDataTable>()
 				.Transform<FromDataTableToExcelStream>()
-				.Transform<StreamToWorkfileWithTimestampName>().WithOption(a => a.Extension = ".xlsx")
+				.Transform<StreamToWorkfileWithTimestampName>()
+					.WithOption(a => a.Extension = ".xlsx")
                 .Batch()
                 .Send<FtpFilesAdapter>().ToOperation();
         }

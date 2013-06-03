@@ -102,7 +102,6 @@
     <Compile Include="Operations\Sandbox\Operations\OperationWriteListOfProductNamesToFile.cs" />
     <Compile Include="Operations\Sandbox\Operations\OperationXmlToCsv.cs" />
     <Compile Include="Operations\Sandbox\Operations\SandboxOperation.cs" />
-    <Compile Include="Operations\UCommerce\CleanFtp\CleanFtpOperation.cs" />
     <Compile Include="Operations\UCommerce\CopyFilesFromFtpToLocalDirectory\CopyFilesFromFtpToLocalDirectoryOperation.cs" />
     <Compile Include="Operations\UCommerce\CopyFilesFromFtpToLocalDirectory\Cogs\CopyFileToDirectory.cs" />
     <Compile Include="Operations\Others\DateTimeManipulation\Cogs\AddHoursToDateTime.cs">
@@ -183,10 +182,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Tasks\CreateTestFilesOperation.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Tasks\CleanFtpOperation.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </None>

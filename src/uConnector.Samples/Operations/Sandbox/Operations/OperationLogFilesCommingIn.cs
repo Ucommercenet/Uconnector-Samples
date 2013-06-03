@@ -11,7 +11,8 @@ namespace UConnector.Samples.Operations.Sandbox.Operations
 			return FluentOperationBuilder
 				.Receive<FilesFromLocalDirectory>()
 				.Debatch()
-				.Send<SenderKeepRecordOfFiles>().ToOperation();
+				.Send<SenderKeepRecordOfFiles>()
+				.ToOperation();
 		}
 	}
 }

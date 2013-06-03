@@ -9,16 +9,18 @@ namespace UConnector.Samples.Operations.Sandbox.Operations
 	{
 		protected override IOperation BuildOperation()
 		{
-			return FluentOperationBuilder.Receive<FilesFromLocalDirectory>().WithOption(x => x.Pattern = "*.xml")
-								   .Debatch()
-								   .Transform<WorkFileToXDocument>()
-								   .Transform<XDocumentToXElementIterator>()
-								   .Debatch()
-								   .Transform<XElementToCsvRow>()
-								   .Batch(size: 10)
-								   .Send<StringIteratorToFile>()
-								   .UsingRetryStrategy<SimpleRetryStrategy>()
-								   .ToOperation();
+			return FluentOperationBuilder
+				.Receive<FilesFromLocalDirectory>()
+					.WithOption(x => x.Pattern = "*.xml")
+				.Debatch()
+				.Transform<WorkFileToXDocument>()
+				.Transform<XDocumentToXElementIterator>()
+				.Debatch()
+				.Transform<XElementToCsvRow>()
+				.Batch(size: 10)
+				.Send<StringIteratorToFile>()
+				.UsingRetryStrategy<SimpleRetryStrategy>()
+				.ToOperation();
 		}
 	}
 }

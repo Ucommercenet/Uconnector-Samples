@@ -15,8 +15,8 @@ namespace UConnector.Samples.Operations.Sandbox.Operations
 				.Transform<ProductToProductName>()
 				.Batch()
 				.Send<StringIteratorToFile>()
-				.WithOption(s => s.Directory = @"C:\uConnector\Out")
-				.WithOption(s => s.Filename = @"ProductNames.txt")
+					.WithOption(s => s.Directory = @"C:\uConnector\Out")
+					.WithOption(s => s.Filename = @"ProductNames.txt")
 				.ToOperation();
 		}
 	}

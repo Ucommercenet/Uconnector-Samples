@@ -11,12 +11,14 @@ namespace UConnector.Samples.Operations.UCommerce.ImportLocalFile
 		protected override IOperation BuildOperation()
 		{
 			return FluentOperationBuilder
-				.Receive<FilesFromLocalDirectory>().WithOption(x => x.Pattern = "*.csv")
+				.Receive<FilesFromLocalDirectory>()
+					.WithOption(x => x.Pattern = "*.csv")
 				.Debatch()
 				.Transform<WorkFileToStream>()
 				.Transform<FromCsvStreamToDataTable>()
 				.Transform<DataTableToProductList>()
-				.Send<ProductListToUCommerce>().ToOperation();
+				.Send<ProductListToUCommerce>()
+				.ToOperation();
 		}
 	}
 }

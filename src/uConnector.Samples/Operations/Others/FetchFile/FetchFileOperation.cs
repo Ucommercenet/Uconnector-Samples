@@ -11,11 +11,11 @@ namespace UConnector.Samples.Operations.Others.FetchFile
         {
             return FluentOperationBuilder
 				.Receive<FtpFilesAdapter>()
-                .WithOption(x => x.Username = "ftp.syska.dk|uconnector")
-                .WithOption(x => x.Password = "uconnector")
-                .WithOption(x => x.Hostname = "ftp.syska.dk")
-                .WithOption(x => x.Pattern = "file.txt")
-                .WithOption(x => x.Directory = "/src")
+					.WithOption(x => x.Username = "ftp.syska.dk|uconnector")
+					.WithOption(x => x.Password = "uconnector")
+					.WithOption(x => x.Hostname = "ftp.syska.dk")
+					.WithOption(x => x.Pattern = "file.txt")
+					.WithOption(x => x.Directory = "/src")
                 .Transform<WorkFilesToString>()
 				.Send<ToStandardOut>()
 				.ToOperation();
