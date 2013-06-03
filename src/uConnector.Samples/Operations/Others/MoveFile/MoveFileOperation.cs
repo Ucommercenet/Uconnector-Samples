@@ -1,5 +1,6 @@
 ﻿using UConnector.Config.Fluent.V1;
-using UConnector.Samples.Operations.Others.MoveFile.Cogs;
+using UConnector.Samples.Operations.Others.MoveFile.Receivers;
+using UConnector.Samples.Operations.Others.MoveFile.Senders;
 
 namespace UConnector.Samples.Operations.Others.MoveFile
 {

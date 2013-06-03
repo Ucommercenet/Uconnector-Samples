@@ -1,7 +1,7 @@
 using UConnector.Config.Fluent.V1;
 using UConnector.Extensions.Adapters;
 using UConnector.Extensions.Transformers;
-using UConnector.Samples.Operations.Others.FetchFile.Cogs;
+using UConnector.Samples.Operations.Others.FetchFile.Senders;
 
 namespace UConnector.Samples.Operations.Others.FetchFile
 {

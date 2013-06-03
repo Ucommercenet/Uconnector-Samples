@@ -1,5 +1,7 @@
 ﻿using UConnector.Config.Fluent.V1;
-using UConnector.Samples.Operations.Others.DateTimeManipulation.Cogs;
+using UConnector.Samples.Operations.Others.DateTimeManipulation.Receivers;
+using UConnector.Samples.Operations.Others.DateTimeManipulation.Senders;
+using UConnector.Samples.Operations.Others.DateTimeManipulation.Transformers;
 
 namespace UConnector.Samples.Operations.Others.DateTimeManipulation
 {

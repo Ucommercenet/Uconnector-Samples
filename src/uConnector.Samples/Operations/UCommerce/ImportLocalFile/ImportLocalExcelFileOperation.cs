@@ -2,7 +2,6 @@
 using UConnector.Extensions.Receivers;
 using UConnector.Extensions.Senders;
 using UConnector.Extensions.Transformers;
-using UConnector.Samples.Operations.UCommerce.ImportLocalFile.Cogs;
 
 namespace UConnector.Samples.Operations.UCommerce.ImportLocalFile
 {

@@ -1,6 +1,6 @@
 ﻿using UConnector.Config.Fluent.V1;
 using UConnector.Extensions.Adapters;
-using UConnector.Samples.Operations.UCommerce.CopyFilesFromFtpToLocalDirectory.Cogs;
+using UConnector.Samples.Operations.UCommerce.CopyFilesFromFtpToLocalDirectory.Senders;
 
 namespace UConnector.Samples.Operations.UCommerce.CopyFilesFromFtpToLocalDirectory
 {
@@ -12,7 +12,7 @@ namespace UConnector.Samples.Operations.UCommerce.CopyFilesFromFtpToLocalDirecto
 				.Receive<FtpFilesAdapter>()
 					.WithConfiguration("FtpIn")
                 .Debatch()
-                .Send<CopyFileToDirectory>()
+                .Send<CopyOfFileToDirectory>()
 				.ToOperation();
         }
     }

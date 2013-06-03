@@ -1,5 +1,6 @@
 ﻿using UConnector.Config.Fluent.V1;
-using UConnector.Samples.Operations.Others.DeleteFiles.Cogs;
+using UConnector.Samples.Operations.Others.DeleteFiles.Receivers;
+using UConnector.Samples.Operations.Others.DeleteFiles.Senders;
 
 namespace UConnector.Samples.Operations.Others.DeleteFiles
 {

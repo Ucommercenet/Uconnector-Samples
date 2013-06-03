@@ -88,69 +88,65 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Framework\SimpleRetryStrategy.cs" />
-    <Compile Include="Operations\Sandbox\Cogs\ProductToProductName.cs" />
-    <Compile Include="Operations\Sandbox\Cogs\SenderKeepRecordOfFiles.cs" />
-    <Compile Include="Operations\Sandbox\Cogs\SenderWriteIntegersToFile.cs" />
-    <Compile Include="Operations\Sandbox\Cogs\SenderWriteIntegerToFile.cs" />
-    <Compile Include="Operations\Sandbox\Cogs\WriteTestFile.cs" />
-    <Compile Include="Operations\Sandbox\Cogs\SplitFileIntoLines.cs" />
-    <Compile Include="Operations\Sandbox\Cogs\SumStringsWithNumbers.cs" />
-    <Compile Include="Operations\Sandbox\Cogs\SumStringWithNumbers.cs" />
-    <Compile Include="Operations\Sandbox\Cogs\XElementToUCommerceProduct.cs" />
-    <Compile Include="Operations\Sandbox\Operations\OperationCreateTestFiles.cs" />
-    <Compile Include="Operations\Sandbox\Operations\OperationLogFilesCommingIn.cs" />
-    <Compile Include="Operations\Sandbox\Operations\OperationWriteListOfProductNamesToFile.cs" />
-    <Compile Include="Operations\Sandbox\Operations\OperationXmlToCsv.cs" />
-    <Compile Include="Operations\Sandbox\Operations\SandboxOperation.cs" />
+    <Compile Include="Transformers\ProductToProductName.cs" />
+    <Compile Include="Senders\WriteIntegersToFile.cs" />
+    <Compile Include="Senders\WriteIntegerToFile.cs" />
+    <Compile Include="Senders\WriteTestFile.cs" />
+    <Compile Include="Transformers\SplitWorkFileIntoLines.cs" />
+    <Compile Include="Transformers\SumStringsWithNumbers.cs" />
+    <Compile Include="Transformers\SumStringWithNumbers.cs" />
+    <Compile Include="Transformers\XElementToUCommerceProduct.cs" />
+    <Compile Include="Operations\Sandbox\OperationCreateTestFiles.cs" />
+    <Compile Include="Operations\Sandbox\OperationWriteListOfProductNamesToFile.cs" />
+    <Compile Include="Operations\Sandbox\OperationXmlToCsv.cs" />
+    <Compile Include="Operations\Sandbox\SandboxOperation.cs" />
     <Compile Include="Operations\UCommerce\CopyFilesFromFtpToLocalDirectory\CopyFilesFromFtpToLocalDirectoryOperation.cs" />
-    <Compile Include="Operations\UCommerce\CopyFilesFromFtpToLocalDirectory\Cogs\CopyFileToDirectory.cs" />
-    <Compile Include="Operations\Others\DateTimeManipulation\Cogs\AddHoursToDateTime.cs">
+    <Compile Include="Operations\UCommerce\CopyFilesFromFtpToLocalDirectory\Senders\CopyOfFileToDirectory.cs" />
+    <Compile Include="Operations\Others\DateTimeManipulation\Transformers\AddHoursToDateTime.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Operations\Others\DateTimeManipulation\Cogs\DateTimeNow.cs">
+    <Compile Include="Operations\Others\DateTimeManipulation\Receivers\DateTimeNow.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Operations\Others\DateTimeManipulation\Cogs\DateTimeSender.cs">
+    <Compile Include="Operations\Others\DateTimeManipulation\Senders\DateTimeSender.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Operations\Others\DateTimeManipulation\Cogs\PrintDateTimeToConsoleWithFormat.cs">
+    <Compile Include="Operations\Others\DateTimeManipulation\Transformers\PrintDateTimeToConsoleWithFormat.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Operations\Others\DateTimeManipulation\Cogs\RemoveTimePart.cs">
+    <Compile Include="Operations\Others\DateTimeManipulation\Transformers\RemoveTimePart.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Operations\Others\DateTimeManipulation\DateTimeManipulationOperation.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Operations\Others\DeleteFiles\Cogs\ReceiveFiles.cs">
+    <Compile Include="Operations\Others\DeleteFiles\Receivers\ReceiveFiles.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Operations\Others\DeleteFiles\Cogs\SendDeleteFiles.cs">
+    <Compile Include="Operations\Others\DeleteFiles\Senders\SendDeleteFiles.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Operations\Others\DeleteFiles\DeleteFilesOperation.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Operations\Others\FetchFile\Cogs\ToStandardOut.cs">
+    <Compile Include="Operations\Others\FetchFile\Senders\ToStandardOut.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Operations\Others\FetchFile\FetchFileOperation.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Operations\UCommerce\ExportProductListToFtp\Cogs\StreamToWorkfileWithTimestampName.cs" />
-    <Compile Include="Operations\UCommerce\ExportProductListToFtp\Cogs\ProductListFromUCommerce.cs" />
+    <Compile Include="Operations\UCommerce\ExportProductListToFtp\Transformers\StreamToWorkfileWithTimestampName.cs" />
+    <Compile Include="Operations\UCommerce\ExportProductListToFtp\Receiver\ProductListFromUCommerce.cs" />
     <Compile Include="Operations\UCommerce\ExportProductListToFtp\ExportProductListToFtpOperation.cs" />
-    <Compile Include="Operations\UCommerce\ImportLocalFile\Cogs\StringIteratorToFile.cs" />
-    <Compile Include="Operations\UCommerce\ImportLocalFile\Cogs\WorkFileToXDocument.cs" />
-    <Compile Include="Operations\UCommerce\ImportLocalFile\Cogs\XDocumentToXElementIterator.cs" />
-    <Compile Include="Operations\UCommerce\ImportLocalFile\Cogs\XElementToCsvRow.cs" />
+    <Compile Include="Senders\StringsToFile.cs" />
+    <Compile Include="Transformers\XDocumentToXElements.cs" />
+    <Compile Include="Transformers\XElementToCsvRow.cs" />
     <Compile Include="Operations\UCommerce\ImportLocalFile\ImportLocalCsvFileOperation.cs" />
     <Compile Include="Operations\UCommerce\ImportLocalFile\ImportLocalExcelFileOperation.cs" />
-    <Compile Include="Operations\UCommerce\ImportLocalFile\Cogs\WorkFileToStream.cs" />
-    <Compile Include="Operations\Others\MoveFile\Cogs\MoveFileSender.cs">
+    <Compile Include="Operations\Others\MoveFile\Senders\MoveFileSender.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Operations\Others\MoveFile\Cogs\ReceiveFile.cs">
+    <Compile Include="Operations\Others\MoveFile\Receivers\ReceiveFile.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Operations\Others\MoveFile\MoveFileOperation.cs">
@@ -158,6 +154,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Transformers\WorkFileToXDocument.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config">
@@ -206,10 +203,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Tasks\ImportLocalExcelFileOperation.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Tasks\LogFilesCommingIn.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </None>
