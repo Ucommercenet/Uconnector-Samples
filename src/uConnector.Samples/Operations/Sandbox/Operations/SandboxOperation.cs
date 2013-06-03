@@ -1,5 +1,5 @@
 ﻿using System.IO;
-using UConnector.Config.Fluent.v1;
+using UConnector.Config.Fluent.V1;
 using UConnector.Extensions.Receivers;
 using UConnector.Extensions.Senders;
 using UConnector.Samples.Operations.Sandbox.Cogs;

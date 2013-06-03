@@ -1,4 +1,4 @@
-﻿using UConnector.Config.Fluent.v1;
+﻿using UConnector.Config.Fluent.V1;
 using UConnector.Samples.Operations.Sandbox.Cogs;
 using UConnector.Samples.Operations.UCommerce.ExportProductListToFtp.Cogs;
 using UConnector.Samples.Operations.UCommerce.ImportLocalFile.Cogs;

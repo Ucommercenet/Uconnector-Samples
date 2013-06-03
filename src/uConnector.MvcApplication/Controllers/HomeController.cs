@@ -1,19 +1,15 @@
-﻿using System;
-using System.IO;
-using System.Linq;
+﻿using System.Linq;
 using System.Net.Mime;
-using System.Text;
 using System.Web.Mvc;
 using UCommerce.EntitiesV2;
 using UConnector.Config;
-using UConnector.Config.Fluent.v1;
+using UConnector.Config.Fluent.V1;
 using UConnector.Extensions.Model;
 using UConnector.Extensions.Receivers;
 using UConnector.Extensions.Senders;
 using UConnector.Extensions.Transformers;
 using UConnector.MvcApplication.Cogs.Models;
 using UConnector.MvcApplication.Cogs.Transformers;
-using UConnector.Extensions;
 using UConnector.MvcApplication.Models;
 using UConnector.Validatation;
 

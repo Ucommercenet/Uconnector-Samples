@@ -1,4 +1,4 @@
-﻿using UConnector.Config.Fluent.v1;
+﻿using UConnector.Config.Fluent.V1;
 using UConnector.Samples.Operations.Others.DeleteFiles.Cogs;
 
 namespace UConnector.Samples.Operations.Others.DeleteFiles
