@@ -1,12 +1,11 @@
 ﻿using UConnector.Config.Fluent.v1;
-using UConnector.Extensions.Cogs.Adapters;
-using UConnector.Extensions.Cogs.Transformers;
-using UConnector.Extensions.Cogs.TwoWayCogs;
+using UConnector.Extensions.Adapters;
+using UConnector.Extensions.Transformers;
 using UConnector.Samples.Operations.UCommerce.ExportProductListToFtp.Cogs;
 
 namespace UConnector.Samples.Operations.UCommerce.ExportProductListToFtp
 {
-    public class ExportProductListToFtpOperation : CustomOperation
+    public class ExportProductListToFtpOperation : Operation
     {
         protected override IOperation BuildOperation()
         {

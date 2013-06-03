@@ -5,7 +5,7 @@ using UConnector.Samples.Operations.UCommerce.ImportLocalFile.Cogs;
 
 namespace UConnector.Samples.Operations.Sandbox.Operations
 {
-	public class OperationWriteListOfProductNamesToFile : CustomOperation
+	public class OperationWriteListOfProductNamesToFile : Operation
 	{
 		protected override IOperation BuildOperation()
 		{

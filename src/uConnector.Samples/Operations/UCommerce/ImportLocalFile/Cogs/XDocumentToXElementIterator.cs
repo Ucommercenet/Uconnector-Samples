@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Xml.Linq;
 using UConnector.Attributes;
-using UConnector.Cogs;
 using UConnector.Config;
+using UConnector.Framework;
 
 namespace UConnector.Samples.Operations.UCommerce.ImportLocalFile.Cogs
 {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UCommerce.EntitiesV2;
-using UConnector.Cogs;
+using UConnector.Framework;
 using UConnector.MvcApplication.Cogs.Models;
 
 namespace UConnector.MvcApplication.Cogs.Transformers

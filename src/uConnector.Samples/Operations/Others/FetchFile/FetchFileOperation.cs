@@ -1,11 +1,11 @@
 using UConnector.Config.Fluent.v1;
-using UConnector.Extensions.Cogs.Adapters;
-using UConnector.Extensions.Cogs.Transformers;
+using UConnector.Extensions.Adapters;
+using UConnector.Extensions.Transformers;
 using UConnector.Samples.Operations.Others.FetchFile.Cogs;
 
 namespace UConnector.Samples.Operations.Others.FetchFile
 {
-    public class FetchFileOperation : CustomOperation
+    public class FetchFileOperation : Operation
     {
         protected override IOperation BuildOperation()
         {

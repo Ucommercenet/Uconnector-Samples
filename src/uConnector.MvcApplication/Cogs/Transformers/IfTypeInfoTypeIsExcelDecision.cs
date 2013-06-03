@@ -1,4 +1,4 @@
-﻿using UConnector.Cogs;
+﻿using UConnector.Framework;
 using UConnector.MvcApplication.Cogs.Models;
 
 namespace UConnector.MvcApplication.Cogs.Transformers

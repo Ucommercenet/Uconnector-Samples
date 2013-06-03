@@ -14,7 +14,7 @@ namespace UConnector.MissingConfigurationFiles
 
         private readonly Func<Type, bool> _OperationPredicate =
             a =>
-            a.IsAbstract == false && a.Name != typeof (Operation).Name &&
+            a.IsAbstract == false && a.Name != typeof (InternalOperation).Name &&
             a.GetInterfaces().Contains(typeof (IOperation));
 
         public OperationScanner(string directory) : this(new DirectoryInfo(directory))

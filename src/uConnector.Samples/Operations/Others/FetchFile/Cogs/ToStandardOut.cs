@@ -1,5 +1,5 @@
 ﻿using System;
-using UConnector.Cogs;
+using UConnector.Framework;
 
 namespace UConnector.Samples.Operations.Others.FetchFile.Cogs
 {

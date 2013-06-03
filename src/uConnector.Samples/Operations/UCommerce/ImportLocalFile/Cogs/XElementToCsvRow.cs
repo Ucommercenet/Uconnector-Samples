@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading;
 using System.Xml.Linq;
 using Common.Logging;
-using UConnector.Cogs;
+using UConnector.Framework;
 
 namespace UConnector.Samples.Operations.UCommerce.ImportLocalFile.Cogs
 {

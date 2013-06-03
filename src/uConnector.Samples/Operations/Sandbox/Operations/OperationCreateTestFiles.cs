@@ -4,7 +4,7 @@ using UConnector.Samples.Operations.Sandbox.Cogs;
 
 namespace UConnector.Samples.Operations.Sandbox.Operations
 {
-	public class OperationCreateTestFiles : CustomOperation
+	public class OperationCreateTestFiles : Operation
 	{
 		protected override IOperation BuildOperation()
 		{

@@ -1,10 +1,10 @@
 ﻿using UConnector.Config.Fluent.v1;
-using UConnector.Extensions.Cogs.Adapters;
+using UConnector.Extensions.Adapters;
 using UConnector.Samples.Operations.UCommerce.CopyFilesFromFtpToLocalDirectory.Cogs;
 
 namespace UConnector.Samples.Operations.UCommerce.CopyFilesFromFtpToLocalDirectory
 {
-    public class CopyFilesFromFtpToLocalDirectoryOperation : CustomOperation
+    public class CopyFilesFromFtpToLocalDirectoryOperation : Operation
     {
         protected override IOperation BuildOperation()
         {

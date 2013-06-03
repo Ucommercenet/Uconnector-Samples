@@ -1,13 +1,12 @@
 ﻿using UConnector.Config.Fluent.v1;
-using UConnector.Extensions.Cogs.Receivers;
-using UConnector.Extensions.Cogs.Senders;
-using UConnector.Extensions.Cogs.Transformers;
-using UConnector.Extensions.Cogs.TwoWayCogs;
+using UConnector.Extensions.Receivers;
+using UConnector.Extensions.Senders;
+using UConnector.Extensions.Transformers;
 using UConnector.Samples.Operations.UCommerce.ImportLocalFile.Cogs;
 
 namespace UConnector.Samples.Operations.UCommerce.ImportLocalFile
 {
-	public class ImportLocalExcelFileOperation : CustomOperation
+	public class ImportLocalExcelFileOperation : Operation
 	{
 		protected override IOperation BuildOperation()
 		{

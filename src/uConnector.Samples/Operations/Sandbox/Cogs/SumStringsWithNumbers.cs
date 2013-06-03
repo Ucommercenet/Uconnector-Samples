@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using UConnector.Cogs;
+using UConnector.Framework;
 
 namespace UConnector.Samples.Operations.Sandbox.Cogs
 {

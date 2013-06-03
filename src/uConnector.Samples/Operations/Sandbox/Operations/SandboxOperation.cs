@@ -1,13 +1,13 @@
 ﻿using System.IO;
 using UConnector.Config.Fluent.v1;
-using UConnector.Extensions.Cogs.Receivers;
-using UConnector.Extensions.Cogs.Senders;
+using UConnector.Extensions.Receivers;
+using UConnector.Extensions.Senders;
 using UConnector.Samples.Operations.Sandbox.Cogs;
 using UConnector.Samples.Operations.UCommerce.ImportLocalFile.Cogs;
 
 namespace UConnector.Samples.Operations.Sandbox.Operations
 {
-	public class SandboxOperation : CustomOperation
+	public class SandboxOperation : Operation
 	{
 		protected override IOperation BuildOperation()
 		{

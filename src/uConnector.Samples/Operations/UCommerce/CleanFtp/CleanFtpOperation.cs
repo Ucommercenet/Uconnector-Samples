@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
-using UConnector.Cogs;
 using UConnector.Config.Fluent.v1;
-using UConnector.Extensions.Cogs.Adapters;
+using UConnector.Extensions.Adapters;
 using UConnector.Extensions.Model;
+using UConnector.Framework;
 
 namespace UConnector.Samples.Operations.UCommerce.CleanFtp
 {
-    public class CleanFtpOperation : CustomOperation
+    public class CleanFtpOperation : Operation
     {
         protected override IOperation BuildOperation()
         {

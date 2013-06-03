@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using UConnector.Cogs;
 using UConnector.Extensions.Model;
+using UConnector.Framework;
 
 namespace UConnector.Samples.Operations.UCommerce.ImportLocalFile.Cogs
 {

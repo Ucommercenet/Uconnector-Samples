@@ -1,11 +1,11 @@
 ﻿using UConnector.Config.Fluent.v1;
-using UConnector.Extensions.Cogs.Receivers;
+using UConnector.Extensions.Receivers;
 using UConnector.Samples.Framework;
 using UConnector.Samples.Operations.UCommerce.ImportLocalFile.Cogs;
 
 namespace UConnector.Samples.Operations.Sandbox.Operations
 {
-	public class OperationXmlToCsv : CustomOperation
+	public class OperationXmlToCsv : Operation
 	{
 		protected override IOperation BuildOperation()
 		{

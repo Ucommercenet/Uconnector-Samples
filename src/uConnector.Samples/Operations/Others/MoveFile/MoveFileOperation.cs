@@ -3,7 +3,7 @@ using UConnector.Samples.Operations.Others.MoveFile.Cogs;
 
 namespace UConnector.Samples.Operations.Others.MoveFile
 {
-    public class MoveFileOperation : CustomOperation
+    public class MoveFileOperation : Operation
     {
         public MoveFileOperation() : base("MoveFileOperation")
         {

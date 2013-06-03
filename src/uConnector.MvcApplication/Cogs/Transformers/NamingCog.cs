@@ -1,9 +1,9 @@
 ﻿using System;
 using System.IO;
 using UConnector.Attributes;
-using UConnector.Cogs;
-using UConnector.Extensions.Cogs.Transformers;
 using UConnector.Extensions.Model;
+using UConnector.Extensions.Transformers;
+using UConnector.Framework;
 
 namespace UConnector.MvcApplication.Cogs.Transformers
 {

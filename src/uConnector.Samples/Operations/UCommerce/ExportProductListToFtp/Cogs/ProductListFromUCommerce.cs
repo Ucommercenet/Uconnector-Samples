@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using UCommerce.EntitiesV2;
-using UConnector.Cogs;
+using UConnector.Framework;
 
 namespace UConnector.Samples.Operations.UCommerce.ExportProductListToFtp.Cogs
 {

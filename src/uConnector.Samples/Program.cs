@@ -7,6 +7,7 @@ using UConnector.Config.Exceptions;
 using UConnector.Config.Extensions;
 using UConnector.Extensions;
 using UConnector.Framework;
+using UConnector.Framework.Impl;
 using UConnector.Validatation;
 
 namespace UConnector.Samples

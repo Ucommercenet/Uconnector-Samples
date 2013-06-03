@@ -6,7 +6,7 @@ namespace UConnector.Samples.Operations.Others.DateTimeManipulation
     /// <summary>
     /// Prints out the DateTime.Now to the console.
     /// </summary>
-    public class DateTimeManipulationOperation : CustomOperation
+    public class DateTimeManipulationOperation : Operation
     {
         /// <summary>
         /// Builds this instance.

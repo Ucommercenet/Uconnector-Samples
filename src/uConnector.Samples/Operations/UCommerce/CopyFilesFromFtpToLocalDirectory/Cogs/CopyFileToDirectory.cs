@@ -1,9 +1,9 @@
 using System.IO;
 using UConnector.Attributes;
-using UConnector.Cogs;
 using UConnector.Config;
 using UConnector.Extensions;
 using UConnector.Extensions.Model;
+using UConnector.Framework;
 
 namespace UConnector.Samples.Operations.UCommerce.CopyFilesFromFtpToLocalDirectory.Cogs
 {

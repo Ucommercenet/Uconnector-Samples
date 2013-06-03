@@ -3,7 +3,7 @@ using UConnector.Samples.Operations.Others.DeleteFiles.Cogs;
 
 namespace UConnector.Samples.Operations.Others.DeleteFiles
 {
-    public class DeleteFilesOperation : CustomOperation
+    public class DeleteFilesOperation : Operation
     {
         protected override IOperation BuildOperation()
         {

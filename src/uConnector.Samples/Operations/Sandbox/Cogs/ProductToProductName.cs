@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using UCommerce.EntitiesV2;
-using UConnector.Cogs;
+﻿using UCommerce.EntitiesV2;
+using UConnector.Framework;
 
 namespace UConnector.Samples.Operations.Sandbox.Cogs
 {
