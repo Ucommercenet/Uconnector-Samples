@@ -19,7 +19,7 @@ namespace UConnector.Samples.Operations.Sandbox.Operations
 				.Transform<XElementToCsvRow>()
 				.Batch(size: 10)
 				.Send<StringIteratorToFile>()
-				.UsingRetryStrategy<SimpleRetryStrategy>()
+				.RetryStrategy<SimpleRetryStrategy>()
 				.ToOperation();
 		}
 	}
