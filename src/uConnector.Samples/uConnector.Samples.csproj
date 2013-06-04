@@ -88,6 +88,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Framework\SimpleRetryStrategy.cs" />
+    <Compile Include="Operations\UCommerce\ExportLocalFile\ExportProductsToLocalCsvFile.cs" />
+    <Compile Include="Operations\UCommerce\ExportLocalFile\ExportProductsToLocalExcelFile.cs" />
     <Compile Include="Transformers\ProductToProductName.cs" />
     <Compile Include="Senders\WriteIntegersToFile.cs" />
     <Compile Include="Senders\WriteIntegerToFile.cs" />
@@ -162,6 +164,12 @@
     </None>
     <None Include="Castle.config">
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Tasks\ExportProductsToLocalCsvFile.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Tasks\ExportProductsToLocalExcelFile.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Tasks\ImportLocalCsvFileOperation.config">

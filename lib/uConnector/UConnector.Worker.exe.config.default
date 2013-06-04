@@ -102,7 +102,13 @@
       <appender-ref ref="ConsoleAppender" />
       <appender-ref ref="RollingFileAppender" />
     </root>
-    <logger name="NHibernate.Loader">
+		<logger name="NHibernate">
+			<level value="ERROR" />
+		</logger>
+		<logger name="NHibernate.SQL">
+			<level value="ERROR" />
+		</logger>
+		<logger name="NHibernate.Loader">
       <level value="ERROR" />
     </logger>
     <logger name="UConnector.Samples">
