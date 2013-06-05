@@ -28,7 +28,7 @@ namespace UConnector.Samples.Operations.UCommerce.CopyFilesFromFtpToLocalDirecto
             else
                 stream = new FileStream(path, FileMode.CreateNew);
 
-            input.Stream.CopyStreamTo(stream);
+            input.Stream.CopyTo(stream);
             stream.Dispose();
             input.Stream.Dispose();
         }

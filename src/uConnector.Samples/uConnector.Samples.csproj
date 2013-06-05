@@ -168,12 +168,15 @@
     </None>
     <None Include="Tasks\ExportProductsToLocalCsvFile.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </None>
     <None Include="Tasks\ExportProductsToLocalExcelFile.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </None>
     <None Include="Tasks\ImportLocalCsvFileOperation.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </None>
     <None Include="Tasks\WriteListOfProductNamesToFileOperation.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
