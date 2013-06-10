@@ -88,8 +88,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Framework\SimpleRetryStrategy.cs" />
+    <Compile Include="Operations\Sandbox\MyOperation.cs" />
     <Compile Include="Operations\UCommerce\ExportLocalFile\ExportProductsToLocalCsvFile.cs" />
     <Compile Include="Operations\UCommerce\ExportLocalFile\ExportProductsToLocalExcelFile.cs" />
+    <Compile Include="Transformers\DistinctFilter.cs" />
     <Compile Include="Transformers\ProductToProductName.cs" />
     <Compile Include="Senders\WriteIntegersToFile.cs" />
     <Compile Include="Senders\WriteIntegerToFile.cs" />
@@ -97,6 +99,7 @@
     <Compile Include="Transformers\SplitWorkFileIntoLines.cs" />
     <Compile Include="Transformers\SumStringsWithNumbers.cs" />
     <Compile Include="Transformers\SumStringWithNumbers.cs" />
+    <Compile Include="Transformers\XElementToValue.cs" />
     <Compile Include="Transformers\XElementToUCommerceProduct.cs" />
     <Compile Include="Operations\Sandbox\OperationCreateTestFiles.cs" />
     <Compile Include="Operations\Sandbox\OperationWriteListOfProductNamesToFile.cs" />
@@ -157,6 +160,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Transformers\WorkFileToXDocument.cs" />
+    <Compile Include="Transformers\XElementToXElements.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config">
@@ -177,6 +181,9 @@
     <None Include="Tasks\ImportLocalCsvFileOperation.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
+    </None>
+    <None Include="Tasks\MyOperation.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Tasks\WriteListOfProductNamesToFileOperation.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
