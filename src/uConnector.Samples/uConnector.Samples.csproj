@@ -77,9 +77,8 @@
     <Reference Include="UCommerce.Umbraco">
       <HintPath>..\..\lib\uCommerce\UCommerce.Umbraco.dll</HintPath>
     </Reference>
-    <Reference Include="UConnector.Extensions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\uConnector\UConnector.Extensions.dll</HintPath>
+    <Reference Include="UConnector">
+      <HintPath>..\..\lib\uConnector\UConnector.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

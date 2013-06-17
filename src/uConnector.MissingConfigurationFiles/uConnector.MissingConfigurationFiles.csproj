@@ -66,8 +66,8 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="UConnector.Extensions">
-      <HintPath>..\..\lib\uConnector\UConnector.Extensions.dll</HintPath>
+    <Reference Include="UConnector">
+      <HintPath>..\..\lib\uConnector\UConnector.dll</HintPath>
     </Reference>
     <Reference Include="UConnector.Framework">
       <HintPath>..\..\lib\uConnector\UConnector.Framework.dll</HintPath>
