@@ -1,4 +1,4 @@
-﻿using UConnector.Config.Fluent.V1;
+﻿using UConnector.Api.V1;
 using UConnector.Extensions.Receivers;
 using UConnector.Samples.Framework;
 using UConnector.Samples.Senders;

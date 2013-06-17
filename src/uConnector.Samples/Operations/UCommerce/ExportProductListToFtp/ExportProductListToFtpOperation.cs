@@ -1,4 +1,4 @@
-﻿using UConnector.Config.Fluent.V1;
+﻿using UConnector.Api.V1;
 using UConnector.Extensions.Adapters;
 using UConnector.Extensions.Transformers;
 using UConnector.Samples.Operations.UCommerce.ExportProductListToFtp.Receiver;

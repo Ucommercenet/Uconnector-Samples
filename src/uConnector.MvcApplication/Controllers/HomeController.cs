@@ -2,8 +2,8 @@
 using System.Net.Mime;
 using System.Web.Mvc;
 using UCommerce.EntitiesV2;
+using UConnector.Api.V1;
 using UConnector.Config;
-using UConnector.Config.Fluent.V1;
 using UConnector.Extensions.Model;
 using UConnector.Extensions.Receivers;
 using UConnector.Extensions.Senders;

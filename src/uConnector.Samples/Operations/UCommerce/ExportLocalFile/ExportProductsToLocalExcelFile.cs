@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using UConnector.Config.Fluent.V1;
+﻿using UConnector.Api.V1;
 using UConnector.Extensions.Senders;
 using UConnector.Extensions.Transformers;
 using UConnector.Samples.Operations.UCommerce.ExportProductListToFtp.Receiver;

@@ -1,4 +1,4 @@
-﻿using UConnector.Config.Fluent.V1;
+﻿using UConnector.Api.V1;
 using UConnector.Samples.Operations.Others.DateTimeManipulation.Receivers;
 using UConnector.Samples.Operations.Others.DateTimeManipulation.Senders;
 using UConnector.Samples.Operations.Others.DateTimeManipulation.Transformers;
