@@ -104,13 +104,12 @@
     <Reference Include="UCommerce.Infrastructure">
       <HintPath>..\..\lib\uCommerce\UCommerce.Infrastructure.dll</HintPath>
     </Reference>
-    <Reference Include="UConnector, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\uConnector\UConnector.dll</HintPath>
-    </Reference>
     <Reference Include="UConnector.Extensions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\uConnector\UConnector.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="UConnector.Framework">
+      <HintPath>..\..\lib\uConnector\UConnector.Framework.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

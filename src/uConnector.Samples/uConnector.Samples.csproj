@@ -77,10 +77,6 @@
     <Reference Include="UCommerce.Umbraco">
       <HintPath>..\..\lib\uCommerce\UCommerce.Umbraco.dll</HintPath>
     </Reference>
-    <Reference Include="UConnector, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\uConnector\UConnector.dll</HintPath>
-    </Reference>
     <Reference Include="UConnector.Extensions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\uConnector\UConnector.Extensions.dll</HintPath>
@@ -229,7 +225,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\uCommerce uConnector-dev\src\uConnector\uConnector.Framework.csproj">
+      <Project>{42BE4B43-A262-461E-A940-EF47011EDC2F}</Project>
+      <Name>uConnector.Framework</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

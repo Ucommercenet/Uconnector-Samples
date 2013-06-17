@@ -48,6 +48,7 @@ namespace UConnector.MissingConfigurationFiles
             var saveConfiguration = SaveConfiguration(service, directoryInfo, first);
 
             Console.WriteLine("Configuration saved to: {0}", saveConfiguration);
+	        Console.ReadLine();
         }
 
         private static string SaveConfiguration(OperationSectionService service, DirectoryInfo directoryInfo, Type type)
