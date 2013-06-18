@@ -5,7 +5,7 @@ using UConnector.Samples.Helpers;
 
 namespace UConnector.Samples.Operations
 {
-	public class MyOperation : Operation
+	public class MySampleOperation : Operation
 	{
 		protected override IOperation BuildOperation()
 		{
@@ -20,7 +20,7 @@ namespace UConnector.Samples.Operations
 				.Transform<XElementToValue>()				// XElement to string
 				.Batch()									// string to IEnumerable<string>
 				.Transform<DistinctFilter<string>>()		// IEnumerable<string> to IEnumerable<string>
-				.Send<StringsToFileInLocalDirectory>()						// sends IEnumerable<string> to a file.
+				.Send<StringsToFileInLocalDirectory>()		// sends IEnumerable<string> to a file.
 				.ToOperation();
 		}
 	}

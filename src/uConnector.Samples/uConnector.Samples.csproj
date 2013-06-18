@@ -87,7 +87,7 @@
   <ItemGroup>
     <Compile Include="Framework\SimpleExceptionNotifier.cs" />
     <Compile Include="Framework\SimpleRetryStrategy.cs" />
-    <Compile Include="Operations\MyOperation.cs" />
+    <Compile Include="Operations\MySampleOperation.cs" />
     <Compile Include="Operations\UCommerce\ExportLocalFile\ExportProductsToLocalCsvFile.cs" />
     <Compile Include="Operations\UCommerce\ExportLocalFile\ExportProductsToLocalExcelFile.cs" />
     <Compile Include="Helpers\XElementToValue.cs" />
@@ -121,7 +121,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </None>
-    <None Include="Tasks\MyOperation.config">
+    <None Include="Tasks\MySampleOperation.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Tasks\XmlToCsvOperation.config">
