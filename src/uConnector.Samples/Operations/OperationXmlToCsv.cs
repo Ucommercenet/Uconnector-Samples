@@ -20,6 +20,8 @@ namespace UConnector.Samples.Operations
 				.Batch(size: 10)
 				.Send<StringsToFileInLocalDirectory>()
 				.WithRetryStrategy<SimpleRetryStrategy>()
+				.WithExceptionNotifier<SimpleExceptionNotifier>()
+					.WithOption(x => x.EmailAddress = "some@where.com")
 				.ToOperation();
 		}
 	}

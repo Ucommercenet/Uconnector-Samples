@@ -85,6 +85,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Framework\SimpleExceptionNotifier.cs" />
     <Compile Include="Framework\SimpleRetryStrategy.cs" />
     <Compile Include="Operations\MyOperation.cs" />
     <Compile Include="Operations\UCommerce\ExportLocalFile\ExportProductsToLocalCsvFile.cs" />
