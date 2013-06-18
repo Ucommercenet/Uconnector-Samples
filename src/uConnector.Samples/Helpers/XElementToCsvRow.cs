@@ -4,7 +4,7 @@ using System.Xml.Linq;
 using Common.Logging;
 using UConnector.Framework;
 
-namespace UConnector.Samples.Transformers
+namespace UConnector.Samples.Helpers
 {
 	public class XElementToCsvRow : ITransformer<XElement, string>
 	{

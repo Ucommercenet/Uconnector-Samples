@@ -83,72 +83,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Framework\SimpleRetryStrategy.cs" />
-    <Compile Include="Operations\Sandbox\MyOperation.cs" />
+    <Compile Include="Operations\MyOperation.cs" />
     <Compile Include="Operations\UCommerce\ExportLocalFile\ExportProductsToLocalCsvFile.cs" />
     <Compile Include="Operations\UCommerce\ExportLocalFile\ExportProductsToLocalExcelFile.cs" />
-    <Compile Include="Transformers\ProductToProductName.cs" />
-    <Compile Include="Senders\WriteIntegersToFile.cs" />
-    <Compile Include="Senders\WriteIntegerToFile.cs" />
-    <Compile Include="Senders\WriteTestFile.cs" />
-    <Compile Include="Transformers\SplitWorkFileIntoLines.cs" />
-    <Compile Include="Transformers\SumStringsWithNumbers.cs" />
-    <Compile Include="Transformers\SumStringWithNumbers.cs" />
-    <Compile Include="Transformers\XElementToValue.cs" />
-    <Compile Include="Transformers\XElementToUCommerceProduct.cs" />
-    <Compile Include="Operations\Sandbox\OperationCreateTestFiles.cs" />
-    <Compile Include="Operations\Sandbox\OperationWriteListOfProductNamesToFile.cs" />
-    <Compile Include="Operations\Sandbox\OperationXmlToCsv.cs" />
-    <Compile Include="Operations\Sandbox\SandboxOperation.cs" />
-    <Compile Include="Operations\UCommerce\CopyFilesFromFtpToLocalDirectory\CopyFilesFromFtpToLocalDirectoryOperation.cs" />
-    <Compile Include="Operations\UCommerce\CopyFilesFromFtpToLocalDirectory\Senders\CopyOfFileToDirectory.cs" />
-    <Compile Include="Operations\Others\DateTimeManipulation\Transformers\AddHoursToDateTime.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Operations\Others\DateTimeManipulation\Receivers\DateTimeNow.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Operations\Others\DateTimeManipulation\Senders\DateTimeSender.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Operations\Others\DateTimeManipulation\Transformers\PrintDateTimeToConsoleWithFormat.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Operations\Others\DateTimeManipulation\Transformers\RemoveTimePart.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Operations\Others\DateTimeManipulation\DateTimeManipulationOperation.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Operations\Others\DeleteFiles\Receivers\ReceiveFiles.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Operations\Others\DeleteFiles\Senders\SendDeleteFiles.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Operations\Others\DeleteFiles\DeleteFilesOperation.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Operations\Others\FetchFile\Senders\ToStandardOut.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Operations\Others\FetchFile\FetchFileOperation.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Operations\UCommerce\ExportProductListToFtp\Transformers\StreamToWorkfileWithTimestampName.cs" />
-    <Compile Include="Operations\UCommerce\ExportProductListToFtp\Receiver\ProductListFromUCommerce.cs" />
-    <Compile Include="Operations\UCommerce\ExportProductListToFtp\ExportProductListToFtpOperation.cs" />
-    <Compile Include="Transformers\XElementToCsvRow.cs" />
+    <Compile Include="Helpers\XElementToValue.cs" />
+    <Compile Include="Operations\OperationXmlToCsv.cs" />
+    <Compile Include="Helpers\XElementToCsvRow.cs" />
     <Compile Include="Operations\UCommerce\ImportLocalFile\ImportLocalCsvFileOperation.cs" />
     <Compile Include="Operations\UCommerce\ImportLocalFile\ImportLocalExcelFileOperation.cs" />
-    <Compile Include="Operations\Others\MoveFile\Senders\MoveFileSender.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Operations\Others\MoveFile\Receivers\ReceiveFile.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Operations\Others\MoveFile\MoveFileOperation.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -175,48 +117,13 @@
     <None Include="Tasks\MyOperation.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Tasks\WriteListOfProductNamesToFileOperation.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Tasks\XmlToCsvOperation.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </None>
-    <None Include="Tasks\SandboxOperation.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Tasks\CreateTestFilesOperation.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Tasks\CopyFilesFromFtpToLocalDirectoryOperation.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Tasks\ExportProductListToFtpOperation.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Tasks\FetchFileOperation.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Tasks\DateTimeManipulationOperation.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Tasks\DeleteFilesOperation.config">
-      <SubType>Designer</SubType>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="Tasks\ImportLocalExcelFileOperation.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
-    </None>
-    <None Include="Tasks\MoveFileOperation.config">
-      <SubType>Designer</SubType>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>

@@ -1,5 +1,5 @@
 ﻿using UConnector.Api.V1;
-using UConnector.Filesystem;
+using UConnector.IO;
 using UConnector.UCommerce;
 
 namespace UConnector.Samples.Operations.UCommerce.ImportLocalFile

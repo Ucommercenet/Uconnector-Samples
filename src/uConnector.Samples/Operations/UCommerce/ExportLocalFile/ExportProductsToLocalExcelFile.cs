@@ -1,7 +1,5 @@
 ﻿using UConnector.Api.V1;
-using UConnector.Filesystem;
-using UConnector.Samples.Operations.UCommerce.ExportProductListToFtp.Receiver;
-using UConnector.Samples.Operations.UCommerce.ExportProductListToFtp.Transformers;
+using UConnector.IO;
 using UConnector.UCommerce;
 
 namespace UConnector.Samples.Operations.UCommerce.ExportLocalFile

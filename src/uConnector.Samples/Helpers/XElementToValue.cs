@@ -1,7 +1,7 @@
 ﻿using System.Xml.Linq;
 using UConnector.Framework;
 
-namespace UConnector.Samples.Transformers
+namespace UConnector.Samples.Helpers
 {
 	public class XElementToValue : ITransformer<XElement, string>
 	{

@@ -1,10 +1,10 @@
 ﻿using UConnector.Api.V1;
-using UConnector.Filesystem;
+using UConnector.IO;
 using UConnector.Helpers;
 using UConnector.Samples.Framework;
-using UConnector.Samples.Transformers;
+using UConnector.Samples.Helpers;
 
-namespace UConnector.Samples.Operations.Sandbox
+namespace UConnector.Samples.Operations
 {
 	public class OperationXmlToCsv : Operation
 	{
