@@ -1,6 +1,6 @@
 ﻿using UConnector.Api.V1;
+using UConnector.Filesystem;
 using UConnector.Samples.Operations.UCommerce.ExportProductListToFtp.Receiver;
-using UConnector.Samples.Senders;
 using UConnector.Samples.Transformers;
 
 namespace UConnector.Samples.Operations.Sandbox
@@ -14,7 +14,7 @@ namespace UConnector.Samples.Operations.Sandbox
 				.Debatch()
 				.Transform<ProductToProductName>()
 				.Batch()
-				.Send<StringsToFile>()
+				.Send<StringsToFileInLocalDirectory>()
 					.WithOption(s => s.Directory = @"C:\uConnector\Out")
 					.WithOption(s => s.Filename = @"ProductNames.txt")
 				.ToOperation();

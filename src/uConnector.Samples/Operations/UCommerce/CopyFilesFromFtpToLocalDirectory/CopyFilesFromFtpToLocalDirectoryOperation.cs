@@ -1,5 +1,5 @@
 ﻿using UConnector.Api.V1;
-using UConnector.Extensions.Adapters;
+using UConnector.Filesystem;
 using UConnector.Samples.Operations.UCommerce.CopyFilesFromFtpToLocalDirectory.Senders;
 
 namespace UConnector.Samples.Operations.UCommerce.CopyFilesFromFtpToLocalDirectory

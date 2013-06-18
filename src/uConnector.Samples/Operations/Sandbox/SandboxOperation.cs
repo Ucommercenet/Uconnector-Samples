@@ -1,8 +1,9 @@
 ﻿using System.IO;
 using UConnector.Api.V1;
-using UConnector.Extensions.Receivers;
-using UConnector.Extensions.Senders;
+using UConnector.Filesystem;
+using UConnector.Helpers;
 using UConnector.Samples.Transformers;
+using UConnector.UCommerce;
 
 namespace UConnector.Samples.Operations.Sandbox
 {

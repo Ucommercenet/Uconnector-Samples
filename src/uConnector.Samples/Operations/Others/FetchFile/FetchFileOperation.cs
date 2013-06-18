@@ -1,6 +1,5 @@
 using UConnector.Api.V1;
-using UConnector.Extensions.Adapters;
-using UConnector.Extensions.Transformers;
+using UConnector.Filesystem;
 using UConnector.Samples.Operations.Others.FetchFile.Senders;
 
 namespace UConnector.Samples.Operations.Others.FetchFile

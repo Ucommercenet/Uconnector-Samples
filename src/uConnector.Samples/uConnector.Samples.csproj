@@ -86,7 +86,6 @@
     <Compile Include="Operations\Sandbox\MyOperation.cs" />
     <Compile Include="Operations\UCommerce\ExportLocalFile\ExportProductsToLocalCsvFile.cs" />
     <Compile Include="Operations\UCommerce\ExportLocalFile\ExportProductsToLocalExcelFile.cs" />
-    <Compile Include="Transformers\DistinctFilter.cs" />
     <Compile Include="Transformers\ProductToProductName.cs" />
     <Compile Include="Senders\WriteIntegersToFile.cs" />
     <Compile Include="Senders\WriteIntegerToFile.cs" />
@@ -138,8 +137,6 @@
     <Compile Include="Operations\UCommerce\ExportProductListToFtp\Transformers\StreamToWorkfileWithTimestampName.cs" />
     <Compile Include="Operations\UCommerce\ExportProductListToFtp\Receiver\ProductListFromUCommerce.cs" />
     <Compile Include="Operations\UCommerce\ExportProductListToFtp\ExportProductListToFtpOperation.cs" />
-    <Compile Include="Senders\StringsToFile.cs" />
-    <Compile Include="Transformers\XDocumentToXElements.cs" />
     <Compile Include="Transformers\XElementToCsvRow.cs" />
     <Compile Include="Operations\UCommerce\ImportLocalFile\ImportLocalCsvFileOperation.cs" />
     <Compile Include="Operations\UCommerce\ImportLocalFile\ImportLocalExcelFileOperation.cs" />
@@ -154,8 +151,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Transformers\WorkFileToXDocument.cs" />
-    <Compile Include="Transformers\XElementToXElements.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config">

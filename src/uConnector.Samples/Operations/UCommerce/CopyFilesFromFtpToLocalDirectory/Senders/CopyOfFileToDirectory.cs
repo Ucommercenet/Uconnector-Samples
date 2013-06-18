@@ -1,8 +1,5 @@
 using System.IO;
-using UConnector.Attributes;
-using UConnector.Config;
-using UConnector.Extensions;
-using UConnector.Extensions.Model;
+using UConnector.Filesystem;
 using UConnector.Framework;
 
 namespace UConnector.Samples.Operations.UCommerce.CopyFilesFromFtpToLocalDirectory.Senders

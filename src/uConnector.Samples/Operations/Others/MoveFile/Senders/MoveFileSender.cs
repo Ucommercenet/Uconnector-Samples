@@ -1,7 +1,5 @@
 ﻿using System;
 using System.IO;
-using UConnector.Attributes;
-using UConnector.Config;
 using UConnector.Framework;
 
 namespace UConnector.Samples.Operations.Others.MoveFile.Senders

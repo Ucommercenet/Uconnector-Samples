@@ -1,7 +1,6 @@
 ﻿using UConnector.Api.V1;
-using UConnector.Extensions.Receivers;
-using UConnector.Extensions.Senders;
-using UConnector.Extensions.Transformers;
+using UConnector.Filesystem;
+using UConnector.UCommerce;
 
 namespace UConnector.Samples.Operations.UCommerce.ImportLocalFile
 {

@@ -1,5 +1,4 @@
 ﻿using System;
-using UConnector.Config;
 using UConnector.Framework;
 
 namespace UConnector.Samples.Operations.Others.DateTimeManipulation.Transformers

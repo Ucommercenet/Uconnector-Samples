@@ -1,8 +1,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using UConnector.Attributes;
-using UConnector.Config;
 using UConnector.Framework;
 
 namespace UConnector.Samples.Operations.Others.DeleteFiles.Senders

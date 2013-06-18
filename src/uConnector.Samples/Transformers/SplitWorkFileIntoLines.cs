@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using UConnector.Extensions.Model;
+using UConnector.Filesystem;
 using UConnector.Framework;
 
 namespace UConnector.Samples.Transformers

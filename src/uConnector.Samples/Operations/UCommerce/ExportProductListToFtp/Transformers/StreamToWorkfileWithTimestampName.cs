@@ -1,9 +1,8 @@
 ﻿using System;
 using System.IO;
-using UConnector.Attributes;
-using UConnector.Extensions.Model;
-using UConnector.Extensions.Transformers;
+using UConnector.Filesystem;
 using UConnector.Framework;
+using UConnector.UCommerce;
 
 namespace UConnector.Samples.Operations.UCommerce.ExportProductListToFtp.Transformers
 {

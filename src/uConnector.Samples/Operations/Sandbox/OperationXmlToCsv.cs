@@ -1,7 +1,7 @@
 ﻿using UConnector.Api.V1;
-using UConnector.Extensions.Receivers;
+using UConnector.Filesystem;
+using UConnector.Helpers;
 using UConnector.Samples.Framework;
-using UConnector.Samples.Senders;
 using UConnector.Samples.Transformers;
 
 namespace UConnector.Samples.Operations.Sandbox
@@ -18,7 +18,7 @@ namespace UConnector.Samples.Operations.Sandbox
 				.Debatch<XDocumentToXElements>()
 				.Transform<XElementToCsvRow>()
 				.Batch(size: 10)
-				.Send<StringsToFile>()
+				.Send<StringsToFileInLocalDirectory>()
 				.WithRetryStrategy<SimpleRetryStrategy>()
 				.ToOperation();
 		}

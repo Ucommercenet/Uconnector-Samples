@@ -4,13 +4,12 @@ using System.Web.Mvc;
 using UCommerce.EntitiesV2;
 using UConnector.Api.V1;
 using UConnector.Config;
-using UConnector.Extensions.Model;
-using UConnector.Extensions.Receivers;
-using UConnector.Extensions.Senders;
-using UConnector.Extensions.Transformers;
+using UConnector.Filesystem;
+using UConnector.Helpers;
 using UConnector.MvcApplication.Cogs.Models;
 using UConnector.MvcApplication.Cogs.Transformers;
 using UConnector.MvcApplication.Models;
+using UConnector.UCommerce;
 using UConnector.Validatation;
 
 namespace UConnector.MvcApplication.Controllers

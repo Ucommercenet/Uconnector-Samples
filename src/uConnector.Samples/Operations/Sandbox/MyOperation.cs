@@ -1,6 +1,6 @@
 ﻿using UConnector.Api.V1;
-using UConnector.Extensions.Receivers;
-using UConnector.Samples.Senders;
+using UConnector.Filesystem;
+using UConnector.Helpers;
 using UConnector.Samples.Transformers;
 
 namespace UConnector.Samples.Operations.Sandbox
@@ -20,7 +20,7 @@ namespace UConnector.Samples.Operations.Sandbox
 				.Transform<XElementToValue>()				// XElement to string
 				.Batch()									// string to IEnumerable<string>
 				.Transform<DistinctFilter<string>>()		// IEnumerable<string> to IEnumerable<string>
-				.Send<StringsToFile>()						// sends IEnumerable<string> to a file.
+				.Send<StringsToFileInLocalDirectory>()						// sends IEnumerable<string> to a file.
 				.ToOperation();
 		}
 	}
