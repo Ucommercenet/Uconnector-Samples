@@ -83,6 +83,9 @@
     <Reference Include="UConnector">
       <HintPath>..\..\lib\uConnector\UConnector.dll</HintPath>
     </Reference>
+    <Reference Include="UConnector.Framework">
+      <HintPath>..\..\lib\uConnector\UConnector.Framework.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Framework\SimpleExceptionNotifier.cs" />
@@ -132,12 +135,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\uCommerce uConnector-dev\src\uConnector\uConnector.Framework.csproj">
-      <Project>{42BE4B43-A262-461E-A940-EF47011EDC2F}</Project>
-      <Name>uConnector.Framework</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
