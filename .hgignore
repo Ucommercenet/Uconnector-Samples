@@ -15,7 +15,9 @@ syntax: glob
 .#*
 .*.swp
 .DS_Store
+._.DS_Store
 bin
+Bin
 debug
 obj
 *.user
@@ -24,6 +26,5 @@ obj
 _ReSharper*
 *.resharper
 *.ReSharper
-lib\uConnector\Debug
-lib\uConnector\Release\UConnector.Worker.exe.config
-lib\uConnector\log.txt*
+*.orig
+._*
