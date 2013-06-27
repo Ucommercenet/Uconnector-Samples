@@ -2,7 +2,6 @@
 using System.IO;
 using UConnector.IO;
 using UConnector.Framework;
-using UConnector.UCommerce;
 
 namespace UConnector.MvcApplication.Cogs.Transformers
 {
@@ -17,9 +16,11 @@ namespace UConnector.MvcApplication.Cogs.Transformers
         [Required]
         public string Extension { get; set; }
 
+		public string DateTimeFormat { get; set; }
+
         public WorkFile Execute(Stream input)
         {
-            var filename = DateTime.Now.ToString(UCommerceProduct.DATETIME_FORMAT.Replace(':', '_').Replace('-', '_').Replace(' ', '-')) + Extension;
+			var filename = DateTime.Now.ToString((DateTimeFormat ?? "yyyy-MM-dd HH:mm:ss").Replace(':', '_').Replace('-', '_').Replace(' ', '-')) + Extension;
             return new WorkFile(input, filename, "");
         }
     }

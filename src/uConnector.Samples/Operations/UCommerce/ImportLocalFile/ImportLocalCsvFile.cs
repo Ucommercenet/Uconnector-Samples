@@ -1,19 +1,20 @@
 ﻿using UConnector.Api.V1;
 using UConnector.IO;
-using UConnector.UCommerce;
+using UConnector.IO.Csv;
+using UConnector.Samples.UCommerce;
 
 namespace UConnector.Samples.Operations.UCommerce.ImportLocalFile
 {
-	public class ImportLocalExcelFileOperation : Operation
+	public class ImportLocalCsvFile : Operation
 	{
 		protected override IOperation BuildOperation()
 		{
 			return FluentOperationBuilder
 				.Receive<FilesFromLocalDirectory>()
-					.WithOption(x => x.Pattern = "*.xslx")
+					.WithOption(x => x.Pattern = "*.csv")
 				.Debatch()
 				.Transform<WorkFileToStream>()
-				.Transform<FromExcelStreamToDataTable>()
+				.Transform<FromCsvStreamToDataTable>()
 				.Transform<DataTableToProductList>()
 				.Send<ProductListToUCommerce>()
 				.ToOperation();

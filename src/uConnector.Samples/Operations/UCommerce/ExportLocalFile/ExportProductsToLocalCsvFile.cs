@@ -1,6 +1,7 @@
 ﻿using UConnector.Api.V1;
 using UConnector.IO;
-using UConnector.UCommerce;
+using UConnector.IO.Csv;
+using UConnector.Samples.UCommerce;
 
 namespace UConnector.Samples.Operations.UCommerce.ExportLocalFile
 {

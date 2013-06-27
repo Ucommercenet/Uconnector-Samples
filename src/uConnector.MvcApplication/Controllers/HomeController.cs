@@ -6,10 +6,12 @@ using UConnector.Api.V1;
 using UConnector.Config;
 using UConnector.Helpers;
 using UConnector.IO;
+using UConnector.IO.Csv;
+using UConnector.IO.Excel;
 using UConnector.MvcApplication.Cogs.Models;
 using UConnector.MvcApplication.Cogs.Transformers;
 using UConnector.MvcApplication.Models;
-using UConnector.UCommerce;
+using UConnector.Samples.UCommerce;
 using UConnector.Validatation;
 
 namespace UConnector.MvcApplication.Controllers
