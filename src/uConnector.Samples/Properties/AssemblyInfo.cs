@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 
-[assembly: AssemblyTitle("UCommerce.Connector.Samples")]
+[assembly: AssemblyTitle("uConnector.Samples")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Microsoft")]
-[assembly: AssemblyProduct("UCommerce.Connector.Samples")]
-[assembly: AssemblyCopyright("Copyright © Microsoft 2011")]
+[assembly: AssemblyCompany("uCommerce.net")]
+[assembly: AssemblyProduct("uConnector.Samples")]
+[assembly: AssemblyCopyright("Copyright © uCommerce.net 2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -35,5 +35,5 @@ using System.Runtime.InteropServices;
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
 
-[assembly: AssemblyVersion("1.0.0.13178")]
-[assembly: AssemblyFileVersion("1.0.0.13178")]
+[assembly: AssemblyVersion("1.1.0.13256")]
+[assembly: AssemblyFileVersion("1.1.0.13256")]
