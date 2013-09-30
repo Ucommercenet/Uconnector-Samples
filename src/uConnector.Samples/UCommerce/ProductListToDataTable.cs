@@ -4,7 +4,6 @@ using System.Globalization;
 using System.Linq;
 using UCommerce.EntitiesV2;
 using UConnector.Framework;
-using UConnector.Samples.Operations.UCommerce;
 
 namespace UConnector.Samples.UCommerce
 {
