@@ -13,12 +13,13 @@ namespace UConnector.Samples
 {
     public class Program
     {
-        private static readonly ILog _Log = LogManager.GetCurrentClassLogger();
-        private static readonly OperationValidater _OperationValidater = OperationValidater.GetDefault();
-        private static readonly OperationEngine _OperationEngine = new OperationEngine();
+        private static readonly ILog _log = LogManager.GetCurrentClassLogger();
+        private static readonly OperationValidater _operationValidater = OperationValidater.GetDefault();
+        private static readonly OperationEngine _operationEngine = new OperationEngine();
 
         private static void Main(string[] args)
         {
+	        _log.Info("Commencing test run...");
             SettingsHelper.Instance.Init();
             var reader = new OperationConfigurationReader();
 
@@ -58,7 +59,7 @@ namespace UConnector.Samples
             try
             {
                 operation.ValidateConfiguration();
-                _OperationValidater.Validate(operation);
+                _operationValidater.Validate(operation);
             }
             catch (ConnectorConfigurationException exception)
             {
@@ -74,14 +75,14 @@ namespace UConnector.Samples
                 }
 
                 service.SaveSection(selectedItem.Path, selectedItem.Section);
-                _Log.ErrorFormat("Validation of {0} with name {1} failed.", exception, operationSection.Type.FullName, operationSection.Name);
+                _log.ErrorFormat("Validation of {0} with name {1} failed.", exception, operationSection.Type.FullName, operationSection.Name);
 
                 return;
             }
 
-			_OperationEngine.SendRetryQueue = new SendRetryQueueInMemory();
+			_operationEngine.SendRetryQueue = new SendRetryQueueInMemory();
             
-            _OperationEngine.Execute(operation);
+            _operationEngine.Execute(operation);
 
 			Console.WriteLine("Press any key.");
 			Console.ReadLine();
