@@ -92,6 +92,10 @@
   <ItemGroup>
     <Compile Include="Framework\SimpleExceptionNotifier.cs" />
     <Compile Include="Framework\SimpleRetryStrategy.cs" />
+    <Compile Include="Helpers\DelayedBlastReceiver.cs" />
+    <Compile Include="Helpers\DelayedBlastSender.cs" />
+    <Compile Include="Helpers\DelayedBlastTransformer.cs" />
+    <Compile Include="Operations\DelayedBlastOperation.cs" />
     <Compile Include="Operations\MySampleOperation.cs" />
     <Compile Include="Operations\UCommerce\ExportLocalFile\ExportProductsToLocalCsvFile.cs" />
     <Compile Include="Operations\UCommerce\ExportLocalFile\ExportProductsToLocalExcelFile.cs" />
@@ -114,6 +118,7 @@
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Tasks\DelayedBlastOperation.config" />
     <None Include="uConnector.config">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
