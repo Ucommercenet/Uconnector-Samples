@@ -12,7 +12,7 @@ namespace UConnector.Samples.Framework
 		{
 			// You can make your own exception notifier.
 			// In this simple example, we simply write the exception message to standard error.
-			Console.Error.WriteLine("Realy should send this to " + EmailAddress + " : " + exception.Message);
+			Console.Error.WriteLine("Really should send this to " + EmailAddress + " : " + exception.Message);
 		}
 	}
 }

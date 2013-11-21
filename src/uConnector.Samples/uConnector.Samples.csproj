@@ -46,9 +46,8 @@
     <Reference Include="businesslogic">
       <HintPath>..\..\lib\uCommerce\businesslogic.dll</HintPath>
     </Reference>
-    <Reference Include="Common.Logging, Version=2.0.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Quartz.NET\Quartz.NET-2.0-beta1\4.0\Common.Logging.dll</HintPath>
+    <Reference Include="Common.Logging">
+      <HintPath>..\..\lib\Quartz.NET\Quartz.NET-2.2\4.0\Common.Logging.dll</HintPath>
     </Reference>
     <Reference Include="Common.Logging.Log4Net">
       <HintPath>..\..\lib\uConnector\Common.Logging.Log4Net.dll</HintPath>
