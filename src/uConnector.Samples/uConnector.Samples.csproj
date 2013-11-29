@@ -46,9 +46,8 @@
     <Reference Include="businesslogic">
       <HintPath>..\..\lib\uCommerce\businesslogic.dll</HintPath>
     </Reference>
-    <Reference Include="Common.Logging, Version=2.0.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\uCommerce uConnector-dev\lib\Quartz.NET\Quartz.NET-2.2\4.0\Common.Logging.dll</HintPath>
+    <Reference Include="Common.Logging">
+      <HintPath>..\..\lib\uConnector\Common.Logging.dll</HintPath>
     </Reference>
     <Reference Include="Common.Logging.Log4Net">
       <HintPath>..\..\lib\uConnector\Common.Logging.Log4Net.dll</HintPath>
@@ -146,11 +145,11 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\uConnector\src\uConnector.Framework\uConnector.Framework.csproj">
+    <ProjectReference Include="..\..\..\uCommerce uConnector\src\uConnector.Framework\uConnector.Framework.csproj">
       <Project>{42be4b43-a262-461e-a940-ef47011edc2f}</Project>
       <Name>uConnector.Framework</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\uConnector\src\uConnector\uConnector.csproj">
+    <ProjectReference Include="..\..\..\uCommerce uConnector\src\uConnector\uConnector.csproj">
       <Project>{ee5554bd-7617-4d96-81c4-73fcfe54882c}</Project>
       <Name>uConnector</Name>
     </ProjectReference>
