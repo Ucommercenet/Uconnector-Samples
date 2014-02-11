@@ -16,6 +16,7 @@ namespace UConnector.Samples.Operations.UCommerce.ImportLocalFile
 				.Transform<FromExcelStreamToDataTable>()
 				.Transform<DataTableToProductList>()
 				.Send<ProductListToUCommerce>()
+					.WithOption(x => x.ConnectionString = "server=.;database=U4;integrated security=SSPI;")
 				.ToOperation();
 		}
 	}

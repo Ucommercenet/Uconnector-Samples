@@ -11,6 +11,7 @@ namespace UConnector.Samples.Operations.UCommerce.ExportLocalFile
 		{
 			return FluentOperationBuilder
 				.Receive<ProductListFromUCommerce>()
+					.WithOption(x => x.ConnectionString = "server=.;database=U4;integrated security=SSPI;")
 				.Transform<ProductListToDataTable>()
 				.Transform<FromDataTableToCsvStream>()
 				.Transform<StreamToWorkfileWithTimestampName>()

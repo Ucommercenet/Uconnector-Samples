@@ -2,7 +2,7 @@ using System;
 using System.Configuration;
 using System.Reflection;
 
-namespace UConnector.Extensions
+namespace UConnector.Samples.UCommerce.Helpers
 {
     public class SettingsHelper
     {

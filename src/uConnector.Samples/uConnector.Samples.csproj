@@ -43,9 +43,6 @@
     <OutputPath>bin\Release\</OutputPath>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="businesslogic">
-      <HintPath>..\..\lib\uCommerce\businesslogic.dll</HintPath>
-    </Reference>
     <Reference Include="Common.Logging">
       <HintPath>..\..\lib\uConnector\Common.Logging.dll</HintPath>
     </Reference>
@@ -81,11 +78,21 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\uCommerce\UCommerce.dll</HintPath>
     </Reference>
+    <Reference Include="UCommerce.Infrastructure, Version=5.2.1.14035, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\uCommerce\UCommerce.Infrastructure.dll</HintPath>
+    </Reference>
     <Reference Include="UCommerce.Presentation">
       <HintPath>..\..\lib\uCommerce\UCommerce.Presentation.dll</HintPath>
     </Reference>
     <Reference Include="UCommerce.Umbraco">
       <HintPath>..\..\lib\uCommerce\UCommerce.Umbraco.dll</HintPath>
+    </Reference>
+    <Reference Include="UConnector">
+      <HintPath>..\..\lib\uConnector\UConnector.dll</HintPath>
+    </Reference>
+    <Reference Include="UConnector.Framework">
+      <HintPath>..\..\lib\uConnector\UConnector.Framework.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -99,12 +106,14 @@
     <Compile Include="Helpers\XElementToCsvRow.cs" />
     <Compile Include="Operations\UCommerce\ImportLocalFile\ImportLocalCsvFile.cs" />
     <Compile Include="Operations\UCommerce\ImportLocalFile\ImportLocalExcelFile.cs" />
-    <Compile Include="UCommerce\ConnectionStringHelper.asax.cs" />
+    <Compile Include="UCommerce\Helpers\ConnectionStringHelper.asax.cs" />
     <Compile Include="UCommerce\DataTableToProductList.cs" />
+    <Compile Include="UCommerce\Helpers\InMemoryCommerceConfigurationProvider.cs" />
     <Compile Include="UCommerce\ProductListFromUCommerce.cs" />
     <Compile Include="UCommerce\ProductListToDataTable.cs" />
     <Compile Include="UCommerce\ProductListToUCommerce.cs" />
     <Compile Include="UCommerce\ProductToCvsString.cs" />
+    <Compile Include="UCommerce\Helpers\SingleUserService.cs" />
     <Compile Include="UCommerce\UCommerceProduct.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -143,16 +152,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\uCommerce uConnector\src\uConnector.Framework\uConnector.Framework.csproj">
-      <Project>{42be4b43-a262-461e-a940-ef47011edc2f}</Project>
-      <Name>uConnector.Framework</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\uCommerce uConnector\src\uConnector\uConnector.csproj">
-      <Project>{ee5554bd-7617-4d96-81c4-73fcfe54882c}</Project>
-      <Name>uConnector</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
