@@ -17,6 +17,12 @@
 					culture="neutral" />
 				<bindingRedirect oldVersion="2.0.0.0" newVersion="2.1.2.0" />
 			</dependentAssembly>
+			<dependentAssembly>
+				<assemblyIdentity name="Infralution.Licensing"
+					publicKeyToken="3e7e8e3744a5c13f"
+					culture="neutral" />
+				<bindingRedirect oldVersion="4.7.1.0" newVersion="4.7.3.0" />
+			</dependentAssembly>
 			<probing privatePath="bin;Tasks/bin"/>
 		</assemblyBinding>
 	</runtime>
