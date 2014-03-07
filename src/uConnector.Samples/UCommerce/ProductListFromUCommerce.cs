@@ -7,7 +7,7 @@ using UConnector.Samples.UCommerce.Helpers;
 
 namespace UConnector.Samples.UCommerce
 {
-    public class ProductListFromUCommerce : IReceiver<IEnumerable<Product>>
+    public class ProductListFromUCommerce : Configurable, IReceiver<IEnumerable<Product>>
     {
 	    public string ConnectionString { get; set; }
 
