@@ -9,10 +9,9 @@ using UConnector.Samples.UCommerce.Helpers;
 
 namespace UConnector.Samples.UCommerce
 {
-	public class ProductListToUCommerce : ISender<IEnumerable<Product>>
+	public class ProductListToUCommerce : Configurable, ISender<IEnumerable<Product>>
 	{
 		private ISession _session;
-
 
 		public void Send(IEnumerable<Product> input)
 		{

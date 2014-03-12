@@ -82,12 +82,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\uCommerce\UCommerce.Infrastructure.dll</HintPath>
     </Reference>
-    <Reference Include="UCommerce.Presentation">
-      <HintPath>..\..\lib\uCommerce\UCommerce.Presentation.dll</HintPath>
-    </Reference>
-    <Reference Include="UCommerce.Umbraco">
-      <HintPath>..\..\lib\uCommerce\UCommerce.Umbraco.dll</HintPath>
-    </Reference>
     <Reference Include="UConnector">
       <HintPath>..\..\lib\uConnector\UConnector.dll</HintPath>
     </Reference>
