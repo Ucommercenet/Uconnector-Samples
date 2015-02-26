@@ -92,9 +92,11 @@ namespace UConnector.Samples.UCommerce
 
 					if (productDefinitionField != null) // Field exist, insert it.
 					{
-						currentProductProperty = new ProductProperty();
-						currentProductProperty.ProductDefinitionField = productDefinitionField;
-						currentProductProperty.Value = newProperty.Value;
+						currentProductProperty = new ProductProperty
+						{
+							ProductDefinitionField = productDefinitionField,
+							Value = newProperty.Value
+						};
 						currentProduct.AddProductProperty(currentProductProperty);
 					}
 				}
@@ -113,16 +115,17 @@ namespace UConnector.Samples.UCommerce
 				}
 				else // Insert
 				{
-					var product = new Product
-									  {
-										  Sku = newVariant.Sku
-									  };
 					if (string.IsNullOrWhiteSpace(newVariant.VariantSku))
 						throw new Exception("VariantSku is empty");
 
-					product.VariantSku = newVariant.VariantSku;
-					product.ProductDefinition = currentProduct.ProductDefinition;
-					UpdateProductValueTypes(product, newVariant);
+					var product = new Product
+					{
+						Sku = newVariant.Sku,
+						VariantSku = newVariant.VariantSku,
+						ProductDefinition = currentProduct.ProductDefinition
+					};
+
+					UpdateProduct(product, newVariant);
 					currentProduct.AddVariant(product);
 				}
 			}
