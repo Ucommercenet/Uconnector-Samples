@@ -79,7 +79,7 @@ namespace UConnector.Samples.UCommerce
 			foreach (var newProperty in newProductProperties)
 			{
 				var currentProductProperty = currentProduct.ProductProperties.SingleOrDefault(
-					x => x.ProductDefinitionField.Name == newProperty.ProductDefinitionField.Name);
+					x => !x.ProductDefinitionField.Deleted && (x.ProductDefinitionField.Name == newProperty.ProductDefinitionField.Name));
 
 				if (currentProductProperty != null) // Update
 				{
@@ -88,7 +88,7 @@ namespace UConnector.Samples.UCommerce
 				else // Insert
 				{
 					var productDefinitionField = _session.Query<ProductDefinitionField>().SingleOrDefault(
-						x => x.Name == newProperty.ProductDefinitionField.Name);
+						x => !x.Deleted && (x.Name == newProperty.ProductDefinitionField.Name) && (x.ProductDefinition.ProductDefinitionId == productDefinition.ProductDefinitionId));
 
 					if (productDefinitionField != null) // Field exist, insert it.
 					{
