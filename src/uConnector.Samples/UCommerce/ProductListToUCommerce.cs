@@ -35,14 +35,14 @@ namespace UConnector.Samples.UCommerce
 						_session.SaveOrUpdate(product);
 					}
 
-					UpdateProduct(product, tempProduct); // Update relations, categories, etc.
+					UpdateProduct(product, tempProduct, _session); // Update relations, categories, etc.
 				}
 				tx.Commit();
 			}
 			_session.Flush();
 		}
 
-		private void UpdateProduct(Product currentProduct, Product newProduct)
+		private void UpdateProduct(Product currentProduct, Product newProduct, ISession session)
 		{
 			// Product
 			UpdateProductValueTypes(currentProduct, newProduct);
@@ -57,10 +57,10 @@ namespace UConnector.Samples.UCommerce
 			UpdateProductPrices(currentProduct, newProduct);
 
 			// Categories
-			UpdateProductCategories(currentProduct, newProduct);
+			UpdateProductCategories(currentProduct, newProduct, session);
 
 			// Variants
-			UpdateProductVariants(currentProduct, newProduct);
+			UpdateProductVariants(currentProduct, newProduct, session);
 		}
 
 		private void UpdateProductProperties(Product currentProduct, Product newProduct)
@@ -78,7 +78,7 @@ namespace UConnector.Samples.UCommerce
 
 			foreach (var newProperty in newProductProperties)
 			{
-				var currentProductProperty = currentProduct.ProductProperties.SingleOrDefault(
+				var currentProductProperty = currentProduct.GetProperties().Cast<ProductProperty>().SingleOrDefault(
 					x => !x.ProductDefinitionField.Deleted && (x.ProductDefinitionField.Name == newProperty.ProductDefinitionField.Name));
 
 				if (currentProductProperty != null) // Update
@@ -87,8 +87,10 @@ namespace UConnector.Samples.UCommerce
 				}
 				else // Insert
 				{
-					var productDefinitionField = _session.Query<ProductDefinitionField>().SingleOrDefault(
-						x => !x.Deleted && (x.Name == newProperty.ProductDefinitionField.Name) && (x.ProductDefinition.ProductDefinitionId == productDefinition.ProductDefinitionId));
+					var productDefinitionField =
+						currentProduct.GetDefinition()
+							.GetDefinitionFields().Cast<ProductDefinitionField>()
+							.SingleOrDefault(x => x.Name == newProperty.ProductDefinitionField.Name);
 
 					if (productDefinitionField != null) // Field exist, insert it.
 					{
@@ -103,7 +105,7 @@ namespace UConnector.Samples.UCommerce
 			}
 		}
 
-		private void UpdateProductVariants(Product currentProduct, Product newProduct)
+		private void UpdateProductVariants(Product currentProduct, Product newProduct, ISession session)
 		{
 			var newVariants = newProduct.Variants;
 			foreach (var newVariant in newVariants)
@@ -111,7 +113,7 @@ namespace UConnector.Samples.UCommerce
 				var currentVariant = currentProduct.Variants.SingleOrDefault(x => x.VariantSku == newVariant.VariantSku);
 				if (currentVariant != null) // Update
 				{
-					UpdateProduct(currentVariant, newVariant);
+					UpdateProduct(currentVariant, newVariant, session);
 				}
 				else // Insert
 				{
@@ -121,17 +123,19 @@ namespace UConnector.Samples.UCommerce
 					var product = new Product
 					{
 						Sku = newVariant.Sku,
+						Name = newVariant.Name,
 						VariantSku = newVariant.VariantSku,
 						ProductDefinition = currentProduct.ProductDefinition
 					};
+					session.Save(product);
 
-					UpdateProduct(product, newVariant);
+					UpdateProduct(product, newVariant, session);
 					currentProduct.AddVariant(product);
 				}
 			}
 		}
 
-		private void UpdateProductCategories(Product currentProduct, Product newProduct)
+		private void UpdateProductCategories(Product currentProduct, Product newProduct, ISession session)
 		{
 			var newCategories = newProduct.CategoryProductRelations;
 
@@ -140,21 +144,19 @@ namespace UConnector.Samples.UCommerce
 				var category = GetCategory(relation.Category);
 				if (category == null)
 				{
-					var productCatalog = category.ProductCatalog ?? new ProductCatalog();
-					var productCatalogGroup = productCatalog.ProductCatalogGroup ?? new ProductCatalogGroup();
-					throw new Exception(string.Format("Could not find category: {0} in {1}/{2}", relation.Category.Name, productCatalogGroup.Name ?? "n/a", productCatalog.Name ?? "n/a"));
+					throw new Exception(string.Format("Could not find category: {0}", relation.Category.Name));
 				}
 
 				if (!category.Products.Any(x => x.Sku == currentProduct.Sku && x.VariantSku == currentProduct.VariantSku))
 				{
-					//category.AddProduct(currentProduct, 0);
-
 					var categoryRelation = new CategoryProductRelation();
 					categoryRelation.Product = currentProduct;
 					categoryRelation.SortOrder = 0;
 					categoryRelation.Category = category;
 
 					category.CategoryProductRelations.Add(categoryRelation);
+
+					_session.Save(categoryRelation);
 				}
 			}
 		}
