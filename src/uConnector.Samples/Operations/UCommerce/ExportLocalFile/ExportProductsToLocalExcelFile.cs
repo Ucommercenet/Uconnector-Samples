@@ -1,7 +1,8 @@
-﻿using UConnector.Api.V1;
+﻿using uCommerce.uConnector.Adapters.Receivers;
+using uCommerce.uConnector.Transformers;
+using UConnector.Api.V1;
 using UConnector.IO;
 using UConnector.IO.Excel;
-using UConnector.Samples.UCommerce;
 
 namespace UConnector.Samples.Operations.UCommerce.ExportLocalFile
 {

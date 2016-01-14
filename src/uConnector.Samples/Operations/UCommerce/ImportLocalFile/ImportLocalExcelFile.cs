@@ -1,6 +1,7 @@
-﻿using UConnector.Api.V1;
+﻿using uCommerce.uConnector.Adapters.Senders;
+using uCommerce.uConnector.Transformers;
+using UConnector.Api.V1;
 using UConnector.IO;
-using UConnector.Samples.UCommerce;
 
 namespace UConnector.Samples.Operations.UCommerce.ImportLocalFile
 {
