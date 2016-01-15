@@ -7,6 +7,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "uConnector.Samples", "uConn
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "uCommerce.uConnector", "UCommerce.UConnector\uCommerce.uConnector.csproj", "{3AF0BE5A-98C2-40EA-BEC8-62C50501B810}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Nuget", "Nuget", "{C623B0FD-59A6-4C51-8D42-89BF9D7BE2F0}"
+	ProjectSection(SolutionItems) = preProject
+		..\tools\NuGet\App.Manifest.nuspec = ..\tools\NuGet\App.Manifest.nuspec
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
