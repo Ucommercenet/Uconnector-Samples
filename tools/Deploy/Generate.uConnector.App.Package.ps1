@@ -67,7 +67,7 @@ function Run-It () {
     $SolutionFile = GetSolutionFile;
     $rebuildProperties = @{
       "Solution_file" = $SolutionFile;
-      "srcDir" = Resolve-Path "$scriptPath\..\..\src";
+      "srcDir" = $SourceDirectory;
 		  "Configuration" = "Release"
     };
     

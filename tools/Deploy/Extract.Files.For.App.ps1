@@ -4,7 +4,7 @@ properties {
 }
 
 function FileExtensionBlackList {
-  return "*.cd","*.cs","*.dll","*.xml","*obj*","*.pdb","*.csproj*","*.cache","*.orig", "app.config", "packages.config";  
+  return "*.xsd", "*sln*", "*.cd","*.cs","*.dll","*.xml","*obj*","*.pdb","*.csproj*","*.cache","*.orig", "app.config", "packages.config";  
 }
 
 function DllExtensionBlackList {
@@ -47,12 +47,16 @@ function CopyFiles ($appDirectory) {
 	
 	foreach($fileToCopy in $filesToCopy)
 	{
-    $sourceFile = $SourceDirectory + "\" + $fileToCopy;
-		$targetFile = $appDirectory + "\" + $fileToCopy;
-		
-		# Create the folder structure and empty destination file,
-		New-Item -ItemType File -Path $targetFile -Force
-		Copy-Item $sourceFile $targetFile -Force
+	if($fileToCopy -notlike '*packages*'){
+      write-host "****************"
+      write-host $fileToCopy
+      $sourceFile = $SourceDirectory + "\" + $fileToCopy;
+      $targetFile = $appDirectory + "\" + $fileToCopy;
+      
+      # Create the folder structure and empty destination file,
+      New-Item -ItemType File -Path $targetFile -Force
+      Copy-Item $sourceFile $targetFile -Force
+    }
 	}
 }
 
@@ -65,7 +69,7 @@ function CopyDllToBin ($appDirectory) {
 	
 	foreach($fileToCopy in $filesToCopy)
 	{
-    if($fileToCopy -notlike '*obj*'){
+    if($fileToCopy -notlike '*obj*' -And $fileToCopy -notlike '*packages*'){
       $sourceFile = $SourceDirectory + $fileToCopy;
       $targetFile = $appDirectory + "\" + $fileToCopy;	
       		
