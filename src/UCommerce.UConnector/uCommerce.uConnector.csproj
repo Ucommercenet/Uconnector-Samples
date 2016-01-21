@@ -110,11 +110,13 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>Powershell.exe -ExecutionPolicy Bypass -file "$(ProjectDir)..\..\tools\Deploy\Generate.uConnector.App.Package.ps1" -TargetDirectory "$(ProjectDir)..\..\package" -SourceDirectory "$(ProjectDir)</PostBuildEvent>
+    <PostBuildEvent>Powershell.exe -ExecutionPolicy Bypass -file "$(ProjectDir)..\..\tools\Deploy\Generate.uConnector.App.Package.ps1" -RebuildSolution False -TargetDirectory "$(ProjectDir)..\..\package" -SourceDirectory "$(ProjectDir)</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
     <PreBuildEvent>

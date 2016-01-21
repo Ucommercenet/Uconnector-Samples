@@ -4,7 +4,10 @@ Param(
   [string]$TargetDirectory = "C:\tmp\SampleApp",
     
   [Parameter(Mandatory=$False)]
-  [string]$SourceDirectory
+  [string]$SourceDirectory, 
+  
+  [Parameter(Mandatory=$False)]
+  [string]$RebuildSolution = "True"
 )
 
 function GetScriptDirectory { 
@@ -67,9 +70,11 @@ function Run-It () {
       "srcDir" = Resolve-Path "$scriptPath\..\..\src";
 		  "Configuration" = "Release"
     };
-
-    Invoke-PSake "$ScriptPath\Rebuild.App.Solution.ps1" "Rebuild" -parameters $rebuildProperties
-
+    
+    if($RebuildSolution.Equals("True")){
+      Invoke-PSake "$ScriptPath\Rebuild.App.Solution.ps1" "Rebuild" -parameters $rebuildProperties
+    }
+    
     #Step 02 update assembly version on projects in sln. 
     UpdateAssemblyInfos;
     
