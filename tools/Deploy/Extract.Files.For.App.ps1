@@ -1,97 +1,98 @@
 properties {
-  $TargetDirectory = $TargetDirectory;
-  $SourceDirectory = $SourceDirectory;
+  $ContentTargetDirectory = $TargetDirectory + "\Content";
+  $LibTargetDirectory = $TargetDirectory + "\Lib\net400";
+  $projects = $projects;
 }
 
 function FileExtensionBlackList {
-  return "*.xsd", "*sln*", "*.cd","*.cs","*.dll","*.xml","*obj*","*.pdb","*.csproj*","*.cache","*.orig", "app.config", "packages.config";  
-}
-
-function DllExtensionBlackList {
-  return 
-  "UCommerce.dll",
-  "UCommerce.Infrastructure.dll",
-  "Castle.Core.dll",
-  "Castle.Windsor.dll",
-  "ClientDependency.Core.dll",
-  "Esent.Interop.dll",
-  "FluentNHibernate.dll",
-  "ICSharpCode.NRefactory.dll",
-  "ICSharpCode.NRefactory.CSharp.dll",
-  "Iesi.Collections.dll",
-  "Jint.Raven.dll",
-  "log4net.dll",
-  "Lucene.Net.dll",
-  "Lucene.Net.Contrib.Spatial.NTS.dll",
-  "Microsoft.CompilerServices.AsyncTargetingPack.Net4.dll",
-  "Microsoft.WindowsAzure.Storage.dll",
-  "NHibernate.dll",
-  "Raven.Abstractions.dll",
-  "Raven.Client.Embedded.dll",
-  "Raven.Client.Lightweight.dll",
-  "Raven.Database.dll",
-  "ServiceStack.Common.dll",
-  "ServiceStack.dll",
-  "ServiceStack.Interfaces.dll",
-  "ServiceStack.ServiceInterface.dll",
-  "ServiceStack.Text.dll",
-  "Spatial4n.Core.NTS.dll";  
+  return "*.dll*","*.cd","*.cs","*.dll","*.xml","*obj*","*.pdb","*.csproj*","*.cache","*.orig", "app.config", "packages.config";  
 }
 
 function GetFilesToCopy($path){
 	return Get-ChildItem $path -name -recurse -include *.* -exclude (FileExtensionBlackList);
 }
 
-function CopyFiles ($appDirectory) {	
-	$filesToCopy = GetFilesToCopy($SourceDirectory);
+function CopyFiles ($project) {	 
+  $filesToCopy += GetFilesToCopy($project);
+
+  foreach($fileToCopy in $filesToCopy)
+  {
+    $sourceFile = $project + "\" + $fileToCopy;
+    $targetFile = $ContentTargetDirectory + "\" + $fileToCopy;
+    
+    # Create the folder structure and empty destination file,
+    New-Item -ItemType File -Path $targetFile -Force
+    Copy-Item $sourceFile $targetFile -Force
+  }
+}
+
+function LoadXmlFile ($filePath) {
+  $packagesConfig = New-Object XML
+  $packagesConfig.Load($filePath)
+  return $packagesConfig;
+}
+
+function FindDlls($path) { 
+  $projectCsprojFileName = Get-ChildItem -Path $path -Filter "*.csproj";  
+  $projectCsprojFilePath = $path + "\" + $projectCsprojFileName   
+  $projectCsprojFile = LoadXmlFile($projectCsprojFilePath);
+  
+  $dlls = @();
+  
+  #Finding reference
+  foreach($hintPath in $projectCsprojFile.Project.ItemGroup.Reference.HintPath)
+  {
+    if($hintPath -and $hintPath -notlike '*packages*') {
+      $dlls += $hintPath
+    }    
+  }
+  
+  #Finding project reference
+  foreach($projectReferenceName in $projectCsprojFile.Project.ItemGroup.ProjectReference.Name)
+  {
+    if($hintPath -and $hintPath -notlike '*packages*') {
+      $dlls += "bin\debug\" + $projectReferenceName + ".dll"
+    }    
+  }
+  
+  #Finding own dll
+  $assemblyName = $projectCsprojFile.Project.PropertyGroup.AssemblyName
+  $dlls += "bin\debug\" + $assemblyName + ".dll" -replace '\s',''
+  
+  return $dlls;
+}
+
+function CopyDllToLib ($project) {  
+	$filesToCopy = FindDlls($project);
 	
 	foreach($fileToCopy in $filesToCopy)
-	{
-	if($fileToCopy -notlike '*packages*'){
-      write-host "****************"
-      write-host $fileToCopy
-      $sourceFile = $SourceDirectory + "\" + $fileToCopy;
-      $targetFile = $appDirectory + "\" + $fileToCopy;
-      
-      # Create the folder structure and empty destination file,
+	{  	
+    $sourceFile = $project + "\" + $fileToCopy;
+    $fileName = split-path $sourceFile -leaf
+    $targetFile = $LibTargetDirectory + "\" + $fileName;	
+     
+    if (Test-Path $sourceFile){
       New-Item -ItemType File -Path $targetFile -Force
-      Copy-Item $sourceFile $targetFile -Force
-    }
-	}
-}
-
-function GetDllesToCopy($path){
-	return Get-ChildItem $path -name -recurse -include "*.dll*","*.pdb*"  -exclude (DllExtensionBlackList);
-}
-
-function CopyDllToBin ($appDirectory) {    
-	$filesToCopy = GetDllesToCopy($SourceDirectory);
-	
-	foreach($fileToCopy in $filesToCopy)
-	{
-    if($fileToCopy -notlike '*obj*' -And $fileToCopy -notlike '*packages*'){
-      $sourceFile = $SourceDirectory + $fileToCopy;
-      $targetFile = $appDirectory + "\" + $fileToCopy;	
-      		
-      # Create the folder structure and empty destination file,
-      New-Item -ItemType File -Path $targetFile -Force	
       Copy-Item $sourceFile $targetFile -Force   
     }
 	}
 }
 
 task Run-It {        
-	write-host 'Extracting app to' + $TargetDirectory;
+	write-host 'Extracting app to' + $ContentTargetDirectory;
     
   #Creates app directory
-  If (!(Test-Path $TargetDirectory)) {
-		write-host 'Creating directory: ' + $TargetDirectory;
-    New-Item $TargetDirectory -type directory 
+  if (!(Test-Path $ContentTargetDirectory)) {
+		write-host 'Creating directory: ' + $ContentTargetDirectory;
+    New-Item $ContentTargetDirectory -type directory 
   }	
 	
-	CopyFiles($TargetDirectory);
+	foreach($project in $projects)
+	{
+    CopyFiles($project);
 
-	CopyDllToBin($TargetDirectory);
-    
-  write-host 'Extracted app to' + $TargetDirectory;   
+    CopyDllToLib($project);
+  } 
+  
+  write-host 'Extracted app to' + $ContentTargetDirectory;   
 }

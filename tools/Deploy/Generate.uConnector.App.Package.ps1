@@ -7,7 +7,10 @@ Param(
   [string]$SourceDirectory, 
   
   [Parameter(Mandatory=$False)]
-  [string]$RebuildSolution = "True"
+  [string]$RebuildSolution = "True", 
+	
+	[Parameter(Mandatory=$False)]
+	[string]$NuspecFile="App.Manifest.nuspec"
 )
 
 function GetScriptDirectory { 
@@ -22,14 +25,14 @@ function GetProjectFolder {
 
 function MoveNuspecFile {
   $scriptPath = GetScriptDirectory;
-  $nugetPath = $scriptPath + "\..\NuGet"
+  $nugetPath = $scriptPath + "\..\NuGet\" + $NuspecFile;
 
-  Copy-Item -Path $nugetPath\App.Manifest.nuspec -Destination $TargetDirectory
+  Copy-Item -Path $nugetPath -Destination $TargetDirectory
 }
 
 function GetVersion {
   $scriptPath = GetScriptDirectory;
-  $nuspecFile = "$scriptPath\..\NuGet\App.Manifest.nuspec";
+  $nuspecFile = "$scriptPath\..\NuGet\" + $NuspecFile;
 
   [xml]$fileContents = Get-Content -Path $nuspecFile
   return $fileContents.package.metadata.version;
@@ -62,48 +65,51 @@ function Run-It () {
   try {  
     $scriptPath = GetScriptDirectory;
     Import-Module "$scriptPath\..\psake\4.3.0.0\psake.psm1"
-                   
-    #Step 01 rebuild solution
-    $SolutionFile = GetSolutionFile;
-    $rebuildProperties = @{
-      "Solution_file" = $SolutionFile;
-      "srcDir" = $SourceDirectory;
-		  "Configuration" = "Release"
-    };
     
+    #Step 01: Maintain dependencies    
+    $maintainDependenciesProperties = @{
+      "projects" = @(
+        $SourceDirectory
+      );
+      "nuspecFile" = "$scriptPath\..\NuGet\$NuspecFile"
+    };
+        
+    Invoke-PSake "$ScriptPath\Maintain.Nuget.Dependencies.ps1" "Run-It" -parameters $maintainDependenciesProperties
+                       
+    #Step 02 rebuild solution
     if($RebuildSolution.Equals("True")){
+      $SolutionFile = GetSolutionFile;
+      $rebuildProperties = @{
+        "Solution_file" = $SolutionFile;
+        "srcDir" = $SourceDirectory;
+        "Configuration" = "Release"
+      };
+        
       Invoke-PSake "$ScriptPath\Rebuild.App.Solution.ps1" "Rebuild" -parameters $rebuildProperties
     }
     
-    #Step 02 update assembly version on projects in sln. 
+    #Step 03 update assembly version on projects in sln. 
     UpdateAssemblyInfos;
     
-    #Step 03 Extract files
+    #Step 04 Extract files
     if ($SourceDirectory.Equals(""))
 		{
 			$SourceDirectory = GetProjectFolder;
 		}
 		
     $extractProperties = @{
-      "TargetDirectory" = $TargetDirectory + "\Content";
-      "SourceDirectory" = $SourceDirectory;
+      "TargetDirectory" = $TargetDirectory;
+      "projects" = @(
+        $SourceDirectory
+      );
     };
 
     Invoke-PSake "$ScriptPath\Extract.Files.For.App.ps1" "Run-It" -parameters $extractProperties
    
-    #Step 04 bin to ..\lib
-    $pathToTargetBinDir = $TargetDirectory+ "\Content\bin\"
-    $pathToTargetLibDir = $TargetDirectory+ "\lib\net400"
-    $pathToDlls = $pathToTargetBinDir+ "debug"            
-        
-    New-Item $pathToTargetLibDir -type directory -force
-    Move-Item $pathToDlls\*.dll $pathToTargetLibDir
-    Remove-Item $pathToTargetBinDir -recurse
-
     #Step 05 pack it up
     MoveNuspecFile;
     $nuget = $scriptPath + "\..\NuGet";
-    $nuspecFilePath = $TargetDirectory + "\App.Manifest.nuspec";
+    $nuspecFilePath = $TargetDirectory + "\" + $NuspecFile;
 
     & "$nuget\nuget.exe" pack $nuspecFilePath -OutputDirectory $TargetDirectory;
 
