@@ -5,6 +5,7 @@ using NHibernate;
 using NHibernate.Linq;
 using UCommerce.EntitiesV2;
 using uCommerce.uConnector.Helpers;
+using UCommerce.Infrastructure;
 using UConnector.Framework;
 
 namespace uCommerce.uConnector.Adapters.Senders
@@ -232,7 +233,8 @@ namespace uCommerce.uConnector.Adapters.Senders
 		{
 			return new SessionProvider(
 				new InMemoryCommerceConfigurationProvider(ConnectionString),
-				new SingleUserService("UConnector"));
+				new SingleUserService("UConnector"),
+                ObjectFactory.Instance.ResolveAll<IContainsNHibernateMappingsTag>());
 		}
 
 		public string ConnectionString { get; set; }

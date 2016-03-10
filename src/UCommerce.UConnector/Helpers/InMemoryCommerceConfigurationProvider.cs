@@ -21,7 +21,7 @@ namespace uCommerce.uConnector.Helpers
 			return new RuntimeConfigurationSection
 			{
 				EnableCache = true,
-				CacheProvider = "NHibernate.Caches.SysCache2.SysCacheProvider, NHibernate.Caches.SysCache2",
+				CacheProvider = "NHibernate.Caches.SysCache.SysCacheProvider, NHibernate.Caches.SysCache",
 				ConnectionString = _conncetionString
 			};
 		}

@@ -3,6 +3,7 @@ using System.Linq;
 using NHibernate.Linq;
 using uCommerce.uConnector.Helpers;
 using UCommerce.EntitiesV2;
+using UCommerce.Infrastructure;
 using UConnector.Framework;
 
 namespace uCommerce.uConnector.Adapters.Receivers
@@ -19,9 +20,10 @@ namespace uCommerce.uConnector.Adapters.Receivers
 
 	    private ISessionProvider GetSessionProvider()
 	    {
-		    return new SessionProvider(
-			    new InMemoryCommerceConfigurationProvider(ConnectionString),
-			    new SingleUserService("UConnector"));
-	    }
+            return new SessionProvider(
+                new InMemoryCommerceConfigurationProvider(ConnectionString),
+                new SingleUserService("UConnector"),
+                ObjectFactory.Instance.ResolveAll<IContainsNHibernateMappingsTag>());
+        }
     }
 }
