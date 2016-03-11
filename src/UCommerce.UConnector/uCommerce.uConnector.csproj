@@ -90,12 +90,12 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\uCommerce\UCommerce.Infrastructure.dll</HintPath>
     </Reference>
-    <Reference Include="UConnector, Version=1.1.1.13235, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\UConnector.1.1.1.13235\lib\net40\UConnector.dll</HintPath>
+    <Reference Include="UConnector, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\uConnector.1.0.0.1\Lib\net400\UConnector.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="UConnector.Framework, Version=1.1.1.13235, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\UConnector.1.1.1.13235\lib\net40\UConnector.Framework.dll</HintPath>
+    <Reference Include="UConnector.Framework, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\uConnector.1.0.0.1\Lib\net400\UConnector.Framework.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>
@@ -113,6 +113,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="job_scheduling_data_2_0.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>

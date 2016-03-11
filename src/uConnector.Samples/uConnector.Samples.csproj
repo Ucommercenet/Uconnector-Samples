@@ -103,12 +103,12 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="UConnector, Version=1.1.1.13235, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\UConnector.1.1.1.13235\lib\net40\UConnector.dll</HintPath>
+    <Reference Include="UConnector, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\uConnector.1.0.0.1\Lib\net400\UConnector.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="UConnector.Framework, Version=1.1.1.13235, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\UConnector.1.1.1.13235\lib\net40\UConnector.Framework.dll</HintPath>
+    <Reference Include="UConnector.Framework, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\uConnector.1.0.0.1\Lib\net400\UConnector.Framework.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>
@@ -123,7 +123,6 @@
     <Compile Include="Helpers\XElementToCsvRow.cs" />
     <Compile Include="Operations\UCommerce\ImportLocalFile\ImportLocalCsvFile.cs" />
     <Compile Include="Operations\UCommerce\ImportLocalFile\ImportLocalExcelFile.cs" />
-    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -164,6 +163,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </None>
+    <Content Include="uConnector.Express.exe.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\UCommerce.UConnector\uCommerce.uConnector.csproj">
@@ -172,7 +174,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="uConnector.Express.exe" />
+    <Content Include="uConnector.Express.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -182,4 +186,14 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <StartAction>Program</StartAction>
+    <StartProgram>$(TargetDir)uConnector.Express.exe</StartProgram>
+    <StartArguments>Tasks</StartArguments>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <StartAction>Program</StartAction>
+    <StartProgram>$(TargetDir)uConnector.Express.exe</StartProgram>
+    <StartArguments>Tasks</StartArguments>
+  </PropertyGroup>
 </Project>
