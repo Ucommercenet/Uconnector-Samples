@@ -41,8 +41,8 @@
       <HintPath>..\packages\Castle.Windsor.3.3.0\lib\net40\Castle.Windsor.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Common.Logging, Version=2.1.2.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
-      <HintPath>..\packages\Common.Logging.2.1.2\lib\net40\Common.Logging.dll</HintPath>
+    <Reference Include="Common.Logging, Version=2.3.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Common.Logging.2.3.0\lib\net40\Common.Logging.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="CsvHelper, Version=1.1.0.14426, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
@@ -69,10 +69,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\uCommerce\NHibernate.dll</HintPath>
     </Reference>
-    <Reference Include="Quartz, Version=2.2.4.400, Culture=neutral, PublicKeyToken=f6b8c98a402cc8a4, processorArchitecture=MSIL">
-      <HintPath>..\packages\Quartz.2.2.4\lib\net40\Quartz.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -90,12 +86,12 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\uCommerce\UCommerce.Infrastructure.dll</HintPath>
     </Reference>
-    <Reference Include="UConnector, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\uConnector.1.0.0.1\Lib\net400\UConnector.dll</HintPath>
+    <Reference Include="UConnector, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\uConnector.2.0.0.16099\Lib\net400\UConnector.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="UConnector.Framework, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\uConnector.1.0.0.1\Lib\net400\UConnector.Framework.dll</HintPath>
+    <Reference Include="UConnector.Framework, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\uConnector.2.0.0.16099\Lib\net400\UConnector.Framework.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>
@@ -113,12 +109,26 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="job_scheduling_data_2_0.xsd">
-      <SubType>Designer</SubType>
-    </None>
+    <None Include="obj\Debug\build.force" />
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <None Include="obj\Debug\uCommerce.uConnector.csprojResolveAssemblyReference.cache" />
+    <None Include="obj\Release\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <None Include="obj\Release\uCommerce.uConnector.csprojResolveAssemblyReference.cache" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="obj\Debug\uCommerce.uConnector.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\uCommerce.uConnector.dll" />
+    <Content Include="obj\Debug\uCommerce.uConnector.pdb" />
+    <Content Include="obj\Release\uCommerce.uConnector.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Release\uCommerce.uConnector.dll" />
+    <Content Include="obj\Release\uCommerce.uConnector.pdb" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="obj\Debug\TempPE\" />
+    <Folder Include="obj\Release\TempPE\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

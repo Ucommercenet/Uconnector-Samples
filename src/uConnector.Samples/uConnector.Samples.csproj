@@ -54,12 +54,13 @@
       <HintPath>..\packages\Castle.Windsor.3.3.0\lib\net40\Castle.Windsor.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Common.Logging, Version=2.1.2.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
-      <HintPath>..\packages\Common.Logging.2.1.2\lib\net40\Common.Logging.dll</HintPath>
+    <Reference Include="Common.Logging, Version=2.3.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Common.Logging.2.3.0\lib\net40\Common.Logging.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Common.Logging.Log4Net">
-      <HintPath>..\..\lib\uConnector\Common.Logging.Log4Net.dll</HintPath>
+    <Reference Include="Common.Logging.Log4Net1210, Version=2.3.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Common.Logging.Log4Net1210.2.3.0\lib\net40\Common.Logging.Log4Net1210.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="CsvHelper, Version=1.1.0.14426, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
       <HintPath>..\packages\CsvHelper.1.1.0\lib\CsvHelper.dll</HintPath>
@@ -80,20 +81,12 @@
     <Reference Include="Infralution.Licensing">
       <HintPath>..\..\lib\uCommerce\Infralution.Licensing.dll</HintPath>
     </Reference>
-    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
-      <HintPath>..\packages\log4net.1.2.10\lib\2.0\log4net.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="NHibernate, Version=3.3.1.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\uCommerce\NHibernate.dll</HintPath>
     </Reference>
     <Reference Include="NHibernate.Caches.SysCache">
       <HintPath>..\..\lib\uCommerce\NHibernate.Caches.SysCache.dll</HintPath>
-    </Reference>
-    <Reference Include="Quartz, Version=2.2.4.400, Culture=neutral, PublicKeyToken=f6b8c98a402cc8a4, processorArchitecture=MSIL">
-      <HintPath>..\packages\Quartz.2.2.4\lib\net40\Quartz.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
@@ -103,12 +96,12 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="UConnector, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\uConnector.1.0.0.1\Lib\net400\UConnector.dll</HintPath>
+    <Reference Include="UConnector, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\uConnector.2.0.0.16099\Lib\net400\UConnector.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="UConnector.Framework, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\uConnector.1.0.0.1\Lib\net400\UConnector.Framework.dll</HintPath>
+    <Reference Include="UConnector.Framework, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\uConnector.2.0.0.16099\Lib\net400\UConnector.Framework.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>
@@ -129,15 +122,20 @@
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="job_scheduling_data_2_0.xsd">
-      <SubType>Designer</SubType>
-    </None>
+    <None Include="obj\Debug\build.force" />
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <None Include="obj\Debug\uConnector.Samples.csprojResolveAssemblyReference.cache" />
+    <None Include="obj\Release\DesignTimeResolveAssemblyReferences.cache" />
+    <None Include="obj\Release\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <None Include="obj\Release\uConnector.Samples.csprojResolveAssemblyReference.cache" />
+    <None Include="obj\x86\Release\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <None Include="obj\x86\Release\uConnector.Samples.csprojResolveAssemblyReference.cache" />
     <None Include="packages.config" />
-    <None Include="uConnector.config">
-      <SubType>Designer</SubType>
+    <None Include="Components.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Components.config">
+    <None Include="Tasks\Example.config.disabled">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Tasks\ExportProductsToLocalCsvFile.config">
@@ -163,9 +161,14 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </None>
-    <Content Include="uConnector.Express.exe.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="obj\Debug\uConnector.Samples.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\UConnector.Samples.dll" />
+    <Content Include="obj\Debug\UConnector.Samples.pdb" />
+    <Content Include="obj\Release\uConnector.Samples.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Release\UConnector.Samples.dll" />
+    <Content Include="obj\x86\Release\uConnector.Samples.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\x86\Release\UConnector.Samples.exe" />
+    <Content Include="obj\x86\Release\UConnector.Samples.pdb" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\UCommerce.UConnector\uCommerce.uConnector.csproj">
@@ -174,11 +177,14 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="uConnector.Express.exe">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Folder Include="obj\Debug\TempPE\" />
+    <Folder Include="obj\Release\TempPE\" />
+    <Folder Include="obj\x86\Release\TempPE\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>Powershell.exe -ExecutionPolicy Bypass -file "$(SolutionDir)packages\uConnector.Express.2.0.0.16099\Tools\PostBuildEvent.ps1" -TargetDir "$(TargetDir)</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
@@ -186,14 +192,4 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
-    <StartAction>Program</StartAction>
-    <StartProgram>$(TargetDir)uConnector.Express.exe</StartProgram>
-    <StartArguments>Tasks</StartArguments>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
-    <StartAction>Program</StartAction>
-    <StartProgram>$(TargetDir)uConnector.Express.exe</StartProgram>
-    <StartArguments>Tasks</StartArguments>
-  </PropertyGroup>
 </Project>

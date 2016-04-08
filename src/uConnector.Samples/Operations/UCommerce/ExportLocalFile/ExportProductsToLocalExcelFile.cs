@@ -12,7 +12,7 @@ namespace UConnector.Samples.Operations.UCommerce.ExportLocalFile
 		{
 			return FluentOperationBuilder
 				.Receive<ProductListFromUCommerce>()
-					.WithOption(x => x.ConnectionString = "server=.;database=u6test;integrated security=SSPI;")
+					.WithOption(x => x.ConnectionString = "server=.;database=u7dev;integrated security=SSPI;")
 				.Transform<ProductListToDataTable>()
 				.Transform<FromDataTableToExcelStream>()
 				.Transform<StreamToWorkfileWithTimestampName>()
