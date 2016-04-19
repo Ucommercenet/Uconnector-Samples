@@ -87,11 +87,11 @@
       <HintPath>..\..\lib\uCommerce\UCommerce.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="UConnector, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\uConnector.2.0.0.16099\Lib\net400\UConnector.dll</HintPath>
+      <HintPath>..\packages\uConnector.2.0.0.16109\Lib\net400\UConnector.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="UConnector.Framework, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\uConnector.2.0.0.16099\Lib\net400\UConnector.Framework.dll</HintPath>
+      <HintPath>..\packages\uConnector.2.0.0.16109\Lib\net400\UConnector.Framework.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>

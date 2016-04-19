@@ -81,6 +81,10 @@
     <Reference Include="Infralution.Licensing">
       <HintPath>..\..\lib\uCommerce\Infralution.Licensing.dll</HintPath>
     </Reference>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.1.2.10\lib\2.0\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="NHibernate, Version=3.3.1.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\uCommerce\NHibernate.dll</HintPath>
@@ -97,11 +101,11 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="UConnector, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\uConnector.2.0.0.16099\Lib\net400\UConnector.dll</HintPath>
+      <HintPath>..\packages\uConnector.2.0.0.16109\Lib\net400\UConnector.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="UConnector.Framework, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\uConnector.2.0.0.16099\Lib\net400\UConnector.Framework.dll</HintPath>
+      <HintPath>..\packages\uConnector.2.0.0.16109\Lib\net400\UConnector.Framework.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>
@@ -119,19 +123,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config">
+    <None Include="app.config" />
+    <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="obj\Debug\build.force" />
-    <None Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
-    <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
-    <None Include="obj\Debug\uConnector.Samples.csprojResolveAssemblyReference.cache" />
-    <None Include="obj\Release\DesignTimeResolveAssemblyReferences.cache" />
-    <None Include="obj\Release\DesignTimeResolveAssemblyReferencesInput.cache" />
-    <None Include="obj\Release\uConnector.Samples.csprojResolveAssemblyReference.cache" />
-    <None Include="obj\x86\Release\DesignTimeResolveAssemblyReferencesInput.cache" />
-    <None Include="obj\x86\Release\uConnector.Samples.csprojResolveAssemblyReference.cache" />
-    <None Include="packages.config" />
     <None Include="Components.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -161,14 +156,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </None>
-    <Content Include="obj\Debug\uConnector.Samples.csproj.FileListAbsolute.txt" />
-    <Content Include="obj\Debug\UConnector.Samples.dll" />
-    <Content Include="obj\Debug\UConnector.Samples.pdb" />
-    <Content Include="obj\Release\uConnector.Samples.csproj.FileListAbsolute.txt" />
-    <Content Include="obj\Release\UConnector.Samples.dll" />
-    <Content Include="obj\x86\Release\uConnector.Samples.csproj.FileListAbsolute.txt" />
-    <Content Include="obj\x86\Release\UConnector.Samples.exe" />
-    <Content Include="obj\x86\Release\UConnector.Samples.pdb" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\UCommerce.UConnector\uCommerce.uConnector.csproj">
@@ -176,14 +163,10 @@
       <Name>uCommerce.uConnector</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="obj\Debug\TempPE\" />
-    <Folder Include="obj\Release\TempPE\" />
-    <Folder Include="obj\x86\Release\TempPE\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>Powershell.exe -ExecutionPolicy Bypass -file "$(SolutionDir)packages\uConnector.Express.2.0.0.16099\Tools\PostBuildEvent.ps1" -TargetDir "$(TargetDir)</PostBuildEvent>
+    <PostBuildEvent>Powershell.exe -ExecutionPolicy Bypass -file "$(SolutionDir)packages\uConnector.Express.2.0.0.16109\Tools\PostBuildEvent.ps1" -TargetDir "$(TargetDir)</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
