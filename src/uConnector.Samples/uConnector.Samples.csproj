@@ -100,12 +100,12 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="UConnector, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\uConnector.2.0.0.16109\Lib\net400\UConnector.dll</HintPath>
+    <Reference Include="UConnector, Version=2.0.0.16111, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\uConnector.2.0.0.16111\Lib\net400\UConnector.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="UConnector.Framework, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\uConnector.2.0.0.16109\Lib\net400\UConnector.Framework.dll</HintPath>
+    <Reference Include="UConnector.Framework, Version=2.0.0.16111, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\uConnector.2.0.0.16111\Lib\net400\UConnector.Framework.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>
@@ -166,7 +166,7 @@
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>Powershell.exe -ExecutionPolicy Bypass -file "$(SolutionDir)packages\uConnector.Express.2.0.0.16109\Tools\PostBuildEvent.ps1" -TargetDir "$(TargetDir)</PostBuildEvent>
+    <PostBuildEvent>Powershell.exe -ExecutionPolicy Bypass -file "$(SolutionDir)packages\uConnector.Express.2.0.0.16111\Tools\PostBuildEvent.ps1" -TargetDir "$(TargetDir)</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
