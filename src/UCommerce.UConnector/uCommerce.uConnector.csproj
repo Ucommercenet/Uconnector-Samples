@@ -109,27 +109,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="obj\Debug\build.force" />
-    <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
-    <None Include="obj\Debug\uCommerce.uConnector.csprojResolveAssemblyReference.cache" />
-    <None Include="obj\Release\DesignTimeResolveAssemblyReferencesInput.cache" />
-    <None Include="obj\Release\uCommerce.uConnector.csprojResolveAssemblyReference.cache" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="obj\Debug\uCommerce.uConnector.csproj.FileListAbsolute.txt" />
-    <Content Include="obj\Debug\uCommerce.uConnector.dll" />
-    <Content Include="obj\Debug\uCommerce.uConnector.pdb" />
-    <Content Include="obj\Release\uCommerce.uConnector.csproj.FileListAbsolute.txt" />
-    <Content Include="obj\Release\uCommerce.uConnector.dll" />
-    <Content Include="obj\Release\uCommerce.uConnector.pdb" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="obj\Debug\TempPE\" />
-    <Folder Include="obj\Release\TempPE\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>Powershell.exe -ExecutionPolicy Bypass -file "$(ProjectDir)..\..\tools\Deploy\Generate.uConnector.App.Package.ps1" -RebuildSolution False -TargetDirectory "$(ProjectDir)..\..\package" -SourceDirectory "$(ProjectDir)</PostBuildEvent>
