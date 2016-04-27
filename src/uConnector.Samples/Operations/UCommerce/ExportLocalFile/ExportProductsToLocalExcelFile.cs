@@ -1,7 +1,8 @@
-﻿using UConnector.Api.V1;
+﻿using uCommerce.uConnector.Adapters.Receivers;
+using uCommerce.uConnector.Transformers;
+using UConnector.Api.V1;
 using UConnector.IO;
 using UConnector.IO.Excel;
-using UConnector.Samples.UCommerce;
 
 namespace UConnector.Samples.Operations.UCommerce.ExportLocalFile
 {
@@ -11,7 +12,7 @@ namespace UConnector.Samples.Operations.UCommerce.ExportLocalFile
 		{
 			return FluentOperationBuilder
 				.Receive<ProductListFromUCommerce>()
-					.WithOption(x => x.ConnectionString = "server=.;database=U4;integrated security=SSPI;")
+					.WithOption(x => x.ConnectionString = "server=.;database=u7dev;integrated security=SSPI;")
 				.Transform<ProductListToDataTable>()
 				.Transform<FromDataTableToExcelStream>()
 				.Transform<StreamToWorkfileWithTimestampName>()

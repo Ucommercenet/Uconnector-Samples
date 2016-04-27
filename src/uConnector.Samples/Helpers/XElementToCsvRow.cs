@@ -12,11 +12,7 @@ namespace UConnector.Samples.Helpers
 
 		public string Execute(XElement input)
 		{
-			log.Debug("Waiting a bit to simulate a heavy operation..");
-			Thread.Sleep(1000);
-			log.Debug("Waiting is over!");
-
-			var data = new List<string>();
+            var data = new List<string>();
 
 			AddDataFromXElement(input, data);
 			return string.Join(",", data);
