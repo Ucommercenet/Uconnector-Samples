@@ -12,195 +12,200 @@ namespace uCommerce.uConnector.Adapters.Senders
 {
 	public class ProductListToUCommerce : Configurable, ISender<IEnumerable<Product>>
 	{
-		private ISession _session;
+		private IStatelessSession _session;
 
 		public void Send(IEnumerable<Product> input)
 		{
-			_session = GetSessionProvider().GetSession();
+		    _session = GetStatelessSessionProvider().GetStatelessSession();
 
-			using (var tx = _session.BeginTransaction())
-			{
-				foreach (var tempProduct in input)
-				{
-					var product = _session.Query<Product>().SingleOrDefault(a => a.Sku == tempProduct.Sku && a.VariantSku == null);
-					if (product == null) // Create product
-					{
-						product = new Product
-						{
-							Sku = tempProduct.Sku,
-							Name = tempProduct.Name,
-							VariantSku = null,
-							ProductDefinition =
-								_session.Query<ProductDefinition>().FirstOrDefault(x => x.Name == tempProduct.ProductDefinition.Name)
-						};
-						_session.SaveOrUpdate(product);
-					}
+		    foreach (var newProduct in input)
+		    {
+		        var productDefinition = _session.Query<ProductDefinition>().FirstOrDefault(x => x.Name == newProduct.ProductDefinition.Name);
+		        var product = _session.Query<Product>().Fetch(x => x.ProductDefinition).SingleOrDefault(a => a.Sku == newProduct.Sku && a.VariantSku == null);
+		        var priceGroups = _session.Query<PriceGroup>().Where(x => !x.Deleted).ToList();
 
-					UpdateProduct(product, tempProduct, _session); // Update relations, categories, etc.
-				}
-				tx.Commit();
-			}
-			_session.Flush();
-		}
+		        if (product == null) // Create product
+		        {
+		            product = new Product
+		            {
+		                Sku = newProduct.Sku,
+		                Name = newProduct.Name,
+		                VariantSku = null,
+		                CreatedOn = DateTime.Now,
+		                ModifiedOn = DateTime.Now,
+		                ProductDefinition = productDefinition
+		            };
+		        }
+		        using (var tx = _session.BeginTransaction())
+		        {
+		            UpdateProduct(product, newProduct, productDefinition, priceGroups);
+		            tx.Commit();
+		        }
+		    }
+        }
 
-		private void UpdateProduct(Product currentProduct, Product newProduct, ISession session)
-		{
-			// Product
-			UpdateProductValueTypes(currentProduct, newProduct);
+	    private void UpdateProduct(Product currentProduct, Product newProduct, ProductDefinition productDefinition, IList<PriceGroup> priceGroups)
+	    {
+	        // Product
+	        UpdateProductValueTypes(currentProduct, newProduct);
 
-			// Product.Definiton ( Multilingual and Definitions )
-			UpdateProductDescriptions(currentProduct, newProduct);
+	        // Product.Definiton ( Multilingual and Definitions )
+	        UpdateProductDescriptions(currentProduct, newProduct);
 
-			// ProductProperties
-			UpdateProductProperties(currentProduct, newProduct);
+	        // ProductProperties
+	        UpdateProductProperties(currentProduct, newProduct, productDefinition);
 
-			// Prices
-			UpdateProductPrices(currentProduct, newProduct);
+	        // Prices
+	        UpdateProductPrices(currentProduct, newProduct, priceGroups);
 
-			// Categories
-			UpdateProductCategories(currentProduct, newProduct, session);
+	        // Variants
+	        UpdateProductVariants(currentProduct, newProduct, productDefinition, priceGroups);
 
-			// Variants
-			UpdateProductVariants(currentProduct, newProduct, session);
-		}
+	        _session.Insert(currentProduct);
 
-		private void UpdateProductProperties(Product currentProduct, Product newProduct)
-		{
-			var productDefinition = _session.Query<ProductDefinition>().SingleOrDefault(x => x.Name == newProduct.ProductDefinition.Name);
-			if (productDefinition == null)
-				return;
+	        // Categories
+	        UpdateProductCategories(currentProduct, newProduct);
+	    }
 
-			if (currentProduct.ProductDefinition.Name != productDefinition.Name)
-			{
-				currentProduct.ProductDefinition = productDefinition;
-			}
+	    private void UpdateProductProperties(Product currentProduct, Product newProduct, ProductDefinition productDefinition)
+	    {
+	        if (productDefinition == null)
+	            return;
 
-			var newProductProperties = newProduct.ProductProperties;
+	        if (currentProduct.ProductDefinition.Name != productDefinition.Name)
+	        {
+	            currentProduct.ProductDefinition = productDefinition;
+	        }
 
-			foreach (var newProperty in newProductProperties)
-			{
-				var currentProductProperty = currentProduct.GetProperties().Cast<ProductProperty>().SingleOrDefault(
-					x => !x.ProductDefinitionField.Deleted && (x.ProductDefinitionField.Name == newProperty.ProductDefinitionField.Name));
+	        var newProductProperties = newProduct.ProductProperties;
 
-				if (currentProductProperty != null) // Update
-				{
-					currentProductProperty.Value = newProperty.Value;
-				}
-				else // Insert
-				{
-					var productDefinitionField =
-						currentProduct.GetDefinition()
-							.GetDefinitionFields().Cast<ProductDefinitionField>()
-							.SingleOrDefault(x => x.Name == newProperty.ProductDefinitionField.Name);
+	        foreach (var newProperty in newProductProperties)
+	        {
+	            var currentProductProperty = currentProduct.GetProperties().Cast<ProductProperty>().SingleOrDefault(
+	                x => !x.ProductDefinitionField.Deleted && (x.ProductDefinitionField.Name == newProperty.ProductDefinitionField.Name));
 
-					if (productDefinitionField != null) // Field exist, insert it.
-					{
-						currentProductProperty = new ProductProperty
-						{
-							ProductDefinitionField = productDefinitionField,
-							Value = newProperty.Value
-						};
-						currentProduct.AddProductProperty(currentProductProperty);
-					}
-				}
-			}
-		}
+	            if (currentProductProperty != null) // Update
+	            {
+	                currentProductProperty.Value = newProperty.Value;
+	                _session.Update(currentProductProperty);
 
-		private void UpdateProductVariants(Product currentProduct, Product newProduct, ISession session)
-		{
-			var newVariants = newProduct.Variants;
-			foreach (var newVariant in newVariants)
-			{
-				var currentVariant = currentProduct.Variants.SingleOrDefault(x => x.VariantSku == newVariant.VariantSku);
-				if (currentVariant != null) // Update
-				{
-					UpdateProduct(currentVariant, newVariant, session);
-				}
-				else // Insert
-				{
-					if (string.IsNullOrWhiteSpace(newVariant.VariantSku))
-						throw new Exception("VariantSku is empty");
+	            }
+	            else // Insert
+	            {
+	                var productDefinitionField =
+	                    currentProduct.GetDefinition()
+	                        .GetDefinitionFields().Cast<ProductDefinitionField>()
+	                        .SingleOrDefault(x => x.Name == newProperty.ProductDefinitionField.Name);
 
-					var product = new Product
-					{
-						Sku = newVariant.Sku,
-						Name = newVariant.Name,
-						VariantSku = newVariant.VariantSku,
-						ProductDefinition = currentProduct.ProductDefinition
-					};
-					session.Save(product);
+	                if (productDefinitionField != null) // Field exist, insert it.
+	                {
+	                    currentProductProperty = new ProductProperty
+	                    {
+	                        ProductDefinitionField = productDefinitionField,
+	                        Value = newProperty.Value
+	                    };
+	                    currentProduct.AddProductProperty(currentProductProperty);
+	                }
 
-					UpdateProduct(product, newVariant, session);
-					currentProduct.AddVariant(product);
-				}
-			}
-		}
+	                _session.Insert(currentProductProperty);
+	            }
+	        }
+	    }
 
-		private void UpdateProductCategories(Product currentProduct, Product newProduct, ISession session)
-		{
-			var newCategories = newProduct.CategoryProductRelations;
+	    private void UpdateProductVariants(Product currentProduct, Product newProduct, ProductDefinition productDefinition, IList<PriceGroup> priceGroups)
+	    {
+	        var newVariants = newProduct.Variants;
+	        foreach (var newVariant in newVariants)
+	        {
+	            var currentVariant = currentProduct.Variants.SingleOrDefault(x => x.VariantSku == newVariant.VariantSku);
+	            if (currentVariant != null) // Update
+	            {
+	                UpdateProduct(currentVariant, newVariant, productDefinition, priceGroups);
+	            }
+	            else // Insert
+	            {
+	                if (string.IsNullOrWhiteSpace(newVariant.VariantSku))
+	                    throw new Exception("VariantSku is empty");
 
-			foreach (var relation in newCategories)
-			{
-				var category = GetCategory(relation.Category);
-				if (category == null)
-				{
-					throw new Exception(string.Format("Could not find category: {0}", relation.Category.Name));
-				}
+	                var product = new Product
+	                {
+	                    Sku = newVariant.Sku,
+	                    Name = newVariant.Name,
+	                    VariantSku = newVariant.VariantSku,
+	                    ProductDefinition = currentProduct.ProductDefinition
+	                };
 
-				if (!category.Products.Any(x => x.Sku == currentProduct.Sku && x.VariantSku == currentProduct.VariantSku))
-				{
-					var categoryRelation = new CategoryProductRelation();
-					categoryRelation.Product = currentProduct;
-					categoryRelation.SortOrder = 0;
-					categoryRelation.Category = category;
+	                UpdateProduct(product, newVariant, productDefinition, priceGroups);
+	                currentProduct.AddVariant(product);
+	            }
+	        }
+	    }
 
-					category.CategoryProductRelations.Add(categoryRelation);
+	    private void UpdateProductCategories(Product currentProduct, Product newProduct)
+	    {
+	        var newCategories = newProduct.CategoryProductRelations;
 
-					_session.Save(categoryRelation);
-				}
-			}
-		}
+	        foreach (var relation in newCategories)
+	        {
+	            var category = GetExistingCategory(relation.Category);
+	            if (category == null)
+	            {
+	                throw new Exception(string.Format("Could not find category: {0}", relation.Category.Name));
+	            }
 
-		private Category GetCategory(Category newCategory)
-		{
-			if (newCategory.ProductCatalog != null && newCategory.ProductCatalog.ProductCatalogGroup != null)
-			{
-				return _session.Query<Category>().SingleOrDefault(x => x.Name == newCategory.Name && x.ProductCatalog.Name == newCategory.ProductCatalog.Name && x.ProductCatalog.ProductCatalogGroup.Name == newCategory.ProductCatalog.ProductCatalogGroup.Name);
-			}
+	            if (!_session.Query<CategoryProductRelation>().Any(x => x.Category == category && x.Product.Sku == currentProduct.Sku && x.Product.VariantSku == currentProduct.VariantSku))
+	            {
+	                var categoryRelation = new CategoryProductRelation();
+	                categoryRelation.Product = currentProduct;
+	                categoryRelation.SortOrder = 0;
+	                categoryRelation.Category = category;
 
-			if (newCategory.ProductCatalog != null)
-			{
-				return _session.Query<Category>().SingleOrDefault(x => x.Name == newCategory.Name && x.ProductCatalog.Name == newCategory.ProductCatalog.Name);
-			}
+	                _session.Insert(categoryRelation);
+	            }
+	        }
+	    }
 
-			return _session.Query<Category>().SingleOrDefault(x => x.Name == newCategory.Name);
-		}
+	    private Category GetExistingCategory(Category newCategory)
+	    {
+	        if (newCategory.ProductCatalog != null && newCategory.ProductCatalog.ProductCatalogGroup != null)
+	        {
+	            return _session.Query<Category>().SingleOrDefault(x => x.Name == newCategory.Name && x.ProductCatalog.Name == newCategory.ProductCatalog.Name && x.ProductCatalog.ProductCatalogGroup.Name == newCategory.ProductCatalog.ProductCatalogGroup.Name);
+	        }
 
-		private void UpdateProductPrices(Product currentProduct, Product newProduct)
-		{
-			var newPrices = newProduct.PriceGroupPrices;
+	        if (newCategory.ProductCatalog != null)
+	        {
+	            return _session.Query<Category>().SingleOrDefault(x => x.Name == newCategory.Name && x.ProductCatalog.Name == newCategory.ProductCatalog.Name);
+	        }
 
-			foreach (var price in newPrices)
-			{
-				var priceGroupPrice = currentProduct.PriceGroupPrices.SingleOrDefault(a => a.PriceGroup.Name == price.PriceGroup.Name);
-				if (priceGroupPrice != null) // Update
-				{
-					priceGroupPrice.Price = price.Price;
-				}
-				else // Insert
-				{
-					var priceGroup = _session.Query<PriceGroup>().SingleOrDefault(x => x.Name == price.PriceGroup.Name);
-					if (priceGroup != null) // It exist, then insert it
-					{
-						price.PriceGroup = priceGroup;
-						currentProduct.AddPriceGroupPrice(price);
-					}
-				}
-			}
-		}
+	        return _session.Query<Category>().SingleOrDefault(x => x.Name == newCategory.Name);
+	    }
 
-		private void UpdateProductValueTypes(Product currentProduct, Product newProduct)
+        private void UpdateProductPrices(Product currentProduct, Product newProduct, IList<PriceGroup> priceGroups)
+	    {
+	        var newPrices = newProduct.PriceGroupPrices;
+
+	        foreach (var price in newPrices)
+	        {
+	            var priceGroupPrice = currentProduct.PriceGroupPrices.SingleOrDefault(a => a.PriceGroup.Name == price.PriceGroup.Name);
+	            if (priceGroupPrice != null) // Update
+	            {
+	                priceGroupPrice.Price = price.Price;
+	                _session.Update(priceGroupPrice);
+	            }
+	            else // Insert
+	            {
+	                var priceGroup = priceGroups.FirstOrDefault(x => x.Name == price.PriceGroup.Name);
+	                if (priceGroup != null) // It exist, then insert it
+	                {
+	                    price.PriceGroup = priceGroup;
+	                    currentProduct.AddPriceGroupPrice(price);
+	                    _session.Insert(price);
+	                }
+	            }
+	        }
+	    }
+
+        private void UpdateProductValueTypes(Product currentProduct, Product newProduct)
 		{
 			currentProduct.Name = newProduct.Name;
 			currentProduct.DisplayOnSite = newProduct.DisplayOnSite;
@@ -211,25 +216,27 @@ namespace uCommerce.uConnector.Adapters.Senders
 			currentProduct.Rating = newProduct.Rating;
 		}
 
-		private void UpdateProductDescriptions(Product currentProduct, Product newProduct)
-		{
-			foreach (var productDescription in newProduct.ProductDescriptions)
-			{
-				var currentProductDescription = currentProduct.ProductDescriptions.SingleOrDefault(a => a.CultureCode == productDescription.CultureCode);
-				if (currentProductDescription != null) // Update
-				{
-					currentProductDescription.DisplayName = productDescription.DisplayName;
-					currentProductDescription.ShortDescription = productDescription.ShortDescription;
-					currentProductDescription.LongDescription = productDescription.LongDescription;
-				}
-				else // Insert
-				{
-					currentProduct.AddProductDescription(productDescription);
-				}
-			}
-		}
+	    private void UpdateProductDescriptions(Product currentProduct, Product newProduct)
+	    {
+	        foreach (var productDescription in newProduct.ProductDescriptions)
+	        {
+	            var currentProductDescription = currentProduct.ProductDescriptions.SingleOrDefault(a => a.CultureCode == productDescription.CultureCode);
+	            if (currentProductDescription != null) // Update
+	            {
+	                currentProductDescription.DisplayName = productDescription.DisplayName;
+	                currentProductDescription.ShortDescription = productDescription.ShortDescription;
+	                currentProductDescription.LongDescription = productDescription.LongDescription;
+	                _session.Update(currentProductDescription);
+	            }
+	            else // Insert
+	            {
+	                currentProduct.AddProductDescription(productDescription);
+	                _session.Insert(productDescription);
+	            }
+	        }
+	    }
 
-		private ISessionProvider GetSessionProvider()
+        private IStatelessSessionProvider GetStatelessSessionProvider()
 		{
 			return new SessionProvider(
 				new InMemoryCommerceConfigurationProvider(ConnectionString),
