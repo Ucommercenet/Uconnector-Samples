@@ -30,3 +30,4 @@ _ReSharper*
 ._*
 
 log.txt
+src/packages
