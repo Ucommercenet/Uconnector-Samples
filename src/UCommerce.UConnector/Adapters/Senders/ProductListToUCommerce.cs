@@ -13,16 +13,20 @@ namespace uCommerce.uConnector.Adapters.Senders
 	public class ProductListToUCommerce : Configurable, ISender<IEnumerable<Product>>
 	{
 		private IStatelessSession _session;
+	    private ICollection<ProductDescription> _currentProductDescriptions;
+	    private ICollection<ProductProperty> _currentProductsProperties;
+	    private ICollection<PriceGroupPrice> _currentProductPriceGroupPrices;
+	    private ICollection<ProductDefinitionField> _currentProductProductDefinitionFields;
 
-		public void Send(IEnumerable<Product> input)
+	    public void Send(IEnumerable<Product> input)
 		{
 		    _session = GetStatelessSessionProvider().GetStatelessSession();
 
 		    foreach (var newProduct in input)
 		    {
 		        var productDefinition = _session.Query<ProductDefinition>().FirstOrDefault(x => x.Name == newProduct.ProductDefinition.Name);
-		        var product = _session.Query<Product>().Fetch(x => x.ProductDefinition).SingleOrDefault(a => a.Sku == newProduct.Sku && a.VariantSku == null);
-		        var priceGroups = _session.Query<PriceGroup>().Where(x => !x.Deleted).ToList();
+		        var product = _session.Query<Product>().Fetch(x => x.ProductDefinition).FetchMany(x => x.PriceGroupPrices).SingleOrDefault(a => a.Sku == newProduct.Sku && a.VariantSku == null);
+                var priceGroups = _session.Query<PriceGroup>().Where(x => !x.Deleted).ToList();
 
 		        if (product == null) // Create product
 		        {
@@ -33,9 +37,25 @@ namespace uCommerce.uConnector.Adapters.Senders
 		                VariantSku = null,
 		                CreatedOn = DateTime.Now,
 		                ModifiedOn = DateTime.Now,
-		                ProductDefinition = productDefinition
+		                CreatedBy = "Uconnector",
+		                ModifiedBy = "Uconnector",
+                        ProductDefinition = productDefinition
 		            };
 		        }
+		        else
+		        {
+		            product.ModifiedBy = "Uconnector";
+		            product.ModifiedOn = DateTime.Now;
+
+                    _currentProductsProperties = _session.Query<ProductProperty>().Where(x => x.Product == product)
+		                .Fetch(x => x.ProductDefinitionField).ToList();
+		            _currentProductDescriptions =
+		                _session.Query<ProductDescription>().Where(x => x.Product == product).ToList();
+		            _currentProductPriceGroupPrices =
+		                _session.Query<PriceGroupPrice>().Where(x => x.Product == product).Fetch(x => x.PriceGroup).ToList();
+		            _currentProductProductDefinitionFields = _currentProductsProperties.Select(x => x.ProductDefinitionField).ToList();
+		        }
+
 		        using (var tx = _session.BeginTransaction())
 		        {
 		            UpdateProduct(product, newProduct, productDefinition, priceGroups);
@@ -61,7 +81,7 @@ namespace uCommerce.uConnector.Adapters.Senders
 	        // Variants
 	        UpdateProductVariants(currentProduct, newProduct, productDefinition, priceGroups);
 
-	        _session.Insert(currentProduct);
+	        _session.Update(currentProduct);
 
 	        // Categories
 	        UpdateProductCategories(currentProduct, newProduct);
@@ -81,7 +101,7 @@ namespace uCommerce.uConnector.Adapters.Senders
 
 	        foreach (var newProperty in newProductProperties)
 	        {
-	            var currentProductProperty = currentProduct.GetProperties().Cast<ProductProperty>().SingleOrDefault(
+	            var currentProductProperty = _currentProductsProperties.SingleOrDefault(
 	                x => !x.ProductDefinitionField.Deleted && (x.ProductDefinitionField.Name == newProperty.ProductDefinitionField.Name));
 
 	            if (currentProductProperty != null) // Update
@@ -93,8 +113,7 @@ namespace uCommerce.uConnector.Adapters.Senders
 	            else // Insert
 	            {
 	                var productDefinitionField =
-	                    currentProduct.GetDefinition()
-	                        .GetDefinitionFields().Cast<ProductDefinitionField>()
+	                    _currentProductProductDefinitionFields
 	                        .SingleOrDefault(x => x.Name == newProperty.ProductDefinitionField.Name);
 
 	                if (productDefinitionField != null) // Field exist, insert it.
@@ -105,10 +124,10 @@ namespace uCommerce.uConnector.Adapters.Senders
 	                        Value = newProperty.Value
 	                    };
 	                    currentProduct.AddProductProperty(currentProductProperty);
-	                }
+	                    _session.Insert(currentProductProperty);
+                    }
 
-	                _session.Insert(currentProductProperty);
-	            }
+                }
 	        }
 	    }
 
@@ -117,27 +136,41 @@ namespace uCommerce.uConnector.Adapters.Senders
 	        var newVariants = newProduct.Variants;
 	        foreach (var newVariant in newVariants)
 	        {
-	            var currentVariant = currentProduct.Variants.SingleOrDefault(x => x.VariantSku == newVariant.VariantSku);
-	            if (currentVariant != null) // Update
-	            {
-	                UpdateProduct(currentVariant, newVariant, productDefinition, priceGroups);
-	            }
-	            else // Insert
+                var currentVariant = _session.Query<Product>().Fetch(x => x.ParentProduct).ThenFetch(x => x.ProductDefinition).FetchMany(x => x.PriceGroupPrices).SingleOrDefault(a => a.Sku == newProduct.Sku && a.VariantSku == newVariant.VariantSku);
+	            if (currentVariant == null) // Update
 	            {
 	                if (string.IsNullOrWhiteSpace(newVariant.VariantSku))
 	                    throw new Exception("VariantSku is empty");
 
-	                var product = new Product
+	                currentVariant = new Product
 	                {
 	                    Sku = newVariant.Sku,
 	                    Name = newVariant.Name,
-	                    VariantSku = newVariant.VariantSku,
-	                    ProductDefinition = currentProduct.ProductDefinition
+	                    CreatedOn = DateTime.Now,
+	                    ModifiedOn = DateTime.Now,
+                        CreatedBy = "Uconnector",
+                        ModifiedBy = "Uconnector",
+                        VariantSku = newVariant.VariantSku,
+	                    ProductDefinition = currentProduct.ProductDefinition,
+                        ParentProduct =  currentProduct
 	                };
-
-	                UpdateProduct(product, newVariant, productDefinition, priceGroups);
-	                currentProduct.AddVariant(product);
+	                _session.Insert(currentVariant);
 	            }
+                else
+                {
+                    currentVariant.ModifiedBy = "Uconnector";
+                    currentVariant.ModifiedOn = DateTime.Now;
+                    currentVariant.ProductDefinition = currentProduct.ProductDefinition;
+                }
+
+                _currentProductsProperties = _session.Query<ProductProperty>().Where(x => x.Product == currentVariant)
+	                .Fetch(x => x.ProductDefinitionField).ToList();
+	            _currentProductDescriptions =
+	                _session.Query<ProductDescription>().Where(x => x.Product == currentVariant).ToList();
+	            _currentProductPriceGroupPrices =
+	                _session.Query<PriceGroupPrice>().Where(x => x.Product == currentVariant).Fetch(x => x.PriceGroup).ToList();
+
+                UpdateProduct(currentVariant, newVariant, productDefinition, priceGroups);
 	        }
 	    }
 
@@ -186,7 +219,7 @@ namespace uCommerce.uConnector.Adapters.Senders
 
 	        foreach (var price in newPrices)
 	        {
-	            var priceGroupPrice = currentProduct.PriceGroupPrices.SingleOrDefault(a => a.PriceGroup.Name == price.PriceGroup.Name);
+	            var priceGroupPrice = _currentProductPriceGroupPrices.SingleOrDefault(a => a.PriceGroup.Name == price.PriceGroup.Name);
 	            if (priceGroupPrice != null) // Update
 	            {
 	                priceGroupPrice.Price = price.Price;
@@ -199,6 +232,7 @@ namespace uCommerce.uConnector.Adapters.Senders
 	                {
 	                    price.PriceGroup = priceGroup;
 	                    currentProduct.AddPriceGroupPrice(price);
+	                    _session.Insert(currentProduct);
 	                    _session.Insert(price);
 	                }
 	            }
@@ -220,7 +254,7 @@ namespace uCommerce.uConnector.Adapters.Senders
 	    {
 	        foreach (var productDescription in newProduct.ProductDescriptions)
 	        {
-	            var currentProductDescription = currentProduct.ProductDescriptions.SingleOrDefault(a => a.CultureCode == productDescription.CultureCode);
+	            var currentProductDescription = _currentProductDescriptions.SingleOrDefault(a => a.CultureCode == productDescription.CultureCode);
 	            if (currentProductDescription != null) // Update
 	            {
 	                currentProductDescription.DisplayName = productDescription.DisplayName;
@@ -229,8 +263,10 @@ namespace uCommerce.uConnector.Adapters.Senders
 	                _session.Update(currentProductDescription);
 	            }
 	            else // Insert
-	            {
-	                currentProduct.AddProductDescription(productDescription);
+                { 
+	                productDescription.Product = currentProduct;
+
+	                _session.Update(currentProduct);
 	                _session.Insert(productDescription);
 	            }
 	        }

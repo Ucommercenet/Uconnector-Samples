@@ -3,7 +3,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <StartAction>Program</StartAction>
     <StartArguments>Tasks</StartArguments>
-    <StartProgram>C:\Projects\uConnector Samples\src\uConnector.Samples\bin\Debug\uConnector.Express.exe</StartProgram>
+    <StartProgram>C:\Projects\uConnector\uconnector-samples\src\uConnector.Samples\bin\Debug\uConnector.Express.exe</StartProgram>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
     <StartArguments>Tasks</StartArguments>
@@ -19,5 +19,8 @@
     <StartAction>Program</StartAction>
     <StartProgram>C:\Projects\uConnector Samples\src\uConnector.Samples\bin\Release\uConnector.Express.exe</StartProgram>
     <StartArguments>Tasks</StartArguments>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ProjectView>ShowAllFiles</ProjectView>
   </PropertyGroup>
 </Project>

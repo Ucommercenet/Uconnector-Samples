@@ -14,8 +14,9 @@ namespace uCommerce.uConnector.Adapters.Receivers
 
         public IEnumerable<Product> Receive()
         {
-	        var session = GetSessionProvider().GetSession();
-			return session.Query<Product>().Where(x => x.ParentProduct == null);
+            var sessionProvider = GetSessionProvider();
+            var session = sessionProvider.GetSession();
+			return session.Query<Product>().Fetch(x => x.ProductDefinition).Where(x => x.ParentProduct == null);
         }
 
 	    private ISessionProvider GetSessionProvider()
