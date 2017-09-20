@@ -95,6 +95,10 @@
     <Reference Include="NHibernate, Version=4.0.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
       <HintPath>..\packages\NHibernate.4.0.0.4000\lib\net40\NHibernate.dll</HintPath>
     </Reference>
+    <Reference Include="NHibernate.Caches.SysCache, Version=4.0.0.4000, Culture=neutral, PublicKeyToken=6876f2ea66c9f443, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\SysCache\NHibernate.Caches.SysCache.dll</HintPath>
+    </Reference>
     <Reference Include="Raven.Abstractions, Version=2.5.0.0, Culture=neutral, PublicKeyToken=37f41c7f99471593, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\Ravendb\Raven.Abstractions.dll</HintPath>
@@ -181,7 +185,7 @@
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>Powershell.exe -ExecutionPolicy Bypass -file "$(SolutionDir)packages\uConnector.Express.2.0.0.16111\Tools\PostBuildEvent.ps1" -TargetDir "$(TargetDir)</PostBuildEvent>
+    <PostBuildEvent>rem Powershell.exe -ExecutionPolicy Bypass -file "$(SolutionDir)packages\uConnector.Express.2.0.0.16111\Tools\PostBuildEvent.ps1" -TargetDir "$(TargetDir)</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
