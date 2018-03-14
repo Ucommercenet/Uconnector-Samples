@@ -105,11 +105,11 @@
     <Reference Include="UCommerce.Web.Api, Version=7.14.0.18060, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\uCommerce.Core.7.14.0.18060\lib\net45\UCommerce.Web.Api.dll</HintPath>
     </Reference>
-    <Reference Include="UConnector, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\uconnector\src\packages\uConnector.2.0.0.16118\Lib\net400\UConnector.dll</HintPath>
+    <Reference Include="UConnector, Version=2.0.0.18073, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\uconnector\src\packages\uConnector.2.1.0.18073\Lib\net400\UConnector.dll</HintPath>
     </Reference>
-    <Reference Include="UConnector.Framework, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\uconnector\src\packages\uConnector.2.0.0.16118\Lib\net400\UConnector.Framework.dll</HintPath>
+    <Reference Include="UConnector.Framework, Version=2.0.0.18073, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\uconnector\src\packages\uConnector.2.1.0.18073\Lib\net400\UConnector.Framework.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -126,6 +126,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="Deploy\CreateUConnectorPackage.ps1" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>

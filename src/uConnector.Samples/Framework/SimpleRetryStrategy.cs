@@ -6,7 +6,7 @@ namespace UConnector.Samples.Framework
 {
 	public class SimpleRetryStrategy : IRetryStrategy
 	{
-		private readonly ILog _log = LogManager.GetCurrentClassLogger();
+		private readonly ILog _log = LogManager.GetLogger<SimpleRetryStrategy>();
 
 		public bool Retry(int retryIterationNumber)
 		{

@@ -8,7 +8,7 @@ namespace UConnector.Samples.Helpers
 {
 	public class XElementToCsvRow : ITransformer<XElement, string>
 	{
-		private readonly ILog log = LogManager.GetCurrentClassLogger();
+		private readonly ILog _log = LogManager.GetLogger<XElementToCsvRow>();
 
 		public string Execute(XElement input)
 		{
